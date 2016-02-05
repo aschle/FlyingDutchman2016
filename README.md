@@ -58,3 +58,31 @@ Repo for the course User Interface Programming I
 * Role: `user`
 * Additional parameter: `beer_id`
 * Returns all information available in the system for a specified beer. This includes name, price, alcohol volume, etc. The id of the beer for inquiry is a required additional parameter.
+
+### Admin
+
+#### `inventory_get`
+* Role: `admin`
+* Gives a list of all drinks available in the system.
+
+#### `inventory_append`
+Role: `admin` (I guess so)
+Additional parameters: `beer_id`, `amount`, `price`
+Updates the number of bottles available in stock and the price for a particular beer. The id of the beer to be updated is required along with its price and current amount of available bottles.
+
+#### `purchases_get_all`
+* Role: `admin`
+* Gives a list of all purchases made by all users.
+
+#### `payments_get_all`
+* Role: `admin`
+* Returns a list of payments made by all users.
+
+#### `iou_get_all`
+* Role: admin
+* Returns all users and amounts they have at their disposal. For users with a negative balance it means that they have a debt.
+
+#### `user_edit`
+* Role: admin
+* Additional parameters:
+`new_username`, `new_password`, `first_name`, `last_name`, `email`, `phone` * Updates user information. All user information is required as additional parameters.
