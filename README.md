@@ -2,6 +2,8 @@
 Repo for the course User Interface Programming I
 
 ## API
+* Admin: svetor|svetor
+* User: ankov|ankov
 
 ### User
 #### `purchases_get`
