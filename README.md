@@ -5,12 +5,12 @@ Repo for the course User Interface Programming I
 * Admin: svetor|svetor
 * User: ankov|ankov
 
-### User
 #### `purchases_get`
 * Role: `user`
 * Gives a list of all purchases made by the specified user.
-* `http://pub.jamaica-inn.net/fpdb/api.php?username=ankov&password=ankov&action=purchases_get`
 
+          `http://pub.jamaica-inn.net/fpdb/api.php?username=ankov&password=ankov&action=purchases_get`
+          
           {
            "namn": "Strongbow",
            "namn2": "",
@@ -25,8 +25,10 @@ Repo for the course User Interface Programming I
 * Role: `user`
 * Additional parameter: `beer_id`
 * Adds a purchase of one beer to the system for the specified user. The id of the beer purchased beer is a required additional parameter.
-* `http://pub.jamaica-inn.net/fpdb/api.php?username=ankov&password=ankov&action=purchases_append&beer_id=2259`
+* no sucess/error messages
 
+          `http://pub.jamaica-inn.net/fpdb/api.php?username=ankov&password=ankov&action=purchases_append&beer_id=2259`
+          
           {
            "type": "empty",
            "payload": []
@@ -35,20 +37,32 @@ Repo for the course User Interface Programming I
 #### `payments_get`
 * Role: `user`
 * Returns a list of payments made by the specified user.
-* http://pub.jamaica-inn.net/fpdb/api.php?username=ankov&password=ankov&action=payments_get
 
-{
- "transaction_id": "74",
- "user_id": "51",
- "admin_id": "25",
- "amount": "30",
- "timestamp": "2013-05-31 18:49:26"
-}
+          http://pub.jamaica-inn.net/fpdb/api.php?username=ankov&password=ankov&action=payments_get
+
+          {
+           "transaction_id": "74",
+           "user_id": "51",
+           "admin_id": "25",
+           "amount": "30",
+           "timestamp": "2013-05-31 18:49:26"
+          }
 
 #### `payments_append`
 * Role: `user`
 * Additional parameter: `amount`
 * Adds a payment of specified amount to the system for the specified user. The amount is a required additional parameter.
+* **Why is it not working?**
+
+          http://pub.jamaica-inn.net/fpdb/api.php?username=ankov&password=ankov&action=payments_append&amount=10
+          {
+           "type": "error",
+           "payload": [
+            {
+             "code": "3",
+             "msg": "Not enough credentials"
+            }]
+          }
 
 #### `iou_get`
 * Role: `user`
