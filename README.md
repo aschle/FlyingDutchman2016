@@ -1,6 +1,18 @@
 # FlyingDutchman2016
 Repo for the course User Interface Programming I
 
+## Running
+
+     git clone git@github.com:aschle/FlyingDutchman2016.git
+     cd FlyingDutchman2016
+     
+Install SASS first (http://sass-lang.com/)
+
+Then compile SASS to CSS, 
+
+     sass --watch sass/main.scss:css/main.css
+
+
 ## API
 * Admin: svetor|svetor
 * User: ankov|ankov
