@@ -10,6 +10,12 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Instead of using Glyphicons we use FontAwesome instead, more icons -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- Our own CSS styles -->
+    <link rel="stylesheet" href="css/main.css">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -18,9 +24,83 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Hello, world!</h1>
-    <a href="#" class="btn btn-primary">I am a bootstrap Button</a>
-    <p>working</p>
+
+    <div class="container-fluid">
+
+      <!-- Maybe but in some other file/place, so file does not get that long -->
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">FlyingDutchman BeerApp</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <div class="btn-group btn-group-sm" role="group" aria-label="languages">
+                  <button type="button" class="btn btn-default navbar-btn">en</button>
+                  <button type="button" class="btn btn-default navbar-btn">de</button>
+                </div>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-user"></i><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-header">Signed in as username</li>
+                  <li><a href="#">Change themes</a></li>
+                  <li><a href="#">Other stuff</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Sign Out</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+
+      <!-- Search bar: maybe place differently-->
+      <div id="search-bar" class="row">
+        <div class="col-md-5 col-md-offset-2">
+          <form>
+            <input type="search" class="form-control" placeholder="Some search term">
+          </form>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-2">
+
+          <!-- Left Navigation (should become affixed at some point maybe -->
+          <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" class="active"><a href="#"><i class="fa fa-fw fa-beer"></i> All Beers</a></li>
+            <li role="presentation"><a href="#"><i class="fa fa-fw fa-clock-o"></i> Recent</a></li>
+            <li role="presentation"><a href="#"><i class="fa fa-fw fa-heart"></i> Favorite</a></li>
+          </ul>
+
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-6">
+              middel area for whatsoever
+            </div>
+            <div class="col-md-6">
+              right part for something else
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
