@@ -1,8 +1,7 @@
-// TODO: instead of including bootstrap as css, use sass version to use bootstrap variables
+@charset "utf-8";
 
-body { padding-top: 50px; }
-
-#search-bar {
-  background-color: lightgray;
-  padding: 15px 0px;
-}
+@import
+        "bootstrap",
+        "font-awesome/font-awesome",
+        "base"
+;
