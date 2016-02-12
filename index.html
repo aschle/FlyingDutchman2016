@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="barApp">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +10,9 @@
     <!-- Our own CSS styles -->
     <link rel="stylesheet" href="css/main.css">
 
+    <!-- Angular v1.5.0 -->
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
     <!-- jQuery  -->
     <script src="js/jquery-1.12.0.js"></script>
     <!-- Bootstrap -->
@@ -24,7 +27,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body ng-controller="mainController">
 
     <div class="container-fluid">
 
@@ -39,7 +42,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">FlyingDutchman BeerApp</a>
+            <a class="navbar-brand" href="/#/">FlyingDutchman BeerApp</a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -84,24 +87,22 @@
             <li role="presentation" class="active"><a href="#"><i class="fa fa-fw fa-beer"></i> All Beers</a></li>
             <li role="presentation"><a href="#"><i class="fa fa-fw fa-clock-o"></i> Recent</a></li>
             <li role="presentation"><a href="#"><i class="fa fa-fw fa-heart"></i> Favorite</a></li>
+            <li role="presentation"><a href="#last-orders">Last orders</a></li>
           </ul>
 
         </div>
 
         <!-- Main Content Area -->
         <div class="col-md-10">
-          <div class="row">
-            <div class="col-md-6">
-              middel area for whatsoever
-            </div>
-            <div class="col-md-6">
-              <p>right part for something else</p>
-              <button id="test-btn" class="btn btn-default">TEST BUTTON API (purchases_get)</button>
-              <div class="alert alert-info" role="alert">press the button to get some things from api displyed here</div>
-              <ul id="test-api-result" class="list-group">
-              </ul>
-            </div>
+
+          <!-- MAIN CONTENT AND INJECTED VIEWS -->
+          <div id="main">
+            <!-- angular templating -->
+            <!-- this is where content will be injected -->
+            <div ng-view></div>
+
           </div>
+
         </div>
       </div>
 
