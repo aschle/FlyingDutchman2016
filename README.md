@@ -11,6 +11,10 @@ Install SASS first (http://sass-lang.com/)
 Then compile SASS to CSS, 
 
      sass --watch sass/main.scss:css/main.css
+     
+If you want you can run a little HTTP server using python:
+     
+     python -m SimpleHTTPServer
 
 
 ## API
