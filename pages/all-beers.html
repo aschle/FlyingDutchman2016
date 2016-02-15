@@ -1,7 +1,7 @@
 <!-- all-beers.html -->
 <div class="row">
   <div class="col-md-6">
-    <h3>All beer<small>&nbsp;{{ items }}</h3>
+    <h3>All beer<small>&nbsp;{{ items }}</small></h3>
     <div class="list-group">
       <button class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content">
         <h4 class="list-group-item-heading">{{ value.namn }}<small>&nbsp;{{ value.namn2 }}</small><span class="pull-right">{{ value.price }}</span></h4>
