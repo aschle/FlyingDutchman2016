@@ -1,4 +1,4 @@
-body { padding-top: $navbar-height; }
+body { padding-top: $navbar-height + $line-height-computed; }
 
 #search-bar {
   background-color: $gray-lighter;
