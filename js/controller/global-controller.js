@@ -8,9 +8,9 @@
         .module('barApp')
         .controller('GlobalController', GlobalController);
 
-    GlobalController.$inject = ['$scope', '$location', 'AuthService'];
+    GlobalController.$inject = ['$scope', '$location', '$window', 'AuthService'];
 
-    function GlobalController($scope, $location, AuthService) {
+    function GlobalController($scope, $location, $window, AuthService) {
 
         $scope.init = function() {
             if(AuthService.isLoggedIn()){
@@ -20,13 +20,15 @@
                 $('.panel').hide();
                 $('.navbar .container-fluid').hide();  
             }
+
+            $scope.AuthService = AuthService;
         }
 
         $scope.init();
  
         $scope.logout = function() {
             AuthService.killLoggedInUser();
-            $location.path('/');
+            $window.location.reload();
         };
     }
 })();

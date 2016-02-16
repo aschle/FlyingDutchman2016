@@ -40,5 +40,9 @@
             .when('/admin', {
                 templateUrl : 'pages/admin/index.html'
             })
+
+            .otherwise({
+                redirectTo: '/'
+            });
     });
 })();
