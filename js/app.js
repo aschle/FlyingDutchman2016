@@ -15,7 +15,23 @@
             // route for the home page
             .when('/', {
                 templateUrl : 'pages/home.html',
-                controller  : 'mainController'
+                controller  : 'MainController'
+            })
+
+            // login page
+            .when('/login', {
+                templateUrl : 'pages/login.html',
+                controller  : 'LoginController'
+            })
+
+            // admin page
+            .when('/admin', {
+                templateUrl : 'pages/admin/index.html'
+            })
+
+            // user page
+            .when('/user', {
+                templateUrl : 'pages/user/index.html'
             })
 
             // route for the last order page

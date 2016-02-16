@@ -1,92 +1,70 @@
 {
     "users":[{
             "name": "ervtod",
-            "password":"ervtod",
-            "role": "admin"
-        },
-        {
-            "name": "ervtod",
-            "password":"ervtod",
             "role": "admin"
         },
         {
             "name": "hirchr",
-            "password":"hirchr",
             "role": "admin"
         },
         {
             "name": "jorass",
-            "password":"jorass",
             "role": "admin"
         },
         {
             "name": "saskru",
-            "password":"saskru",
             "role": "admin"
         },
         {
             "name": "svetor",
-            "password":"svetor",
             "role": "admin"
         },
         {
             "name": "aamsta",
-            "password":"aamsta",
             "role": "user"
         },
         {
             "name": "anddar",
-            "password":"anddar",
             "role": "user"
         },
         {
             "name": "ankov",
-            "password":"ankov",
             "role": "user"
         },
         {
             "name": "aqulyn",
-            "password":"aqulyn",
             "role": "user"
         },
         {
             "name": "aubbla",
-            "password":"aubbla",
             "role": "user"
         },
         {
             "name": "benfau",
-            "password":"benfau",
             "role": "user"
         },
         {
             "name": "bratam",
-            "password":"bratam",
             "role": "user"
         },
         {
             "name": "ceznew",
-            "password":"ceznew",
             "role": "user"
         },
         {
             "name": "dansch",
-            "password":"dansch",
             "role": "user"
         },
         {
             "name": "didwat",
-            "password":"didwat",
             "role": "user"
         },
         {
             "name": "domolh",
-            "password":"domolh",
             "role": "user"
         },
         {
             "name": "edraug",
-            "password":"edraug",
             "role": "user"
         }
     ]

@@ -22,6 +22,8 @@
 
     <!-- all controllers and services for now -->
     <script src="js/services.js"></script>
+    <script src="js/controller/global-controller.js"></script>
+    <script src="js/controller/login-controller.js"></script>
     <script src="js/controller/beer-controller.js"></script>
     <script src="js/controller/main-controller.js"></script>
     <script src="js/controller/order-controller.js"></script>
@@ -34,7 +36,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body ng-controller="mainController">
+  <body ng-controller="GlobalController">
 
     <div class="container-fluid">
 
@@ -74,7 +76,7 @@
                   <li><a href="#">Change themes</a></li>
                   <li><a href="#">Other stuff</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="#">Sign Out</a></li>
+                  <li><a href="#" ng-click="logout()">Sign Out</a></li>
                 </ul>
               </li>
             </ul>
