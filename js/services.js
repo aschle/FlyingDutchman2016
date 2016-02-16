@@ -36,8 +36,6 @@ angular.module('barApp')
             return localStorage.getItem(key);    
         };
 
-
-
         /** Setter for JSON Object */
         lsService.setObject = function(key, value) {
             $window.localStorage[key] = JSON.stringify(value);

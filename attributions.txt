@@ -1,0 +1,5 @@
+beer1
+photo credit: <a href="http://www.flickr.com/photos/48962360@N06/11825958695">Celtic Night</a> via <a href="http://photopin.com">photopin</a> <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/">(license)</a>
+
+beer2
+photo credit: <a href="http://www.flickr.com/photos/51004283@N04/11978742423">Hello friend</a> via <a href="http://photopin.com">photopin</a> <a href="https://creativecommons.org/licenses/by/2.0/">(license)</a>

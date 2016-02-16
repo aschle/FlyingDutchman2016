@@ -15,7 +15,7 @@
             // route for the home page
             .when('/', {
                 templateUrl : 'pages/home.html',
-                controller  : 'MainController'
+                controller  : 'HomeController'
             })
 
             // login page

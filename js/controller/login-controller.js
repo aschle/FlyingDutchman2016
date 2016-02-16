@@ -61,7 +61,6 @@
 
             //check if somebody is already logged in skip page then
             //Redirect depending on role to admin/user home page
-            console.log(AuthService.isLoggedIn());
             if(AuthService.isLoggedIn() == true) {
                 $location.path('/' + AuthService.getLoggedInUserRole() + '/');
             }

@@ -8,13 +8,13 @@
         .module('barApp')
         .controller('GlobalController', GlobalController);
 
-    GlobalController.$inject = ['$scope', 'AuthService'];
+    GlobalController.$inject = ['$scope', '$location', 'AuthService'];
 
-    function GlobalController($scope, AuthService) {
+    function GlobalController($scope, $location, AuthService) {
  
         $scope.logout = function() {
             AuthService.killLoggedInUser();
-            // TODO: Redirecting to very start page!
+            $location.path('/');
         };
     }
 })();
