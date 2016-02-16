@@ -3,32 +3,40 @@
  */
 (function () {
     'use strict';
+ 
+    angular
+        .module('barApp')
+        .controller('AllBeersController', AllBeersController);
 
-    var app = angular.module('barApp');
-    app.controller('allBeersController', ['$scope', '$http',
-        function($scope, $http) { 
-            "use strict";
+    AllBeersController.$inject = ['$scope', 'DataService'];
 
-            var action = "inventory_get";
-
-            $http({
-                method: 'GET',
-                url: 'http://pub.jamaica-inn.net/fpdb/api.php',
-                params: { username : "ankov", password : "ankov", action : action }
-            }).then(function successCallback(response) {
-
+    function AllBeersController($scope, DataService) {
+ 
+        $scope.init = function () {
+            DataService.getInventory().then(function(response){
                 var count = 0;
+                var beerList = {};
                 $.each(response.data.payload, function(index, value){
                     count += 1;
+
+                    // get specific data per beer
+                    DataService.getBeerById(value.beer_id).then(function(responseBeer){
+                        value.additionalInfos = (responseBeer.data.payload[0]);
+                    }, function(responseBeer){
+                        $scope.content = "Something went wrong!";
+                    })
                 });
 
                 $scope.items = count;
                 $scope.content = response.data.payload;
-            }, function errorCallback(response) {
+
+
+            }, function(response){
                 $scope.content = "Something went wrong!";
             });
-        }
-    ]);
+        };
 
-}());
+        $scope.init();
+    }
+})();
 

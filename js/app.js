@@ -27,7 +27,7 @@
            // User: All beers
             .when('/user', {
                 templateUrl : 'pages/user/all-beers.html',
-                controller  : 'allBeersController'
+                controller  : 'AllBeersController'
             })
 
             // User: Last orders page

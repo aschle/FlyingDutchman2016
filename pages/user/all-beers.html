@@ -11,12 +11,27 @@
     <div class="list-group">
       <button class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content">
         <h4 class="list-group-item-heading">{{ value.namn }}<small>&nbsp;{{ value.namn2 }}</small><span class="pull-right">{{ value.price }}</span></h4>
-        <p class="list-group-item-text">Additional Information for beer can go here, whatever allgergies and stuff.<span class="label label-default">vegan</span><span class="label label-danger">{{ value.count }}</span></p>
+        <p class="list-group-item-text">
+          <span class="label label-default">
+            {{ value.additionalInfos.koscher}} koscher
+          </span>
+          <span class="label label-default">
+            {{ value.additionalInfos.ekologisk }} ekologisk
+          </span>
+          <span class="label label-default">
+            {{ value.additionalInfos.alkoholhalt }}
+          </span>
+          <span class="label label-default">
+            {{ value.additionalInfos.forpackning }}
+          </span>
+          <span class="label label-default">
+            {{ value.additionalInfos.ursprunglandnamn }}
+          </span>
+        </p>
       </button>
     </div>
-    <div >Details about beer will be displayed down here, rest should be scrollable</div>
   </div> 
   <div class="col-md-6">
-    cart goes here
+    TODO: cart goes here
   </div>
 </div>

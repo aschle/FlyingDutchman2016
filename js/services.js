@@ -7,14 +7,27 @@
  */
 
  angular.module('barApp')
-    .factory('DataService', ['$http', function ($http) {
+    .factory('DataService', ['$http', 'AuthService', function ($http, AuthService) {
 
         var dataService = {};
         var urlBase = 'http://pub.jamaica-inn.net/fpdb/api.php';
 
+        var user = AuthService.getLoggedInUser();
+        var username = user.username;
+        var password = user.password;
+
+        // TODO: remove user/pw params
         dataService.getBalanceByUser = function (username, password) {
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=iou_get');
         };
+
+        dataService.getInventory = function () {
+            return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=inventory_get');
+        }
+
+        dataService.getBeerById = function (id) {
+            return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=beer_data_get' + '&beer_id=' + id);
+        }
 
         return dataService;
     }]);
