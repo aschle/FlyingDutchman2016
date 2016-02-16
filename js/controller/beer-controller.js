@@ -13,6 +13,9 @@
     function AllBeersController($scope, DataService) {
  
         $scope.init = function () {
+            $('.panel').show();
+            $('.navbar .container-fluid').show();  
+
             DataService.getInventory().then(function(response){
                 var count = 0;
                 var beerList = {};

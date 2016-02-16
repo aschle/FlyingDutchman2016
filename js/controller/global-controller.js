@@ -14,10 +14,10 @@
 
         $scope.init = function() {
             if(AuthService.isLoggedIn()){
-                $('.nav').show();
+                $('.panel').show();
                 $('.navbar .container-fluid').show();  
             } else {
-                $('.nav').hide();
+                $('.panel').hide();
                 $('.navbar .container-fluid').hide();  
             }
         }
