@@ -1,6 +1,7 @@
 body {
   background-image: url(../img/beer1.jpg);
-  background-size: cover;
+  background-size: 100vw;
+  background-attachment: fixed;
   padding-top: $navbar-height + $line-height-computed;
 }
 
