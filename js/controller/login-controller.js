@@ -50,7 +50,7 @@
             });
         };
 
-        $scope.init = function () {
+        $scope.init = function () {            
             // write JSON file to local storage
             $http.get('users.JSON')
             .then(function(response) {

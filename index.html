@@ -56,12 +56,6 @@
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
             <ul class="nav navbar-nav navbar-right">
               <li>
                 <div class="btn-group btn-group-sm" role="group" aria-label="languages">
@@ -86,14 +80,38 @@
 
       <div class="row">
         <div class="col-md-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">Ordering Beer</div>
+            <div class="panel-body">
+              <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" class="active">
+                  <a href="#user">All Beers</a>
+                </li>
+                <li role="presentation">
+                  <a href="#">Recently ordered beers</a>
+                </li>
+                <li role="presentation">
+                  <a href="#">Favorite beers</a>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-          <!-- Left Navigation (should become affixed at some point maybe -->
-          <ul class="nav nav-pills nav-stacked">
-            <li role="presentation" class="active"><a href="#all-beers">All Beers</a></li>
-            <li role="presentation"><a href="#">Recently ordered beers</a></li>
-            <li role="presentation"><a href="#">Favorite beers</a></li>
-            <li role="presentation"><a href="#last-orders">Last orders</a></li>
-          </ul>
+          <div class="panel panel-default">
+            <div class="panel-heading">Other Stuff</div>
+            <div class="panel-body">
+              <ul class="nav nav-pills nav-stacked">
+                <li role="presentation">
+                  <a href="#last-orders">Last orders</a>
+                </li>
+                <li role="presentation">
+                  <a href="#todo">Whatever</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
 
         </div>
 

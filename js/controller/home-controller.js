@@ -8,14 +8,14 @@
         .module('barApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope'];
+    HomeController.$inject = ['$scope', '$location', 'AuthService'];
 
-    function HomeController($scope) {
+    function HomeController($scope, $location, AuthService) {
  
         $scope.init = function() {
-            $('.nav').hide();
-            $('.navbar .container-fluid').hide();
-
+            if(AuthService.isLoggedIn()){
+                $location.path('/' + AuthService.getLoggedInUserRole() + '/');
+            }
         };
 
         $scope.init();

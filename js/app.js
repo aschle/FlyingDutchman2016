@@ -12,7 +12,7 @@
     app.config(function($routeProvider) {
         $routeProvider
 
-            // route for the home page
+            // home page
             .when('/', {
                 templateUrl : 'pages/home.html',
                 controller  : 'HomeController'
@@ -24,26 +24,21 @@
                 controller  : 'LoginController'
             })
 
-            // admin page
-            .when('/admin', {
-                templateUrl : 'pages/admin/index.html'
-            })
-
-            // user page
+           // User: All beers
             .when('/user', {
-                templateUrl : 'pages/user/index.html'
+                templateUrl : 'pages/user/all-beers.html',
+                controller  : 'allBeersController'
             })
 
-            // route for the last order page
+            // User: Last orders page
             .when('/last-orders', {
                 templateUrl : 'pages/last-orders.html',
                 controller  : 'lastOrdersController'
             })
 
-            // route for alle beer page
-            .when('/all-beers', {
-                templateUrl : 'pages/all-beers.html',
-                controller  : 'allBeersController'
+            // admin start page
+            .when('/admin', {
+                templateUrl : 'pages/admin/index.html'
             })
     });
 })();

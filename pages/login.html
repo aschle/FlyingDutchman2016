@@ -1,22 +1,26 @@
 <!-- login.html -->
 <div class="row">
   <div class="col-md-4">
-    <h3>Recently logged in users</h3>
-    Some list goes here.
   </div> 
-  <div class="col-md-4">
-    <h3>Log in with your account</h3>
-    <form name="form" role="form" ng-submit="login()" ng-controller="LoginController">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" placeholder="" required ng-model="username">
+  <div class="col-md-4 box">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Log in with your VIP account</h3>
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="" required ng-model="password">
+      <div class="panel-body">
+        <form name="form" role="form" ng-submit="login()" ng-controller="LoginController">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="" required ng-model="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="" required ng-model="password">
+          </div>
+          <a href="/#/" class="link">Cancel</a> 
+          <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
       </div>
-      <a href="/#/" class="link">Cancel</a> 
-      <button type="submit" class="btn btn-primary">Sign In</button>
-    </form>
+    </div>
   </div>
 </div>
