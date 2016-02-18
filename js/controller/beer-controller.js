@@ -11,8 +11,11 @@
     AllBeersController.$inject = ['$scope', 'DataService'];
 
     function AllBeersController($scope, DataService) {
+
+
  
         $scope.init = function () {
+
             $('.panel').show();
             $('.navbar .container-fluid').show();  
 
@@ -40,6 +43,7 @@
         };
 
         $scope.init();
+
     }
 })();
 
