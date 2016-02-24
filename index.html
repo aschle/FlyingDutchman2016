@@ -27,6 +27,7 @@
     <script src="js/controller/beer-controller.js"></script>
     <script src="js/controller/home-controller.js"></script>
     <script src="js/controller/order-controller.js"></script>
+    <script src="js/controller/TMPadmin-controller.js"></script>
 
     <script type="text/javascript">
     // TODO: somehow put this into the beer-controller!!!
@@ -125,32 +126,35 @@
 
       <div class="row">
         <div id="sidebar" class="col-md-2">
-          <div class="panel panel-default">
-            <div class="panel-heading">Ordering Beer</div>
+          <div class="panel panel-default" id="menu-vip">
+            <div class="panel-heading">VIP Menu</div>
             <div class="panel-body">
               <ul class="nav nav-pills nav-stacked">
-                <li role="presentation" class="active">
+                <li role="presentation" ng-class="{ active: isActive('/user')}">
                   <a href="#user">All Beers</a>
                 </li>
-                <li role="presentation">
-                  <a href="#">Recently ordered beers</a>
+                <li role="presentation" ng-class="{ active: isActive('/todo')}">
+                  <a href="#todo">Favorite beers</a>
                 </li>
-                <li role="presentation">
-                  <a href="#">Favorite beers</a>
+                <li role="presentation" ng-class="{ active: isActive('/last-orders')}">
+                  <a href="#last-orders">Last orders</a>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div class="panel panel-default">
-            <div class="panel-heading">Other Stuff</div>
+          <div class="panel panel-default" id="menu-admin">
+            <div class="panel-heading">Admin Menu</div>
             <div class="panel-body">
               <ul class="nav nav-pills nav-stacked">
-                <li role="presentation">
-                  <a href="#last-orders">Last orders</a>
+                <li role="presentation" ng-class="{ active: isActive('/todo')}">
+                  <a href="#todo">Menu Entry 1</a>
                 </li>
-                <li role="presentation">
-                  <a href="#todo">Whatever</a>
+                <li role="presentation" ng-class="{ active: isActive('/todo')}">
+                  <a href="#todo">Menu Entry 2</a>
+                </li>
+                <li role="presentation" ng-class="{ active: isActive('/todo')}">
+                  <a href="#todo">Menu Entry 3</a>
                 </li>
               </ul>
             </div>

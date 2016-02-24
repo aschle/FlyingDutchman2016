@@ -16,7 +16,8 @@
  
         $scope.init = function () {
 
-            $('.panel').show();
+            $('#menu-VIP').show();
+            $('#menu-admin').hide();
             $('.navbar .container-fluid').show();  
 
             DataService.getInventory().then(function(response){

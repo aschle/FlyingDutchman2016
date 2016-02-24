@@ -30,5 +30,9 @@
             AuthService.killLoggedInUser();
             $window.location.reload();
         };
+
+        $scope.isActive = function (viewLocation) { 
+            return viewLocation === $location.path();
+        };
     }
 })();
