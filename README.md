@@ -1,4 +1,4 @@
-# FlyingDutchman2016
+﻿# FlyingDutchman2016
 Repo for the course User Interface Programming I
 
 ## Running
@@ -16,6 +16,10 @@ If you want you can run a little HTTP server using python:
      
      python -m SimpleHTTPServer
 
+on python3:
+
+     python -m http.server    
+	
 
 ## API
 * Admin: svetor|svetor
