@@ -1,6 +1,6 @@
-﻿# FlyingDutchman2016
+# FlyingDutchman2016
 Repo for the course User Interface Programming I
-
+By group: Up She Rises
 ## Running
 
      git clone git@github.com:aschle/FlyingDutchman2016.git
