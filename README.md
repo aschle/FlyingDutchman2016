@@ -16,10 +16,6 @@ If you want you can run a little HTTP server using python:
      
      python -m SimpleHTTPServer
 
-on python3:
-
-     python -m http.server    
-	
 
 ## API
 * Admin: svetor|svetor
