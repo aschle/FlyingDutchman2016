@@ -8,12 +8,10 @@
         .module('barApp')
         .controller('AllBeersController', AllBeersController);
 
-    AllBeersController.$inject = ['$scope', 'DataService'];
+    AllBeersController.$inject = ['$scope', '$window', 'DataService', 'LocalStorageService'];
 
-    function AllBeersController($scope, DataService) {
+    function AllBeersController($scope, $window, DataService, LSService) {
 
-
- 
         $scope.init = function () {
 
             $('#menu-vip').show();
@@ -41,7 +39,31 @@
             }, function(response){
                 $scope.content = "Something went wrong!";
             });
+
+            // check for the cart
+            if(LSService.getObject("cart") === null) {
+                LSService.setObject("cart", []);
+            } else {
+                // do something smart here
+            }
         };
+
+        /**
+         * Looks at the local storage variable 'cart' and send an purchase for each element to the DB.
+         */
+        $scope.placeOrder = function () {
+            var cart = LSService.getObject("cart");
+            $.each(cart, function(index, value){
+                DataService.purchaseOneBeer(value.beer_id).then(function(response){
+                    // reset the cart in local storage
+                    LSService.setObject("cart", []);
+                    $window.location.reload();
+
+                }, function(response){
+                    $scope.content = "Something went wrong!";
+                })
+            });
+        }
 
         $scope.init();
 

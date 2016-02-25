@@ -9,7 +9,7 @@
       </div>
     </form>
     <div class="list-group">
-      <button id="src_copy_{{ value.beer_id }}" class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content | filter:search" draggable="true" ondragstart="dragstart_handler(event)" ondragend="dragend_handler(event)">
+      <button id="src_copy_{{ value.beer_id }}" class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content | filter:search" draggable="true" ondragstart="dragstart_handler(event)" ondragend="dragend_handler(event)" data-beerid="{{ value.beer_id }}">
         <h4 class="list-group-item-heading">{{ value.namn }}<small>&nbsp;{{ value.namn2 }}</small><span class="pull-right">{{ value.price }}</span></h4>
         <p class="list-group-item-text">
           <span class="label label-default">
@@ -32,8 +32,13 @@
     </div>
   </div> 
   <div class="col-md-6">
-    <div class="cart" id="dest_copy" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">
-      <h4>Drop Area</h4>
+    <div class="panel panel-default cart">
+      <div class="panel-heading">Cart</div>
+      <div class="panel-body" id="dest_copy" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">
+      </div>
+      <div class="panel-footer">
+        <button class="btn btn-primary" ng-click="placeOrder()">Place Order</button>
+      </div>
     </div>
   </div>
 </div>

@@ -29,6 +29,10 @@
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=beer_data_get' + '&beer_id=' + id);
         }
 
+        dataService.purchaseOneBeer =function (id) {
+            return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=purchases_append' + '&beer_id=' + id);
+        }
+
         return dataService;
     }]);
 
@@ -56,7 +60,7 @@ angular.module('barApp')
 
         /** Getter for JSON Object */
         lsService.getObject = function(key) {
-            return JSON.parse($window.localStorage[key] || '{}');
+            return JSON.parse($window.localStorage[key] || null);
         }
 
         /** Remove Item */

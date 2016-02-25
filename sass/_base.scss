@@ -53,11 +53,12 @@ button.list-group-item:focus {
 }
 
 .cart {
-  background-color: white;
-  height: 50vh;
-  padding: $line-height-computed;
   position: fixed;
-  width: 400px;
+  width: 39%;
+
+  .panel-body {
+    min-height: 6 * $line-height-computed;
+  }
 }
 
 // Last-orders

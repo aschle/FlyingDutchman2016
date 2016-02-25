@@ -66,10 +66,20 @@
         var data = ev.dataTransfer.getData("text");
 
         if (data.startsWith("src_copy") == true && ev.target.id == "dest_copy") {
-          var nodeCopy = document.getElementById(data).cloneNode(true);
-          nodeCopy.style.border = "1px solid #ddd";
-          nodeCopy.id = "newId";
-          ev.target.appendChild(nodeCopy);
+          var node = $('#' + data).clone()
+          // TODO: better use some class here that css!!!
+          node.css("border: 1px solid #ddd");
+          $(ev.target).append(node);
+
+          // find out ID of beer
+          var beerID = $('#' + data).data("beerid");
+
+          // add item to cart - local storage
+          // TODO: this code should be in some angulare directive to use the service!!!
+          var cart = JSON.parse(localStorage.getItem("cart"));
+          cart.push({"beer_id": beerID});
+          jsonStr = JSON.stringify(cart);
+          localStorage.setItem("cart", jsonStr);
         }
     }
     </script>
