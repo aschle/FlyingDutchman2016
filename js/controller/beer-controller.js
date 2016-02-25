@@ -16,25 +16,30 @@
 
             $('#menu-vip').show();
             $('#menu-admin').hide();
-            $('.navbar .container-fluid').show();  
+            $('.navbar .container-fluid').show();
+
+            var beers = [];
 
             DataService.getInventory().then(function(response){
                 var count = 0;
-                var beerList = {};
+
                 $.each(response.data.payload, function(index, value){
                     count += 1;
 
-                    // get specific data per beer
-                    DataService.getBeerById(value.beer_id).then(function(responseBeer){
-                        value.additionalInfos = (responseBeer.data.payload[0]);
-                    }, function(responseBeer){
-                        $scope.content = "Something went wrong!";
-                    })
+                    // check if it is a valid beer
+                    if(value.namn !== "") {
+                        // get specific data per beer
+                        DataService.getBeerById(value.beer_id).then(function(responseBeer){
+                            value.additionalInfos = (responseBeer.data.payload[0]);
+                            beers.push(value);
+                        }, function(responseBeer){
+                            $scope.content = "Something went wrong!";
+                        })
+                    }
                 });
 
                 $scope.items = count;
-                $scope.content = response.data.payload;
-
+                $scope.content = beers;
 
             }, function(response){
                 $scope.content = "Something went wrong!";
