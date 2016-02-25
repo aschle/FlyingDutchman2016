@@ -32,7 +32,7 @@
 
             // User: Last orders page
             .when('/last-orders', {
-                templateUrl : 'pages/last-orders.html',
+                templateUrl : 'pages/user/last-orders.html',
                 controller  : 'lastOrdersController'
             })
 
