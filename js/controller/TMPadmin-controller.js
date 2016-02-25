@@ -12,11 +12,8 @@
 
     function TMPadminController($scope) {
 
-
- 
         $scope.init = function () {
-
-            $('#menu-VIP').hide();
+            $('#menu-vip').hide();
             $('#menu-admin').show();
             $('.navbar .container-fluid').show();  
         };

@@ -17,6 +17,7 @@
                 $('.panel').show();
                 $('.navbar .container-fluid').show();  
             } else {
+                console.log("hide general all panels");
                 $('.panel').hide();
                 $('.navbar .container-fluid').hide();  
             }
