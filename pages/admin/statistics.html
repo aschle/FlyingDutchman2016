@@ -1,21 +1,26 @@
-<!-- last-orders.html -->
+<!-- all-beers.html -->
 <div class="row">
-  <div class="col-md-6" id = "last-orders">
-    <h3>Statistics</h3>
-    <table class="table table-hover">
-      <thead>
-      <th>Date</th>
-      <th>Beer</th>
-      <th class="text-right">Price</th>
-      </thead>
-      <tbody>
-      <tr ng-repeat="(key, value) in content">
-        <td>{{ value.timestamp }}</td>
-        <td>{{ value.namn }}<small>&nbsp;{{ value.namn2 }}</small></td>
-        <td class="text-right">{{ value.price | currency:"SEK"}}</td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="col-md-6">
+
+    <!-- SEARCH/FILTER THINGY -->
+    <form role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search" ng-model="search">
+      </div>
+    </form>
+    <div class="list-group">
+
+
+      <button id="{{value.id}}" class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content | filter:search"  data-beerid="{{ value.id }}">
+        <h4 class="list-group-item-heading">
+          {{ value.name }}
+          <span class="pull-right">{{ value.price }}</span>
+        </h4>
+        <p class="list-group-item-text">
+          <span class="label label-info" ng-show="value.iskoscher">koscher</span>
+        </p>
+      </button>
+    </div>
   </div>
   <div class="col-md-6">
     <div class="uppercase">Total: {{ total }}</div>

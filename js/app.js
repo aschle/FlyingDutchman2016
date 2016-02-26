@@ -42,10 +42,10 @@
                 controller  : 'TMPadminController'
             })
 
-            // statistics start page
+            // statistics page
             .when('/statistics', {
                 templateUrl : 'pages/admin/statistics.html',
-                controller  : 'statisticsController'
+                controller  : 'StatisticsController'
             })
 
             .otherwise({

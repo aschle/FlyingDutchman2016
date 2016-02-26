@@ -21,9 +21,9 @@
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=iou_get');
         };
 
-         dataService.getAllPurchses = function () {
+         dataService.getAllPurchases = function () {
              return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=purchases_get_all');
-         }
+         };
 
         dataService.getInventory = function () {
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=inventory_get');
