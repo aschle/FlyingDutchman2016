@@ -48,6 +48,13 @@
                 controller  : 'StatisticsController'
             })
 
+            // stock start page
+            .when('/stock', {
+                templateUrl : 'pages/admin/stock.html',
+                controller  : 'StockController'
+            })
+
+
             .otherwise({
                 redirectTo: '/'
             });
