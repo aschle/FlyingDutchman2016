@@ -9,12 +9,17 @@
       </div>
     </form>
     <div class="list-group">
-
+      <div class="list-group-item">
+        <h4 class="list-group-item-heading">
+          Name
+          <span class="pull-right">sold</span>
+        </h4>
+      </div>
 
       <button id="{{value.id}}" class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content | filter:search"  data-beerid="{{ value.id }}">
         <h4 class="list-group-item-heading">
           {{ value.name }}
-          <span class="pull-right">{{ value.price }}</span>
+          <span class="pull-right">x {{value.sold}}</span>
         </h4>
         <p class="list-group-item-text">
           <span class="label label-info" ng-show="value.iskoscher">koscher</span>

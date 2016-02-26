@@ -27,13 +27,19 @@
                     if(value.namn !== "") {
                         // get specific data per beer
                         count += 1;
-                        DataService.getBeerById(value.beer_id).then(function(responseBeer){
-                            value.additionalInfos = (responseBeer.data.payload[0]);
-                            beers.push(getCleanBeerData(value));
 
-                        }, function(responseBeer){
-                            $scope.content = "Something went wrong!";
-                        })
+                        if (beers.indexOf(getCleanBeerData(value)) > -1) {
+                            beers[beers.indexOf(getCleanBeerData(value))].sold += 1;
+
+                        }else{
+                            DataService.getBeerById(value.beer_id).then(function (responseBeer) {
+                                value.additionalInfos = (responseBeer.data.payload[0]);
+                                beers.push(getCleanBeerData(value));
+
+                            }, function (responseBeer) {
+                                $scope.content = "Something went wrong!";
+                            })
+                        }
                     }
                 });
 
@@ -48,6 +54,7 @@
 
         function getCleanBeerData(beer){
             var cleanBeer = {};
+            cleanBeer.sold          = 1;
             cleanBeer.name          = beer.namn;
             cleanBeer.name2         = beer.namn2;
             cleanBeer.price         = beer.pub_price;
