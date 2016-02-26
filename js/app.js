@@ -42,6 +42,12 @@
                 controller  : 'TMPadminController'
             })
 
+            // statistics start page
+            .when('/statistics', {
+                templateUrl : 'pages/admin/statistics.html',
+                controller  : 'statisticsController'
+            })
+
             .otherwise({
                 redirectTo: '/'
             });

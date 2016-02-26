@@ -1,0 +1,24 @@
+<!-- last-orders.html -->
+<div class="row">
+  <div class="col-md-6" id = "last-orders">
+    <h3>Statistics</h3>
+    <table class="table table-hover">
+      <thead>
+      <th>Date</th>
+      <th>Beer</th>
+      <th class="text-right">Price</th>
+      </thead>
+      <tbody>
+      <tr ng-repeat="(key, value) in content">
+        <td>{{ value.timestamp }}</td>
+        <td>{{ value.namn }}<small>&nbsp;{{ value.namn2 }}</small></td>
+        <td class="text-right">{{ value.price | currency:"SEK"}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <div class="uppercase">Total: {{ total }}</div>
+    <div class="uppercase">Items: {{ items }}</div>
+  </div>
+</div>
