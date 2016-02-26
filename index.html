@@ -31,6 +31,9 @@
 
     <script type="text/javascript">
     // TODO: somehow put this into the beer-controller!!!
+
+    var beercounter = 0;
+
     function dragstart_handler(ev) {
         console.log("dragStart");
 
@@ -67,8 +70,9 @@
 
         if (data.startsWith("src_copy") == true && ev.target.id == "dest_copy") {
           var node = $('#' + data).clone()
-          // TODO: better use some class here that css!!!
+          // TODO: better use some class here than css!!!
           node.css("border: 1px solid #ddd");
+          node.find("p").append("<i class='fa fa-fw fa-trash pull-right'></i>");
           $(ev.target).append(node);
 
           // find out ID of beer
@@ -80,6 +84,14 @@
           cart.push({"beer_id": beerID});
           jsonStr = JSON.stringify(cart);
           localStorage.setItem("cart", jsonStr);
+
+          beercounter += 1;
+
+          if (beercounter == 5) {
+            $('.list-group-item').attr("draggable", "false");
+          } else {
+            //$('.list-group-item').attr("draggable", "true");
+          }
         }
     }
     </script>

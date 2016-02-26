@@ -9,24 +9,15 @@
       </div>
     </form>
     <div class="list-group">
-      <button id="src_copy_{{ value.beer_id }}" class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content | filter:search" draggable="true" ondragstart="dragstart_handler(event)" ondragend="dragend_handler(event)" data-beerid="{{ value.beer_id }}">
-        <h4 class="list-group-item-heading">{{ value.namn }}<small>&nbsp;{{ value.namn2 }}</small><span class="pull-right">{{ value.price }}</span></h4>
+      <!-- draggable Button -->
+      <button id="src_copy_{{ value.id }}" class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content | filter:search" draggable="{{ !value.outofstock }}" ondragstart="dragstart_handler(event)" ondragend="dragend_handler(event)" data-beerid="{{ value.id }}">
+        <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf"ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}</span></h4>
         <p class="list-group-item-text">
-          <span class="label label-default">
-            {{ value.additionalInfos.koscher}} koscher
-          </span>
-          <span class="label label-default">
-            {{ value.additionalInfos.ekologisk }} ekologisk
-          </span>
-          <span class="label label-default">
-            {{ value.additionalInfos.alkoholhalt }}
-          </span>
-          <span class="label label-default">
-            {{ value.additionalInfos.forpackning }}
-          </span>
-          <span class="label label-default">
-            {{ value.additionalInfos.ursprunglandnamn }}
-          </span>
+          <span class="label label-info" ng-show="value.iskoscher">koscher</span>
+          <span class="label label-default">{{ value.alk }}</span>
+          <span class="label label-default">{{ value.packaging }}</span>
+          <span class="label label-default">{{ value.origin }}</span>
+          <span class="label label-warning" ng-show="value.outofstock">Out of stock</span>
         </p>
       </button>
     </div>
@@ -35,9 +26,10 @@
     <div class="panel panel-default cart">
       <div class="panel-heading">Cart</div>
       <div class="panel-body" id="dest_copy" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">
+        <p class="lead text-center text-muted">Drag &amp; Drop Beers here to Order.<br><small>You can order 5 beer in total.</small></p>
       </div>
-      <div class="panel-footer">
-        <button class="btn btn-primary" ng-click="placeOrder()">Place Order</button>
+      <div class="panel-footer clearfix">
+        <button class="btn btn-primary pull-right" ng-click="placeOrder()">Place Order | TOTAL: todo</button>
       </div>
     </div>
   </div>

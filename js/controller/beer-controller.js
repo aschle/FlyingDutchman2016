@@ -31,7 +31,7 @@
                         // get specific data per beer
                         DataService.getBeerById(value.beer_id).then(function(responseBeer){
                             value.additionalInfos = (responseBeer.data.payload[0]);
-                            beers.push(value);
+                            beers.push(getCleanBeerData(value));
                         }, function(responseBeer){
                             $scope.content = "Something went wrong!";
                         })
@@ -68,6 +68,25 @@
                     $scope.content = "Something went wrong!";
                 })
             });
+        }
+
+        function getCleanBeerData(beer){
+            var cleanBeer = {};
+            cleanBeer.name          = beer.namn;
+            cleanBeer.name2         = beer.namn2;
+            cleanBeer.price         = beer.pub_price;
+            cleanBeer.id            = beer.beer_id;
+            cleanBeer.count         = beer.count;
+            cleanBeer.outofstock    = beer.count >= 1 ? false : true;
+            cleanBeer.alk           = beer.additionalInfos.alkoholhalt;
+            cleanBeer.iskoscher     = beer.additionalInfos.koscher == 1 ? true : false;
+            cleanBeer.isorganic     = beer.additionalInfos.ekologisk == 1 ? true : false;
+            cleanBeer.packaging     = beer.additionalInfos.forpackning;
+            cleanBeer.origin        = beer.additionalInfos.ursprunglandnamn;
+
+            console.log(beer);
+            console.log(cleanBeer);
+            return cleanBeer;
         }
 
         $scope.init();

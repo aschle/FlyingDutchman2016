@@ -52,6 +52,10 @@ button.list-group-item:focus {
   background-color: $brand-primary;
 }
 
+button.list-group-item:hover {
+  background-color: desaturate($brand-primary, 20%);
+}
+
 .cart {
   position: fixed;
   width: 39%;
