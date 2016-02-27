@@ -22,7 +22,7 @@
         };
 
          dataService.getAllPurchases = function () {
-             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=purchases_get_all');
+             return $http.get(urlBase + '?username=svetor' + '&password=svetor' + '&action=purchases_get_all');
          };
 
         dataService.getInventory = function () {

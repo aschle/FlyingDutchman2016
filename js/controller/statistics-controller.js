@@ -19,7 +19,7 @@
 
             DataService.getAllPurchases().then(function(response){
                 var count = 0;
-
+                var result;
                 $.each(response.data.payload, function(index, value){
 
 
@@ -28,18 +28,19 @@
                         // get specific data per beer
                         count += 1;
 
-                        if (beers.indexOf(getCleanBeerData(value)) > -1) {
-                            beers[beers.indexOf(getCleanBeerData(value))].sold += 1;
+
+                        result = search(value.beer_id,beers);
+                        value.name = value.namn;
+                        if(result != -1) {
+
+                            beers[result].sold += 1;
 
                         }else{
-                            DataService.getBeerById(value.beer_id).then(function (responseBeer) {
-                                value.additionalInfos = (responseBeer.data.payload[0]);
-                                beers.push(getCleanBeerData(value));
+                            value.sold = 1;
+                            beers.push(value);
 
-                            }, function (responseBeer) {
-                                $scope.content = "Something went wrong!";
-                            })
                         }
+
                     }
                 });
 
@@ -51,26 +52,16 @@
             });
         };
 
+        function search(nameKey, myArray){
+            for (var i=0; i < myArray.length; i++) {
+                if (myArray[i].beer_id == nameKey) {
+                    return i;
+                }
 
-        function getCleanBeerData(beer){
-            var cleanBeer = {};
-            cleanBeer.sold          = 1;
-            cleanBeer.name          = beer.namn;
-            cleanBeer.name2         = beer.namn2;
-            cleanBeer.price         = beer.pub_price;
-            cleanBeer.id            = beer.beer_id;
-            cleanBeer.count         = beer.count;
-            cleanBeer.outofstock    = beer.count >= 1 ? false : true;
-            cleanBeer.alk           = beer.additionalInfos.alkoholhalt;
-            cleanBeer.iskoscher     = beer.additionalInfos.koscher == 1 ? true : false;
-            cleanBeer.isorganic     = beer.additionalInfos.ekologisk == 1 ? true : false;
-            cleanBeer.packaging     = beer.additionalInfos.forpackning;
-            cleanBeer.origin        = beer.additionalInfos.ursprunglandnamn;
-
-            console.log(beer);
-            console.log(cleanBeer);
-            return cleanBeer;
+            }
+            return -1;
         }
+
 
         $scope.init();
 
