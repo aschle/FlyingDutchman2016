@@ -8,6 +8,8 @@
         <input type="text" class="form-control" placeholder="Search" ng-model="search">
       </div>
     </form>
+
+
     <div class="list-group">
       <div class="list-group-item">
         <h4 class="list-group-item-heading">
@@ -16,7 +18,7 @@
         </h4>
       </div>
 
-      <button id="{{value.id}}" class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content | filter:search"  data-beerid="{{ value.id }}">
+      <button id="{{value.id}}" class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content | filter:search  | orderBy:'sold':true" data-beerid="{{ value.id }}">
         <h4 class="list-group-item-heading">
           {{ value.name }}
           <span class="pull-right">x {{value.sold}}</span>
