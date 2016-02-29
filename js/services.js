@@ -36,6 +36,9 @@
         dataService.purchaseOneBeer =function (id) {
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=purchases_append' + '&beer_id=' + id);
         }
+        dataService.updateInventory = function(id, amount, price){
+            return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=inventory_append' + '&beer_id=' + id + '&amount=' + amount + '&price=' + price);
+        }
 
         return dataService;
     }]);
