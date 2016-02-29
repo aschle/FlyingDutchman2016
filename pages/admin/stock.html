@@ -17,12 +17,15 @@
     </div>
     <div class="col-md-6">
         <div class="panel panel-default cart">
-            <div class="panel-heading">Info</div>
+            <div class="panel-heading">Adjust</div>
             <div class="panel-body">
-
+                <form>
+                    <input type="text" class="form-control" placeholder="Amount" ng-model="amount">
+                    <input type="text" class="form-control" placeholder="Price" ng-model="price">
+                </form>
             </div>
             <div class="panel-footer clearfix">
-                <button class="btn btn-primary pull-right" ng-click="placeOrder()">Place Order | TOTAL: todo</button>
+                <button class="btn btn-primary center" ng-click="placeOrder()">Apply Changes</button>
             </div>
         </div>
     </div>
