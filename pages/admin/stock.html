@@ -10,22 +10,22 @@
         </form>
         <div class="list-group">
             <!-- draggable Button -->
-            <button class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content | filter:search">
+            <button class="list-group-item" ng-click="$parent.currentbeer = value.namn;$parent.currentAmount = value.count; $parent.currentPrice = value.price; $parent.currentID = value.beer_id" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content | filter:search">
                 <h4 class="list-group-item-heading">{{ value.namn }}<small>&nbsp;{{ value.namn2 }}</small><span class="pull-right">Amount: {{ value.count }}</span></h4>
             </button>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-1">
         <div class="panel panel-default cart">
-            <div class="panel-heading">Adjust</div>
+            <div class="panel-heading">{{currentbeer}}</div>
             <div class="panel-body">
                 <form>
-                    <input type="text" class="form-control" placeholder="Amount" ng-model="amount">
-                    <input type="text" class="form-control" placeholder="Price" ng-model="price">
+                    <input type="text" class="form-control" placeholder={{currentAmount}} ng-model="newAmount">
+                    <input type="text" class="form-control" placeholder={{currentPrice}} ng-model="newPrice">
                 </form>
             </div>
             <div class="panel-footer clearfix">
-                <button class="btn btn-primary center" ng-click="placeOrder()">Apply Changes</button>
+                <button class="btn btn-primary center" ng-click="updateInventory(currentID, newAmount, newPrice)">Apply Changes</button>
             </div>
         </div>
     </div>

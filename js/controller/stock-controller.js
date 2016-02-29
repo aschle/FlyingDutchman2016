@@ -34,6 +34,11 @@
                 });
 
                 $scope.content = beers;
+                $scope.currentbeer = "Selected beer";
+                $scope.currentID = ""
+                $scope.currentPrice = "Price"
+                $scope.currentAmount = "Amount"
+
 
             }, function(response){
                 $scope.content = "Something went wrong!";
@@ -41,6 +46,12 @@
 
 
         };
+
+        $scope.updateInventory = function (currentID, newPrice, newAmount) {
+            console.log(currentID, newPrice, newAmount);
+            DataService.updateInventory(currentID, newAmount, newPrice);
+
+        }
 
 
         $scope.init();
