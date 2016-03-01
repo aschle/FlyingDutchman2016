@@ -84,8 +84,6 @@
             cleanBeer.packaging     = beer.additionalInfos.forpackning;
             cleanBeer.origin        = beer.additionalInfos.ursprunglandnamn;
 
-            console.log(beer);
-            console.log(cleanBeer);
             return cleanBeer;
         }
 
