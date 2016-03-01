@@ -73,3 +73,12 @@ button.list-group-item:hover {
 #statistics {
   background-color:#f5f5f5;
 }
+
+.dnd-drag {
+  border: 1px dashed white;
+}
+
+.dnd-over {
+  background: $gray-lighter;
+  border: 1px dashed white;
+}

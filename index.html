@@ -22,6 +22,7 @@
 
     <!-- all controllers and services for now -->
     <script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
     <script src="js/controller/global-controller.js"></script>
     <script src="js/controller/login-controller.js"></script>
     <script src="js/controller/beer-controller.js"></script>
@@ -30,74 +31,6 @@
     <script src="js/controller/order-controller.js"></script>
     <script src="js/controller/stock-controller.js"></script>
     <script src="js/controller/TMPadmin-controller.js"></script>
-
-    <script type="text/javascript">
-    // TODO: somehow put this into the beer-controller!!!
-
-    var beercounter = 0;
-
-    function dragstart_handler(ev) {
-        console.log("dragStart");
-
-        // Change the source element's background color to signify drag has started
-        ev.currentTarget.style.border = "1px dashed white";
-        
-        // Add the id of the drag source element to the drag data payload so
-        // it is available when the drop event is fired
-        ev.dataTransfer.setData("text", ev.target.id);
-
-        // Tell the browser both copy and move are possible
-        ev.effectAllowed = "copyMove";
-    }
-
-    function dragend_handler(ev) {
-      console.log("dragend");
-      // Restore source's border
-      ev.target.style.border = "1px solid #ddd";
-      // Remove all of the drag data
-      ev.dataTransfer.clearData();
-    }
-
-    function dragover_handler(ev) {
-        console.log("dragOver");
-        ev.currentTarget.style.background = "#eeeeee";
-        ev.preventDefault();
-    }
-
-    function drop_handler(ev) {
-        console.log("Drop");
-        ev.preventDefault();
-
-        var data = ev.dataTransfer.getData("text");
-
-        if (data.startsWith("src_copy") == true && ev.target.id == "dest_copy") {
-          var node = $('#' + data).clone()
-          // TODO: better use some class here than css!!!
-          node.css("border: 1px solid #ddd");
-          node.find("p").append("<i class='fa fa-fw fa-trash pull-right'></i>");
-          $(ev.target).append(node);
-
-          // find out ID of beer
-          var beerID = $('#' + data).data("beerid");
-
-          // add item to cart - local storage
-          // TODO: this code should be in some angulare directive to use the service!!!
-          var cart = JSON.parse(localStorage.getItem("cart"));
-          cart.push({"beer_id": beerID});
-          jsonStr = JSON.stringify(cart);
-          localStorage.setItem("cart", jsonStr);
-
-          beercounter += 1;
-
-          if (beercounter == 5) {
-            $('.list-group-item').attr("draggable", "false");
-          } else {
-            //$('.list-group-item').attr("draggable", "true");
-          }
-        }
-    }
-    </script>
-
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
