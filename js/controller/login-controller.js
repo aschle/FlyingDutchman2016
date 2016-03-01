@@ -14,7 +14,7 @@
  
         $scope.login = function() {
             //Miss-using getBalanceByUser to check if that person exists in DB
-            DataService.getBalanceByUser($scope.username, $scope.password)
+            DataService.getBalanceByUser()
             .then(function(response) {
             //First function handles success
             if(response.data.payload[0].hasOwnProperty('assets')) {
@@ -23,12 +23,14 @@
                 if($scope.username === $scope.password) {
                     // find out user role: could not find it in API so I created a new local JSON file
                     var users = LocalStorageService.getObject('users');
-                    var role;
+                    var role, limit, likes;
                     $.each(users, function(key, value) {
                         if (value.name === $scope.username) {
                             role = value.role;
+                            limit = value.limit;
+                            likes = value.likes;
                             //store stuff in local storage to use later for API and whatever else is needed
-                            AuthService.setLoggedInUser($scope.username, $scope.password, role);
+                            AuthService.setLoggedInUser($scope.username, $scope.password, role, limit, likes);
                         } else {
                             //TODO: do something if something went wrong
                         }

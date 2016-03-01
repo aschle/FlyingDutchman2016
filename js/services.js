@@ -17,7 +17,7 @@
         var password = user.password;
 
         // TODO: remove user/pw params
-        dataService.getBalanceByUser = function (username, password) {
+        dataService.getBalanceByUser = function () {
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=iou_get');
         };
 
@@ -84,10 +84,12 @@ angular.module('barApp')
 
         var authService = {};
 
-        authService.setLoggedInUser = function(username, password, role){
+        authService.setLoggedInUser = function(username, password, role, limit, likes){
             LSService.setElement("username", username);
             LSService.setElement("password", password);
             LSService.setElement("role", role);
+            LSService.setElement("limit", limit);
+            LSService.setElement("likes", likes);
         };
 
         authService.getLoggedInUser = function(){
@@ -108,8 +110,6 @@ angular.module('barApp')
         };
 
         authService.killLoggedInUser = function(){
-            // keep Information about user
-            LSService.setElement('oldUser', LSService.getElement('username'));
             LSService.remove('username');
             LSService.remove('password');
             LSService.remove('role');

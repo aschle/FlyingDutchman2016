@@ -24,11 +24,23 @@
   </div> 
   <div class="col-md-6">
     <div class="panel panel-default cart">
-      <div class="panel-heading">Cart</div>
+      <div class="panel-heading">Balance: {{ balance }}&nbsp;SEK | Limit: {{ limit }}&nbsp;SEK | Money to spend: {{ limit + balance }}&nbsp;SEK</div>
       <div class="panel-body" id="dest_copy" droppable drop="handleDrop(beerID)">
+        <button class="list-group-item" ng-repeat="(key, value) in beersInCart track by $index">
+          <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf"ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}</span></h4>
+          <p class="list-group-item-text">
+            <i class='fa fa-fw fa-trash pull-right'></i>
+            <span class="label label-info" ng-show="value.iskoscher">koscher</span>
+            <span class="label label-default">{{ value.alk }}</span>
+            <span class="label label-default">{{ value.packaging }}</span>
+            <span class="label label-default">{{ value.origin }}</span>
+          </p>
+        </button>
       </div>
+
       <div class="panel-footer clearfix">
-        <button class="btn btn-primary pull-right" ng-click="placeOrder()">Place Order | TOTAL: todo</button>
+        {{ totalItems() }} of {{ cartMax }} Items in cart.
+        <button class="btn btn-primary btn-lg pull-right" ng-click="placeOrder()">Place Order | TOTAL: {{ totalMoney() }}&nbsp;SEK</button>
       </div>
     </div>
   </div>

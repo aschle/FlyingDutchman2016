@@ -106,23 +106,23 @@
                             e.target.id == "dest_copy") {
                             
                             // make a copy of the dragged element
-                            var node = $('#' + data).clone()
+                            //var node = $('#' + data).clone()
 
                             // remove css classes
                             this.classList.remove('dnd-over');
-                            node.removeClass("dnd-drag");
+                            //node.removeClass("dnd-drag");
 
                             // prevent from making things draggable again
-                            node.attr("draggable", "false");
+                            //node.attr("draggable", "false");
 
                             // add trash icon
-                            node.find("p").append("<i class='fa fa-fw fa-trash pull-right'></i>")
+                            //node.find("p").append("<i class='fa fa-fw fa-trash pull-right'></i>")
 
                             // nur wenn man es nicht darf nix mehr reindraggen
                             // attrs.$set('draggable', "false");
                             
                             // add element to cart
-                            $(e.target).append(node);
+                            //$(e.target).append(node);
 
                             // find out beerID
                             var id = $('#' + data).data("beerid");
