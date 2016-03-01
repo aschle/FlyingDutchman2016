@@ -71,12 +71,11 @@
         }
 
         $scope.dropIsAllowed = function() {
-
             return false;
         }
 
         $scope.handleDrop = function(id) {
-            alert('Item has been dropped', id);
+            console.log(id);
         }
 
         function getCleanBeerData(beer){

@@ -95,6 +95,7 @@
                 el.addEventListener(
                     'drop',
                     function(e) {
+
                         // Stops some browsers from redirecting.
                         if (e.stopPropagation) e.stopPropagation();
 
@@ -124,10 +125,10 @@
                             $(e.target).append(node);
 
                             // find out beerID
-                            var beerID = $('#' + data).data("beerid");
+                            var id = $('#' + data).data("beerid");
 
                             // call the drop passed function in the controller
-                            scope.$apply('drop()');
+                            scope.drop({beerID: id});
 
                         } else {
                             this.classList.remove('dnd-over');
