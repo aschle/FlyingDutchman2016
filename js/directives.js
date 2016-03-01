@@ -47,8 +47,11 @@
 
     .directive('droppable', function() {
         return {
-            scope: {},
-            link: function(scope, element) {
+            scope: {
+                // parent
+                drop: '&'
+            },
+            link: function(scope, element, attrs) {
 
                 // native JS object
                 var el = element[0];
@@ -57,8 +60,8 @@
                 el.addEventListener(
                     'dragover',
                     function(e) {
+                        console.log("drag over");
                         e.dataTransfer.dropEffect = 'move';
-                        // allows us to drop
                         if (e.preventDefault) e.preventDefault();
                         this.classList.add('dnd-over');
                         return false;
@@ -70,6 +73,7 @@
                 el.addEventListener(
                     'dragenter',
                     function(e) {
+                        console.log("drag enter");
                         this.classList.add('dnd-over');
                         return false;
                     },
@@ -80,6 +84,7 @@
                 el.addEventListener(
                     'dragleave',
                     function(e) {
+                        console.log("drag leave");
                         this.classList.remove('dnd-over');
                         return false;
                     },
@@ -93,10 +98,40 @@
                         // Stops some browsers from redirecting.
                         if (e.stopPropagation) e.stopPropagation();
 
-                        this.classList.remove('dnd-over');
+                        var data = e.dataTransfer.getData("text");
 
-                        var item = document.getElementById(e.dataTransfer.getData('text'));
-                        this.appendChild(item);
+                        // prevent from dragging into an dragged beer
+                        if (data.startsWith("src_copy") == true &&
+                            e.target.id == "dest_copy") {
+                            
+                            // make a copy of the dragged element
+                            var node = $('#' + data).clone()
+
+                            // remove css classes
+                            this.classList.remove('dnd-over');
+                            node.removeClass("dnd-drag");
+
+                            // prevent from making things draggable again
+                            node.attr("draggable", "false");
+
+                            // add trash icon
+                            node.find("p").append("<i class='fa fa-fw fa-trash pull-right'></i>")
+
+                            // nur wenn man es nicht darf nix mehr reindraggen
+                            // attrs.$set('draggable', "false");
+                            
+                            // add element to cart
+                            $(e.target).append(node);
+
+                            // find out beerID
+                            var beerID = $('#' + data).data("beerid");
+
+                            // call the drop passed function in the controller
+                            scope.$apply('drop()');
+
+                        } else {
+                            this.classList.remove('dnd-over');
+                        }
 
                         return false;
                     },

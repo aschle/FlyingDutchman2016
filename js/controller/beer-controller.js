@@ -70,6 +70,15 @@
             });
         }
 
+        $scope.dropIsAllowed = function() {
+
+            return false;
+        }
+
+        $scope.handleDrop = function(id) {
+            alert('Item has been dropped', id);
+        }
+
         function getCleanBeerData(beer){
             var cleanBeer = {};
             cleanBeer.name          = beer.namn;
