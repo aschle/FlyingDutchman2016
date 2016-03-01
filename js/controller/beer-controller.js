@@ -23,6 +23,7 @@
 
         $scope.beersInCart = [];
         $scope.allBeers = [];
+        $scope.isCartActive = true;
 
         $scope.init = function () {
 
@@ -89,7 +90,7 @@
          */
         $scope.placeOrder = function () {
             $scope.cart = LSService.getObject("cart");
-            $.each(cart, function(index, value){
+            $.each($scope.cart, function(index, value){
                 DataService.purchaseOneBeer(value.beer_id).then(function(response){
                     // reset the cart in local storage
                     LSService.setObject("cart", []);
@@ -108,16 +109,25 @@
         */
         $scope.handleDrop = function(id) {
 
-            $scope.cart = LSService.getObject("cart");
-            $scope.cart.push({"beer_id": id});
-            LSService.setObject("cart", $scope.cart);
-
             // very inefficient stuff here sorry
+            // find beer with id
+            var beer;
             $.each($scope.allBeers, function(key, value){
                 if(value.id == id){
-                    $scope.beersInCart.push(value);
+                    beer = value;
                 }
             });
+
+            // if maximum of bottles is not reached yet or credit limit will not be exceeded then it is save to add beer to cart
+            if ($scope.cart.length < $scope.cartMax && isSave(beer)) {
+                $scope.cart = LSService.getObject("cart");
+                $scope.cart.push({"beer_id": id});
+                LSService.setObject("cart", $scope.cart);
+                $scope.beersInCart.push(beer);
+
+            } else {
+                $scope.isCartActive = false;
+            }
 
             // to update the scope so the total number in cart changes
             $scope.$apply() 
@@ -133,6 +143,15 @@
                 sum += Number(value.price);
             })
             return sum;
+        }
+
+        function isSave(beer){
+            var futureMoney = $scope.totalMoney() + Number(beer.price);
+            var current = $scope.limit + $scope.balance;
+            console.log(futureMoney);
+            console.log(current);
+
+            return futureMoney <= current;
         }
 
         function getCleanBeerData(beer){

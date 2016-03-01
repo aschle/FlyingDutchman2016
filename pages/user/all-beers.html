@@ -10,8 +10,8 @@
     </form>
     <div class="list-group">
       <!-- draggable Button -->
-      <button id="src_copy_{{ value.id }}" class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content | filter:search" data-beerid="{{ value.id }}" draggable>
-        <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf"ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}</span></h4>
+      <button id="src_copy_{{ value.id }}" class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content | filter:search" data-beerid="{{ value.id }}" ng-attr-draggable="{{ !value.outofstock }}">
+        <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf"ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}&nbsp;SEK</span></h4>
         <p class="list-group-item-text">
           <span class="label label-info" ng-show="value.iskoscher">koscher</span>
           <span class="label label-default">{{ value.alk }}</span>
@@ -24,10 +24,10 @@
   </div> 
   <div class="col-md-6">
     <div class="panel panel-default cart">
-      <div class="panel-heading">Balance: {{ balance }}&nbsp;SEK | Limit: {{ limit }}&nbsp;SEK | Money to spend: {{ limit + balance }}&nbsp;SEK</div>
+      <div class="panel-heading">Current balance: {{ balance }}&nbsp;SEK | Credit limit: {{ limit }}&nbsp;SEK</div>
       <div class="panel-body" id="dest_copy" droppable drop="handleDrop(beerID)">
         <button class="list-group-item" ng-repeat="(key, value) in beersInCart track by $index">
-          <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf"ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}</span></h4>
+          <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf"ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}&nbsp;SEK</span></h4>
           <p class="list-group-item-text">
             <i class='fa fa-fw fa-trash pull-right'></i>
             <span class="label label-info" ng-show="value.iskoscher">koscher</span>
@@ -37,10 +37,19 @@
           </p>
         </button>
       </div>
+      <div class="alert alert-danger" role="alert" ng-hide="isCartActive">
+        The beer was not added to the cart. You reached 5 beer already or you credit limit is reached.
+      </div>
 
       <div class="panel-footer clearfix">
-        {{ totalItems() }} of {{ cartMax }} Items in cart.
-        <button class="btn btn-primary btn-lg pull-right" ng-click="placeOrder()">Place Order | TOTAL: {{ totalMoney() }}&nbsp;SEK</button>
+        <div>
+          <ul class="list-unstyled text-right">
+            <li>ITEMS: {{ totalItems() }} of {{ cartMax }}</li>
+            <li class="text-muted">LEFT MONEY TO SPEND: {{ limit + balance - totalMoney() }}&nbsp;SEK</li>
+            <li class="lead"><strong>TOTAL: {{ totalMoney() }}&nbsp;SEK</strong></li>
+          </dl>
+        </div>
+        <button class="btn btn-primary btn-lg btn-icon pull-right" ng-click="placeOrder()">Place Order<i class="fa fa-chevron-right"></i></button>
       </div>
     </div>
   </div>
