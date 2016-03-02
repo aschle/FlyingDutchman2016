@@ -78,8 +78,9 @@
             $scope.likes = LSService.getObject("likes");
 
             // set the current balance a user has
-            DataService.getBalanceByUser().then(function(response){
+            DataService.getBalanceByUser(LSService.getElement("username"), LSService.getElement("password")).then(function(response){
                 $scope.balance = Number(response.data.payload[0].assets);
+                console.log(response.data.payload[0]);
             }, function(response){
                 // error: TODO
             });
@@ -100,6 +101,10 @@
                     $scope.content = "Something went wrong!";
                 })
             });
+        }
+
+        $scope.deleteBeer = function (index) {
+            console.log(index);
         }
 
         /**

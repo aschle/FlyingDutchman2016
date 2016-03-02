@@ -17,7 +17,7 @@
         var password = user.password;
 
         // TODO: remove user/pw params
-        dataService.getBalanceByUser = function () {
+        dataService.getBalanceByUser = function (username, password) {
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=iou_get');
         };
 

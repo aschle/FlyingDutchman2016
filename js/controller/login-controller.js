@@ -14,7 +14,7 @@
  
         $scope.login = function() {
             //Miss-using getBalanceByUser to check if that person exists in DB
-            DataService.getBalanceByUser()
+            DataService.getBalanceByUser($scope.username, $scope.password)
             .then(function(response) {
             //First function handles success
             if(response.data.payload[0].hasOwnProperty('assets')) {

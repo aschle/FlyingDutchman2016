@@ -49,11 +49,12 @@ body {
 
 // Beer List
 button.list-group-item:focus {
-  background-color: $brand-primary;
+  background-color: white;
 }
 
+
 button.list-group-item:hover {
-  background-color: desaturate($brand-primary, 20%);
+  background-color: #ce9b7d; // TODO: put in variable
 }
 
 // Last-orders

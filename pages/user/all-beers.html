@@ -29,7 +29,7 @@
         <button class="list-group-item" ng-repeat="(key, value) in beersInCart track by $index">
           <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf"ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}&nbsp;SEK</span></h4>
           <p class="list-group-item-text">
-            <i class='fa fa-fw fa-trash pull-right'></i>
+            <a ng-click="deleteBeer(key)"><i class='fa fa-fw fa-trash pull-right'></i></a>
             <span class="label label-info" ng-show="value.iskoscher">koscher</span>
             <span class="label label-default">{{ value.alk }}</span>
             <span class="label label-default">{{ value.packaging }}</span>
