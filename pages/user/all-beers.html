@@ -11,13 +11,18 @@
     <div class="list-group">
       <!-- draggable Button -->
       <button id="src_copy_{{ value.id }}" class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content | filter:search" data-beerid="{{ value.id }}" ng-attr-draggable="{{ !value.outofstock }}">
-        <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf"ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}&nbsp;SEK</span></h4>
+        <h4 class="list-group-item-heading">
+          <a ng-click="markAs(key, !value.isFavorite, value.id)"><i ng-class="{'fa-heart' : value.isFavorite , 'fa-heart-o' : !value.isFavorite }" class="fa fa-fw"></i></a>
+          {{ value.name }}<small>&nbsp;{{ value.name2 }}</small>
+          <span class="pull-right">{{ value.price }}&nbsp;SEK</span>
+        </h4>
         <p class="list-group-item-text">
           <span class="label label-info" ng-show="value.iskoscher">koscher</span>
           <span class="label label-default">{{ value.alk }}</span>
           <span class="label label-default">{{ value.packaging }}</span>
           <span class="label label-default">{{ value.origin }}</span>
           <span class="label label-warning" ng-show="value.outofstock">Out of stock</span>
+          <i class="fa fa-fw fa-leaf" ng-show="value.isorganic"></i>
         </p>
       </button>
     </div>

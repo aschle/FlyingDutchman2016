@@ -8,10 +8,11 @@
         .module('barApp')
         .controller('AllBeersController', AllBeersController);
 
-    AllBeersController.$inject = ['$scope', '$window', 'DataService', 'LocalStorageService'];
+    AllBeersController.$inject = ['$scope', '$window', 'DataService', 'LocalStorageService', 'AuthService'];
 
-    function AllBeersController($scope, $window, DataService, LSService) {
+    function AllBeersController($scope, $window, DataService, LSService, AuthService) {
 
+        $scope.username = "";
         $scope.cartMax = 5;
         $scope.currentCartCount = 0;
         $scope.allBeers = [];
@@ -27,11 +28,20 @@
 
         $scope.init = function () {
 
+            $scope.username = AuthService.getLoggedInUser().username;
+
             $('#menu-vip').show();
             $('#menu-admin').hide();
             $('.navbar .container-fluid').show();
 
             var beers = [];
+
+            // check for the likes
+            if(LSService.getObject($scope.username + "_likes") === null) {
+                LSService.setObject($scope.username + "_likes", []);
+            } else {
+                $scope.likes = LSService.getObject($scope.username + "_likes");
+            }
 
             DataService.getInventory().then(function(response){
                 var count = 0;
@@ -75,7 +85,6 @@
             }
 
             $scope.limit = Number(LSService.getObject("limit"));
-            $scope.likes = LSService.getObject("likes");
 
             // set the current balance a user has
             DataService.getBalanceByUser(LSService.getElement("username"), LSService.getElement("password")).then(function(response){
@@ -106,10 +115,28 @@
             // update local storage
             $scope.cart.splice(index,1);
             LSService.setObject("cart", $scope.cart);
-
             $scope.beersInCart.splice(index,1);
-
             $scope.isCartActive = true;
+            // having duplacate things is stupid
+        }
+
+        /**
+        *
+        */
+        $scope.markAs = function (index, value, id) {
+
+            // setting the like value
+            $scope.allBeers[index].isFavorite = value;
+            
+            // save to local storage too
+            if (value == true) {
+                $scope.likes.push(Number(id));
+            } else {
+                var i = $scope.likes.indexOf(id);
+                $scope.likes.splice(i, 1);
+            }
+
+            LSService.setObject($scope.username + "_likes", $scope.likes);
         }
 
         /**
@@ -174,6 +201,14 @@
             cleanBeer.isorganic     = beer.additionalInfos.ekologisk == 1 ? true : false;
             cleanBeer.packaging     = beer.additionalInfos.forpackning;
             cleanBeer.origin        = beer.additionalInfos.ursprunglandnamn;
+
+            // set favorite beers here
+            $.each($scope.likes, function(key, value){
+                if (value == beer.beer_id) {
+                    cleanBeer.isFavorite = true;
+                    console.log("set: " + beer.beer_id);
+                }
+            });
 
             return cleanBeer;
         }
