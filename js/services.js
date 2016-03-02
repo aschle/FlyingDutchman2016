@@ -16,7 +16,6 @@
         var username = user.username;
         var password = user.password;
 
-        // TODO: remove user/pw params
         dataService.getBalanceByUser = function (username, password) {
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=iou_get');
         };
@@ -24,6 +23,10 @@
          dataService.getAllPurchases = function () {
              return $http.get(urlBase + '?username=svetor' + '&password=svetor' + '&action=purchases_get_all');
          };
+
+         dataService.getPurchaseByUser = function () {
+            return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=purchases_get');
+         }
 
         dataService.getInventory = function () {
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=inventory_get');

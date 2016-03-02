@@ -33,7 +33,7 @@
             // User: Last orders page
             .when('/last-orders', {
                 templateUrl : 'pages/user/last-orders.html',
-                controller  : 'lastOrdersController'
+                controller  : 'LastOrdersController'
             })
 
             // admin start page
