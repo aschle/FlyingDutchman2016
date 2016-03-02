@@ -80,7 +80,6 @@
             // set the current balance a user has
             DataService.getBalanceByUser(LSService.getElement("username"), LSService.getElement("password")).then(function(response){
                 $scope.balance = Number(response.data.payload[0].assets);
-                console.log(response.data.payload[0]);
             }, function(response){
                 // error: TODO
             });
@@ -104,7 +103,13 @@
         }
 
         $scope.deleteBeer = function (index) {
-            console.log(index);
+            // update local storage
+            $scope.cart.splice(index,1);
+            LSService.setObject("cart", $scope.cart);
+
+            $scope.beersInCart.splice(index,1);
+
+            $scope.isCartActive = true;
         }
 
         /**
@@ -135,7 +140,7 @@
             }
 
             // to update the scope so the total number in cart changes
-            $scope.$apply() 
+            $scope.$apply();
         }
 
         $scope.totalItems = function() {
@@ -153,9 +158,6 @@
         function isSave(beer){
             var futureMoney = $scope.totalMoney() + Number(beer.price);
             var current = $scope.limit + $scope.balance;
-            console.log(futureMoney);
-            console.log(current);
-
             return futureMoney <= current;
         }
 
