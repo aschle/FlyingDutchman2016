@@ -230,7 +230,7 @@ on python3:
 Updates user information. All user information is required as additional parameters.
 **Why is it not working?**
 
-          http://pub.jamaica-inn.net/fpdb/api.php?username=svetor&password=svetor&action=user_edit&new_username=svetor&new_password=svetor$first_name=Alexa&last_name=Uppsala&email=alexa.uppsala@gmail.com&phone=017678548599
+          http://pub.jamaica-inn.net/fpdb/api.php?username=svetor&password=svetor&action=user_edit&new_username=svetor&new_password=svetor&first_name=Alexa&last_name=Uppsala&email=alexa.uppsala@gmail.com&phone=017678548599
           
           {
            "type": "error",
