@@ -8,12 +8,19 @@
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" ng-model="search">
         </div>
-        <div class="checkbox">
-          <label><input type="checkbox" ng-model="checkedFavorite" ng-click="checkboxClickFav(checkedFavorite)"><i class="fa fa-fw fa-heart"></i>favorite beers</label>
-        </div>
-        <div class="checkbox">
-          <label><input type="checkbox" ng-model="checkedOrganic" ng-click="checkboxClickOrganic(checkedOrganic)"><i class="fa fa-fw fa-leaf"></i>organic beers</label>
-        </div>
+
+          <label class="checkbox-inline">
+            <input type="checkbox" ng-model="checkedFavorite" ng-click="checkboxClickFav(checkedFavorite)">
+              <i class="fa fa-fw fa-heart"></i>
+              favorite beers ({{ (content | filter:search | filter:{isFavorite:true}).length }})
+          </label>
+
+          <label class="checkbox-inline">
+            <input type="checkbox" ng-model="checkedOrganic" ng-click="checkboxClickOrganic(checkedOrganic)">
+            <i class="fa fa-fw fa-leaf"></i>
+            organic beers ({{ (content | filter:search | filter:{isorganic:true}).length }})
+          </label>
+
       </form>
     </div>
 
