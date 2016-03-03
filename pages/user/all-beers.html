@@ -9,17 +9,23 @@
           <input type="text" class="form-control" placeholder="Search" ng-model="search">
         </div>
         <div class="checkbox">
-          <label><input type="checkbox" value="" ng-click="togglFavorite()"><i class="fa fa-fw fa-heart"></i>favorite beers</label>
+          <label><input type="checkbox" ng-model="checkedFavorite" ng-click="checkboxClickFav(checkedFavorite)"><i class="fa fa-fw fa-heart"></i>favorite beers</label>
         </div>
         <div class="checkbox">
-          <label><input type="checkbox" value="" ng-click="togglOrganic()"><i class="fa fa-fw fa-leaf"></i>organic beers</label>
+          <label><input type="checkbox" ng-model="checkedOrganic" ng-click="checkboxClickOrganic(checkedOrganic)"><i class="fa fa-fw fa-leaf"></i>organic beers</label>
         </div>
       </form>
     </div>
 
     <div class="list-group">
       <!-- draggable Button -->
-      <button id="src_copy_{{ value.id }}" class="list-group-item" ng-class="(value.count < 1) ? 'disabled' : ''" ng-repeat="(key, value) in content | filter:search" data-beerid="{{ value.id }}" ng-attr-draggable="{{ !value.outofstock }}" ng-hide="checkFilter(key)">
+      <button
+        id="src_copy_{{ value.id }}"
+        class="list-group-item"
+        ng-class="(value.count < 1) ? 'disabled' : ''"
+        ng-repeat="(key, value) in (filteredContent = (content | filter:search | filter:{isFavorite:checkedFavorite} | filter:{isorganic:checkedOrganic}))"
+        data-beerid="{{ value.id }}"
+        ng-attr-draggable="{{ !value.outofstock }}">
         <h4 class="list-group-item-heading">
           <a ng-click="markAs(key, !value.isFavorite, value.id)"><i ng-class="{'fa-heart' : value.isFavorite , 'fa-heart-o' : !value.isFavorite }" class="fa fa-fw"></i></a>
           {{ value.name }}<small>&nbsp;{{ value.name2 }}</small>

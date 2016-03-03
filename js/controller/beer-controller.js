@@ -26,9 +26,6 @@
         $scope.allBeers = [];
         $scope.isCartActive = true;
 
-        $scope.isFavorite = false;
-        $scope.isOrganic = false;
-
         $scope.init = function () {
 
             $scope.username = AuthService.getLoggedInUser().username;
@@ -97,24 +94,6 @@
             });
         };
 
-        $scope.togglFavorite = function () {
-            $scope.isFavorite = !$scope.isFavorite;
-        }
-
-        $scope.togglOrganic = function () {
-            $scope.isOrganic = !$scope.isOrganic;
-        }
-
-        /**
-        * the return value is used in ng-hide, true/false stuff
-        */
-        $scope.checkFilter = function (key) {
-            if ($scope.isFavorite == false ) {
-                return false;
-            } else {
-                return !$scope.allBeers[key].isFavorite;
-            }
-        }
 
         /**
          * Looks at the local storage variable 'cart' and send an purchase for each element to the DB.
@@ -142,13 +121,25 @@
             // having duplacate things is stupid
         }
 
-        /**
-        *
-        */
+        // This is somehow stupid, actually it should just work straight away:
+        // See here: http://jsfiddle.net/buehler/HCjrQ/
+        // But it is not: http://stackoverflow.com/questions/28541803/angularjs-checkbox-filter-true-and-false
+        $scope.checkboxClickFav = function (event) {
+            if(event === false) {
+                $scope.checkedFavorite = "";
+            }
+        }
+
+        $scope.checkboxClickOrganic = function (event) {
+            if(event === false) {
+                $scope.checkedOrganic = "";
+            }
+        }
+
         $scope.markAs = function (index, value, id) {
 
             // setting the like value
-            $scope.allBeers[index].isFavorite = value;
+            $scope.filteredContent[index].isFavorite = value;
             
             // save to local storage too
             if (value == true) {
