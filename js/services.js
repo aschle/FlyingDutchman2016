@@ -91,12 +91,11 @@ angular.module('barApp')
 
         var authService = {};
 
-        authService.setLoggedInUser = function(username, password, role, limit, likes){
+        authService.setLoggedInUser = function(username, password, role, limit){
             LSService.setElement("username", username);
             LSService.setElement("password", password);
             LSService.setElement("role", role);
             LSService.setElement("limit", limit);
-            LSService.setElement("likes", likes);
         };
 
         authService.getLoggedInUser = function(){
@@ -120,6 +119,8 @@ angular.module('barApp')
             LSService.remove('username');
             LSService.remove('password');
             LSService.remove('role');
+            LSService.remove('cart');
+            LSService.remove('limit');
         }
 
         return authService;

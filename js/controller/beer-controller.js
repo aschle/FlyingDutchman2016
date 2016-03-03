@@ -32,7 +32,7 @@
 
             $('#menu-vip').show();
             $('#menu-admin').hide();
-            $('.navbar .container-fluid').show();
+            $('.navbar .dropdown').show();
 
             var beers = [];
 

@@ -16,7 +16,7 @@
 
             $('#menu-vip').show();
             $('#menu-admin').show();
-            $('.navbar .container-fluid').show();
+            $('.navbar .dropdown').show();
 
             //google.charts.load('current', {'packages':['corechart']});
             //google.charts.setOnLoadCallback(drawChart);

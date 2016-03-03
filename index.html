@@ -67,10 +67,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li>
-                <div class="btn-group btn-group-sm" role="group" aria-label="languages">
-                  <button type="button" class="btn btn-default navbar-btn">en</button>
-                  <button type="button" class="btn btn-default navbar-btn">de</button>
-                </div>
+                  <button type="button" class="btn btn-default navbar-btn" ng-click="switchLanguage()">Switch to {{ inactiveLanguage }}</button>
               </li>
               <li class="dropdown">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-user"></i><span class="caret"></span></a>
@@ -95,9 +92,6 @@
               <ul class="nav nav-pills nav-stacked">
                 <li role="presentation" ng-class="{ active: isActive('/user')}">
                   <a href="#user">All Beers</a>
-                </li>
-                <li role="presentation" ng-class="{ active: isActive('/todo')}">
-                  <a href="#todo">Favorite beers</a>
                 </li>
                 <li role="presentation" ng-class="{ active: isActive('/last-orders')}">
                   <a href="#last-orders">Last orders</a>
