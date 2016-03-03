@@ -26,6 +26,9 @@
         $scope.allBeers = [];
         $scope.isCartActive = true;
 
+        $scope.isFavorite = false;
+        $scope.isOrganic = false;
+
         $scope.init = function () {
 
             $scope.username = AuthService.getLoggedInUser().username;
@@ -93,6 +96,25 @@
                 // error: TODO
             });
         };
+
+        $scope.togglFavorite = function () {
+            $scope.isFavorite = !$scope.isFavorite;
+        }
+
+        $scope.togglOrganic = function () {
+            $scope.isOrganic = !$scope.isOrganic;
+        }
+
+        /**
+        * the return value is used in ng-hide, true/false stuff
+        */
+        $scope.checkFilter = function (key) {
+            if ($scope.isFavorite == false ) {
+                return false;
+            } else {
+                return !$scope.allBeers[key].isFavorite;
+            }
+        }
 
         /**
          * Looks at the local storage variable 'cart' and send an purchase for each element to the DB.
@@ -201,12 +223,12 @@
             cleanBeer.isorganic     = beer.additionalInfos.ekologisk == 1 ? true : false;
             cleanBeer.packaging     = beer.additionalInfos.forpackning;
             cleanBeer.origin        = beer.additionalInfos.ursprunglandnamn;
+            cleanBeer.isFavorite    = false;
 
             // set favorite beers here
             $.each($scope.likes, function(key, value){
                 if (value == beer.beer_id) {
                     cleanBeer.isFavorite = true;
-                    console.log("set: " + beer.beer_id);
                 }
             });
 

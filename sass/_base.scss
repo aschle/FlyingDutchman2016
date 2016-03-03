@@ -23,6 +23,12 @@ body {
   }
 }
 
+.filter {
+  padding: $line-height-computed;
+  margin-bottom: $line-height-computed/2;
+  background-color: white;
+}
+
 #search-bar {
   background-color: $gray-lighter;
   padding: $line-height-computed 0px;
