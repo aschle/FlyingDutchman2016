@@ -54,6 +54,12 @@
                 controller  : 'StockController'
             })
 
+            // stock start page
+            .when('/all-users', {
+                templateUrl : 'pages/admin/all-users.html',
+                controller  : 'UsersController'
+            })
+
 
             .otherwise({
                 redirectTo: '/'
