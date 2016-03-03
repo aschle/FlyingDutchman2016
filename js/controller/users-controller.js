@@ -13,7 +13,7 @@
         .module('barApp')
         .controller('UsersController', UsersController);
 
-    UsersController.$inject = ['$scope', 'DataService', ContactService];
+    UsersController.$inject = ['$scope', 'DataService', 'ContactService'];
 
     function UsersController($scope, DataService, ContactService) {
 
