@@ -47,11 +47,13 @@
 
         };
 
-        $scope.updateInventory = function (currentID, newPrice, newAmount) {
-            console.log(currentID, newPrice, newAmount);
-            DataService.updateInventory(currentID, newAmount, newPrice);
+        $scope.changeBackground = function () {
+            var body = document.getElementsByTagName('body')[0];
+            console.log('bajs')
+            body.background-image = 'url(../img/beer2.jpg)';
 
         }
+
 
 
         $scope.init();
