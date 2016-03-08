@@ -27,6 +27,7 @@ body {
   padding: $line-height-computed;
   margin-bottom: $line-height-computed/2;
   background-color: white;
+  border-top: $line-height-computed/2 solid $brand-primary;
 }
 
 #search-bar {
@@ -54,6 +55,10 @@ body {
 }
 
 // Beer List
+.list-group {
+  margin-bottom: $line-height-computed/2;
+}
+
 button.list-group-item:focus {
   background-color: white;
 }
