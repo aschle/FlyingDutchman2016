@@ -125,7 +125,7 @@
             var cleanDates = cleanData(values);
 
             var options = {
-                title: "Beverage Sales last 30 days",
+                title: "last 25 beverage sales",
                 width:500,
                 height:400,
                 legend: { position: 'none' },
