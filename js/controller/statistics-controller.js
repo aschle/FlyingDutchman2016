@@ -16,7 +16,7 @@
         $scope.init = function () {
 
 
-            $('#menu-vip').show();
+            $('#menu-vip').hide();
             $('#menu-admin').show();
             $('.navbar .container-fluid').show();
 

@@ -38,8 +38,8 @@
 
             // admin start page
             .when('/admin', {
-                templateUrl : 'pages/admin/index.html',
-                controller  : 'TMPadminController'
+                templateUrl : 'pages/admin/statistics.html',
+                controller  : 'StatisticsController'
             })
 
             // statistics page
