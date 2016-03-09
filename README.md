@@ -71,21 +71,16 @@ on python3:
           },...
 
 #### `payments_append`
-* Role: `user`
-* Additional parameter: `amount`
-* Adds a payment of specified amount to the system for the specified user. The amount is a required additional parameter
-* **Why is it not working?**
+* Role: `admin`
+* Additional parameter: `amount`, `user_id`
+* Adds a payment of specified amount to the system for the specified user. The amount is a required additional parameter. And the ID of a user.
 
-          http://pub.jamaica-inn.net/fpdb/api.php?username=ankov&password=ankov&action=payments_append&amount=10
-          
+
+          http://pub.jamaica-inn.net/fpdb/api.php?username=saskru&password=saskru&action=payments_append&amount=100&user_id=39
           {
-           "type": "error",
-           "payload": [
-            {
-             "code": "3",
-             "msg": "Not enough credentials"
-            }]
-          }
+          	"type": "empty",
+          	"payload": []
+  	}
 
 #### `iou_get`
 * Role: `user`
