@@ -3,6 +3,11 @@ body {
   background-size: 100vw;
   background-attachment: fixed;
   padding-top: $navbar-height + $line-height-computed;
+
+  &.testclass {
+    background-image: none;
+    background-color: black;
+  }
 }
 
 #logo {

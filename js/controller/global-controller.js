@@ -51,7 +51,10 @@
 
         }
 
-        $scope.init();
+        $scope.changeTheme = function () {
+            console.log("change");
+            $('body').addClass("testclass");
+        }
 
         $scope.switchLanguage = function () {
             var tmp = $scope.language;
@@ -78,5 +81,7 @@
         $scope.i18n = function (message) {
             return $scope.dictionary[message];
         }
+
+        $scope.init();
     }
 })();

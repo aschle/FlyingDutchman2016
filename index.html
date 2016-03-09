@@ -74,7 +74,7 @@
                 <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-user"></i><span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li class="dropdown-header">Signed in as username {{ AuthService.getLoggedInUser().username }}</li>
-                  <li><a href="#">Change themes</a></li>
+                  <li><a href="#" ng-click="changeTheme()">Change themes</a></li>
                   <li><a href="#">Other stuff</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="#" ng-click="logout()">Sign Out</a></li>
