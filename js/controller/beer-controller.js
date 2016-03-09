@@ -12,6 +12,8 @@
 
     function AllBeersController($scope, $window, DataService, LSService, AuthService) {
 
+        $scope.popularLimit = 2;
+
         $scope.username = "";
         $scope.cartMax = 5;
         $scope.currentCartCount = 0;
@@ -32,7 +34,7 @@
 
             $('#menu-vip').show();
             $('#menu-admin').hide();
-            $('.navbar .container-fluid').show();
+            $('.navbar .dropdown').show();
 
             var beers = [];
 
@@ -72,6 +74,9 @@
 
                 $scope.content = beers;
                 $scope.allBeers = beers;
+
+                // extract popular beers from allBeers list
+                console.log(beers);
 
             }, function(response){
                 $scope.content = "Something went wrong!";
@@ -207,7 +212,7 @@
             cleanBeer.name2         = beer.namn2;
             cleanBeer.price         = beer.pub_price;
             cleanBeer.id            = beer.beer_id;
-            cleanBeer.count         = beer.count;
+            cleanBeer.count         = Number(beer.count);
             cleanBeer.outofstock    = beer.count >= 1 ? false : true;
             cleanBeer.alk           = beer.additionalInfos.alkoholhalt;
             cleanBeer.iskoscher     = beer.additionalInfos.koscher == 1 ? true : false;

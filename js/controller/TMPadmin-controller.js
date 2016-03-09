@@ -15,7 +15,7 @@
         $scope.init = function () {
             $('#menu-vip').hide();
             $('#menu-admin').show();
-            $('.navbar .container-fluid').show();  
+            $('.navbar .dropdown').show();
         };
 
         $scope.init();

@@ -2,6 +2,31 @@
 <div class="row">
   <div class="col-md-6">
 
+    <!-- POPULAR BEER -->
+    <div class="list-group">
+      <!-- draggable Button -->
+      <button
+        id="src_copy_{{ value.id }}"
+        class="list-group-item"
+        ng-class="(value.count < 1) ? 'disabled' : ''"
+        ng-repeat="(key, value) in content | orderBy:'-count' | limitTo:popularLimit"
+        data-beerid="{{ value.id }}"
+        ng-attr-draggable="{{ !value.outofstock }}">
+        <h4 class="list-group-item-heading">
+          <i class="fa fa-fw fa-certificate"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small>
+          <span class="pull-right">{{ value.price }}&nbsp;SEK</span>
+        </h4>
+        <p class="list-group-item-text">
+          <span class="label label-info" ng-show="value.iskoscher">koscher</span>
+          <span class="label label-default">{{ value.alk }}</span>
+          <span class="label label-default">{{ value.packaging }}</span>
+          <span class="label label-default">{{ value.origin }}</span>
+          <span class="label label-danger">special offer</span>
+          <i class="fa fa-fw fa-leaf" ng-show="value.isorganic"></i>
+        </p>
+      </button>
+    </div>
+
     <!-- SEARCH/FILTER THINGY -->
     <div class="filter">
       <form role="search">

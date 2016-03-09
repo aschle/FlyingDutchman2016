@@ -28,9 +28,8 @@
                         if (value.name === $scope.username) {
                             role = value.role;
                             limit = value.limit;
-                            likes = value.likes;
                             //store stuff in local storage to use later for API and whatever else is needed
-                            AuthService.setLoggedInUser($scope.username, $scope.password, role, limit, likes);
+                            AuthService.setLoggedInUser($scope.username, $scope.password, role, limit);
                         } else {
                             //TODO: do something if something went wrong
                         }

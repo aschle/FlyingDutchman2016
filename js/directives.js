@@ -9,6 +9,23 @@
  */
 
  angular.module('barApp')
+
+    /**
+    * Directive for internationalisation.
+    */
+    .directive('i18n', function() {
+        return {
+            scope: {
+                i18ntranslate: '&',
+            },
+            link: function(scope, element, attrs) {
+                var text = scope.i18ntranslate({message: attrs.i18n});
+                $(element[0]).prepend(text);
+            }
+        }
+    })
+
+
     .directive('draggable', function() {
         return function(scope, element) {
 
