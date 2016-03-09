@@ -13,7 +13,7 @@
         .module('barApp')
         .controller('UsersController', UsersController);
 
-    UsersController.$inject = ['$scope', 'DataService', ContactService];
+    UsersController.$inject = ['$scope', 'DataService', 'ContactService'];
 
     function UsersController($scope, DataService, ContactService) {
 
@@ -39,8 +39,6 @@
 
         $scope.init = function () {
 
-            $('.panel').show();
-            $('.navbar .container-fluid').show();
 
             DataService.getAllUsers().then(function(response){
 

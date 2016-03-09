@@ -46,6 +46,8 @@
         dataService.getAllUsers = function(){
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=iou_get_all');
         }
+        
+
 
         return dataService;
     }]);
@@ -133,9 +135,116 @@ angular.module('barApp')
         //contacts array to hold list of all contacts
         var contacts = [{
             id: 0,
-            'firstName': 'Erik',
-            'lastName': 'Naess',
-            'addAssets': '500'
+            'username' : 'ernae',
+            'first_name': 'Erik',
+            'last_name': 'Naess',
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 1,
+            "username" : "maihon",
+            "first_name" : "Maiken",
+            "last_name" : "Honda",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 2,
+            "username" : "jovsit",
+            "first_name" : "Jove",
+            "last_name" : "Sitz",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 3,
+            "username" : "liatra",
+            "first_name" : "Liam",
+            "last_name" : "Traverso",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 4,
+            "username" : "svetor",
+            "first_name" : "Svetlana",
+            "last_name" : "Torres",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 5,
+            "username" : "livzha",
+            "first_name" : "Livianus",
+            "last_name" : "Zhao",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 6,
+            "username" : "lasnic",
+            "first_name" : "Lasse",
+            "last_name" : "Nicholson",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 7,
+            "username" : "kenolg",
+            "first_name" : "Kenan",
+            "last_name" : "Olguin",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 8,
+            "username" : "dansch",
+            "first_name" : "Danna",
+            "last_name" : "Schermer",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 9,
+            "username" : "elepic",
+            "first_name" : "Elektra",
+            "last_name" : "Pickle",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 10,
+            "username" : "dansch",
+            "first_name" : "Danna",
+            "last_name" : "Schermer",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 11,
+            "username" : "aqulyn",
+            "first_name" : "Aquilina",
+            "last_name" : "Lyndon",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 12,
+            "username" : "gollan",
+            "first_name" : "Golnar",
+            "last_name" : "Langley",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 13,
+            "username" : "felbar",
+            "first_name" : "Felix",
+            "last_name" : "Barto�",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 14,
+            "username" : "einyam",
+            "first_name" : "Einarr",
+            "last_name" : "Yamauchi",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
+        }, {
+            id: 15,
+            "username" : "hirchr",
+            "first_name" : "Hiram",
+            "last_name" : "Christopherson",
+            'email': 'erik@naess.com',
+            'phone': '02133213'
         }];
 
         //save method create a new contact if not already exists

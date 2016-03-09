@@ -54,10 +54,16 @@
                 controller  : 'StockController'
             })
 
-            // stock start page
+            // List of users
             .when('/all-users', {
                 templateUrl : 'pages/admin/all-users.html',
                 controller  : 'UsersController'
+            })
+
+            // List of users
+            .when('/add-credit', {
+                templateUrl : 'pages/admin/add-credit.html',
+                controller  : 'AddCreditController'
             })
 
 

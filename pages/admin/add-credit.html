@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-6">
+
+        <!-- SEARCH/FILTER THINGY -->
+        <form role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" ng-model="search">
+            </div>
+        </form>
+        <div class="list-group">
+            <!-- draggable Button -->
+            <button class="list-group-item" ng-repeat="(key, value) in content | filter:search">
+                <h4 class="list-group-item-heading">{{ value.username }}<span class="pull-right">Assets: {{ value.assets }}</span></h4>
+            </button>
+        </div>
+
+    </div>
+    <div class="col-md-1">
+        <div class="panel panel-default cart">
+            <div class="panel-heading">{{currentbeer}}</div>
+            <div class="panel-body">
+                <form>
+                    <input type="text" class="form-control" placeholder={{currentAmount}} ng-model="newAmount">
+                    <input type="text" class="form-control" placeholder={{currentPrice}} ng-model="newPrice">
+                </form>
+            </div>
+            <div class="panel-footer clearfix">
+                <button class="btn btn-primary center" ng-click="updateInventory(currentID, newAmount, newPrice)">Apply Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+

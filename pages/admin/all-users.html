@@ -1,6 +1,6 @@
 
 <div class="row">
-    <div class="col-md-6" id = "all-users">
+    <div class="col-md-7" id = "all-users">
         <h2>VIP User Management<button type="button" class="btn btn-default" ng-click="add()" id = "add-user"><i class="fa fa-user-plus"></i> Add User</button></h2>
 
         <form role="search">
@@ -12,28 +12,25 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Assets</th>
+                <th>Username</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Phone</th>
             </tr>
             </thead>
             <tbody>
 
-            <tr ng-repeat="contact in contacts">
-                <td>{{ contact.firstName }}</td>
-                <td>{{ contact.lastName }}</td>
-                <td>{{ contact.addAssets }}</td>
+            <tr ng-repeat="contact in contacts | filter:search">
+                <td>{{ contact.username }}</td>
+                <td>{{ contact.first_name }}</td>
+                <td>{{ contact.last_name }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.phone }}</td>
                 <td> <a href="javascript:void(0)" ng-click="edit(contact.id)">edit</a> | <a href="javascript:void(0)" ng-click="delete(contact.id)">delete</a>
 
                 </td>
             </tr>
-            <tr ng-repeat="(key, value) in content | filter:search">
-                <td>{{ value.first_name }}</td>
-                <td>{{ value.last_name }}</td>
-                <td>{{ value.assets }}</td>
-
-            </tr>
-
 
             </tbody>
         </table>
@@ -42,46 +39,32 @@
 
 
     </div>
-    <div class="col-md-6" >
+    <div class="col-md-4" >
         <section id = "user-details">
             <form class="well">
                 <fieldset class="form-group">
                 <label>First name</label>
-                <input type="text" class="form-control"  name="name" ng-model="newcontact.firstName" required />
+                <input type="text" class="form-control"  name="name" ng-model="newcontact.first_name" placeholder="First name" required />
                 </fieldset>
                 <fieldset class="form-group">
                 <label>Last name</label>
-                <input type="text" class="form-control" name="email" ng-model="newcontact.lastName" />
+                <input type="text" class="form-control" name="email" ng-model="newcontact.last_name" placeholder="Last name" />
                 </fieldset>
                 <fieldset class="form-group">
-                    <label for="exampleSelect1">Assets</label>
-                    <select class="form-control" ng-model="newcontact.addAssets">
-                        <option>100</option>
-                        <option>200</option>
-                        <option>400</option>
-                        <option>500</option>
-                        <option>600</option>
-                        <option>700</option>
-                        <option>800</option>
-                        <option>900</option>
-                    </select>
-                </fieldset>
-                <fieldset class="form-group">
-                    <label for="ExampleInputUsername">Username</label>
-                    <input type="text" class="form-control" id="ExampleInputUsername" placeholder="Username">
+                    <label>Username</label>
+                    <input type="text" class="form-control" ng-model="newcontact.username"  placeholder="Username"/>
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </fieldset>
                 <fieldset class="form-group">
-                    <label for="exampleSelect1">Credit limit</label>
-                    <select class="form-control"  id="exampleSelect1">
-                        <option>-100</option>
-                        <option>-200</option>
-                        <option>-400</option>
-                        <option>-500</option>
-                    </select>
+                    <label>Email</label>
+                    <input type="text" class="form-control" ng-model="newcontact.email" placeholder="Email"/>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" ng-model="newcontact.phone"  placeholder="Phone"/>
                 </fieldset>
 
                 <br/>
