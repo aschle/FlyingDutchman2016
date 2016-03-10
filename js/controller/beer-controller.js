@@ -34,6 +34,7 @@
 
             $('#menu-vip').show();
             $('#menu-admin').hide();
+            $('#warnings').hide();
             $('.navbar .dropdown').show();
 
             var beers = [];

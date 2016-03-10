@@ -121,6 +121,24 @@
             </div>
           </div>
 
+          <div class="panel panel-default" id="warnings">
+
+            <div class="panel-heading">{{notices.length}} beers out of stock:</div>
+            <div class="panel-body">
+              <ul class="nav nav-pills nav-stacked">
+                <li>
+                  <a href="#stock" ng-repeat="(key, value) in content | orderBy:'count'">
+                    {{ value.namn }}<span class="pull-right">{{ value.count }}</span>
+                  </a>
+                </li>
+                <li>
+                <button class="list-group-item" type="button" ng-click="expandNotice()"><h4>{{activeNotices ? 'hide' : 'expand'}}</h4></button>
+                </li>
+              </ul>
+            </div>
+
+
+          </div>
 
 
         </div>

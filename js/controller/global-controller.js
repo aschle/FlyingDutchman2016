@@ -8,9 +8,9 @@
         .module('barApp')
         .controller('GlobalController', GlobalController);
 
-    GlobalController.$inject = ['$scope', '$location', '$window', '$http', 'AuthService', 'LocalStorageService'];
+    GlobalController.$inject = ['$scope', '$location', '$window', '$http', 'AuthService', 'LocalStorageService', 'DataService'];
 
-    function GlobalController($scope, $location, $window, $http, AuthService, LSService) {
+    function GlobalController($scope, $location, $window, $http, AuthService, LSService, DataService) {
 
         // default language is english
         $scope.language = "en";
@@ -48,7 +48,38 @@
                 $scope.content = "Something went wrong with file: i18n/i18n-" + $scope.language + ".JSON'.";
             });
 
+            var beers = [];
 
+            DataService.getInventory().then(function(response){
+
+
+                $.each(response.data.payload, function(index, value){
+
+                    // check if it is a valid beer
+                    if(value.namn !== "" && value.count < 1) {
+                        beers.push(value);
+                    }
+
+                });
+
+                $scope.content = [];
+                $scope.notices = beers
+                $scope.activeNotices = false;
+            }, function(response){
+                $scope.content = "Something went wrong!";
+
+            });
+
+        }
+
+        $scope.expandNotice = function () {
+            if($scope.activeNotices){
+                $scope.content = [];
+                $scope.activeNotices = false;
+            }else{
+                $scope.content = $scope.notices;
+                $scope.activeNotices = true;
+            }
         }
 
         $scope.changeTheme = function () {

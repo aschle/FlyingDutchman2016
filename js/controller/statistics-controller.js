@@ -18,6 +18,7 @@
 
             $('#menu-vip').hide();
             $('#menu-admin').show();
+            $('#warnings').show();
             $('.navbar .container-fluid').show();
 
 
@@ -117,6 +118,12 @@
             return newValues.sort(compareDate);
 
         }
+
+        $scope.displayWarnings = function() {
+            var warningPanel = document.getElementById('curve_chart');
+            warningPanel.innerHTML = mu;
+        }
+
 
         $scope.addToGraph = function(values){
 
