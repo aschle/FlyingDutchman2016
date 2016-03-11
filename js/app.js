@@ -66,6 +66,11 @@
                 controller  : 'AddCreditController'
             })
 
+            // List of users
+            .when('/order-history', {
+                templateUrl : 'pages/admin/order-history.html',
+                controller  : 'OrderHistoryController'
+            })
 
             .otherwise({
                 redirectTo: '/'

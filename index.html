@@ -36,6 +36,7 @@
     <script src="js/controller/stock-controller.js"></script>
     <script src="js/controller/TMPadmin-controller.js"></script>
     <script src="js/controller/users-controller.js"></script>
+    <script src="js/controller/order-history-controller.js"></script>
     <script src="js/controller/addCredit-controller.js"></script>
 
 
@@ -117,12 +118,14 @@
                 <li role="presentation" ng-class="{ active: isActive('/add-credit')}">
                   <a href="#add-credit">Add credit</a>
                 </li>
+                <li role="presentation" ng-class="{ active: isActive('/order-history')}">
+                  <a href="#order-history">Order history</a>
+                </li>
               </ul>
             </div>
           </div>
 
           <div class="panel panel-default" id="warnings">
-
             <div class="panel-heading">{{notices.length}} beers out of stock:</div>
             <div class="panel-body">
               <ul class="nav nav-pills nav-stacked">
@@ -136,8 +139,6 @@
                 </li>
               </ul>
             </div>
-
-
           </div>
 
 
