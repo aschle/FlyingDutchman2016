@@ -96,10 +96,17 @@ button.list-group-item:hover {
 
 
 .dnd-drag {
-  border: 1px dashed white;
+  border: 2px dashed white;
 }
 
 .dnd-over {
-  background: $gray-lighter;
-  border: 1px dashed white;
+  background: $gray;
+  border: 2px dashed white;
+}
+
+#dest_copy {
+  background-image: url(../img/bg-drop.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
