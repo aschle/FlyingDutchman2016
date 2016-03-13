@@ -30,6 +30,9 @@
 
         $scope.init = function () {
 
+            $scope.cartHistory = [];
+            $scope.cartCurrent = -1;
+
             $scope.username = AuthService.getLoggedInUser().username;
 
             $('#menu-vip').show();
@@ -77,7 +80,7 @@
                 $scope.allBeers = beers;
 
                 // extract popular beers from allBeers list
-                console.log(beers);
+
 
             }, function(response){
                 $scope.content = "Something went wrong!";
@@ -100,6 +103,60 @@
             });
         };
 
+        $scope.undoAction = function() {
+
+            var actions = $scope.cartHistory;
+            var cursor = $scope.cartCurrent;
+
+
+            if(cursor != -1){
+
+                if(actions[cursor][0] == "add"){
+                    $scope.deleteBeer(actions[cursor][1]);
+                }else{
+                    $scope.handleDrop(actions[cursor][1]);
+                }
+                $scope.cartCurrent--;
+            }
+        }
+
+        $scope.redoAction = function() {
+
+            var actions = $scope.cartHistory;
+            var cursor = $scope.cartCurrent;
+
+            if(actions.length - 1 > (cursor) && actions.length != 0){
+                cursor = ++$scope.cartCurrent;
+
+                if(actions[cursor][0] == "add"){
+                    $scope.handleDrop(actions[cursor][2]);
+                }else{
+                    $scope.deleteBeer(actions[cursor][2]);
+                }
+            }
+        }
+
+        $scope.addAction = function(action,value){
+
+            var cursor = $scope.cartCurrent;
+            var actions =  $scope.cartHistory;
+            var reverseVal;
+
+            if(action == "add"){
+                reverseVal = $scope.handleDrop(value);
+                $scope.$apply();
+            }else{
+                reverseVal = $scope.deleteBeer(value);
+            }
+
+            if(reverseVal != null){
+                $scope.cartCurrent++;
+                $scope.cartHistory.splice($scope.cartCurrent, (actions.length - cursor), [action,reverseVal,value]);
+
+            }
+            console.log($scope.cartHistory);
+
+        }
 
         /**
          * Looks at the local storage variable 'cart' and send an purchase for each element to the DB.
@@ -122,9 +179,10 @@
             // update local storage
             $scope.cart.splice(index,1);
             LSService.setObject("cart", $scope.cart);
-            $scope.beersInCart.splice(index,1);
+            var beer = $scope.beersInCart.splice(index,1);
             $scope.isCartActive = true;
             // having duplacate things is stupid
+            return beer[0].id;
         }
 
         // This is somehow stupid, actually it should just work straight away:
@@ -167,7 +225,8 @@
 
             // very inefficient stuff here sorry
             // find beer with id
-            var beer;
+            var returnVal = null;
+            var beer = null;
             $.each($scope.allBeers, function(key, value){
                 if(value.id == id){
                     beer = value;
@@ -179,14 +238,16 @@
                 $scope.cart = LSService.getObject("cart");
                 $scope.cart.push({"beer_id": id});
                 LSService.setObject("cart", $scope.cart);
-                $scope.beersInCart.push(beer);
+                returnVal = $scope.beersInCart.push(beer) - 1;
+
 
             } else {
                 $scope.isCartActive = false;
             }
 
             // to update the scope so the total number in cart changes
-            $scope.$apply();
+
+            return returnVal;
         }
 
         $scope.totalItems = function() {

@@ -75,13 +75,18 @@
     </div>
   </div> 
   <div class="col-md-6">
+
     <div class="panel panel-default cart">
+
       <div class="panel-heading">Current balance: {{ balance }}&nbsp;SEK | Credit limit: {{ limit }}&nbsp;SEK</div>
-      <div class="panel-body" id="dest_copy" droppable drop="handleDrop(beerID)">
+
+
+
+      <div class="panel-body" id="dest_copy" droppable drop="addAction('add',beerID)">
         <button class="list-group-item" ng-repeat="(key, value) in beersInCart track by $index">
           <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf"ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}&nbsp;SEK</span></h4>
           <p class="list-group-item-text">
-            <a ng-click="deleteBeer(key)"><i class='fa fa-fw fa-trash pull-right'></i></a>
+            <a ng-click="addAction('remove',key)"><i class='fa fa-fw fa-trash pull-right'></i></a>
             <span class="label label-info" ng-show="value.iskoscher">koscher</span>
             <span class="label label-default">{{ value.alk }}</span>
             <span class="label label-default">{{ value.packaging }}</span>
@@ -101,7 +106,11 @@
             <li class="lead"><strong>TOTAL: {{ totalMoney() }}&nbsp;SEK</strong></li>
           </ul>
         </div>
+        <button class="btn btn-primary btn-lg pull-left" ng-click="undoAction()"><i class="fa fa-arrow-left"></i> Undo</button>
+        <button class="btn btn-primary btn-lg pull-left" ng-click="redoAction()">Redo <i class="fa fa-arrow-right"></i></button>
+
         <button class="btn btn-primary btn-lg btn-icon pull-right" ng-click="placeOrder()">Place Order<i class="fa fa-chevron-right"></i></button>
+
       </div>
     </div>
   </div>

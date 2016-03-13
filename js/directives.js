@@ -77,7 +77,7 @@
                 el.addEventListener(
                     'dragover',
                     function(e) {
-                        console.log("drag over");
+
                         e.dataTransfer.dropEffect = 'move';
                         if (e.preventDefault) e.preventDefault();
                         this.classList.add('dnd-over');
@@ -90,7 +90,7 @@
                 el.addEventListener(
                     'dragenter',
                     function(e) {
-                        console.log("drag enter");
+
                         this.classList.add('dnd-over');
                         return false;
                     },
@@ -101,7 +101,7 @@
                 el.addEventListener(
                     'dragleave',
                     function(e) {
-                        console.log("drag leave");
+
                         this.classList.remove('dnd-over');
                         return false;
                     },
