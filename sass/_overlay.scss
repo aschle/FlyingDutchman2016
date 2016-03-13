@@ -1,0 +1,39 @@
+.overlay {
+  display: none;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  z-index: 99999;
+}
+
+.overlay-dialog {
+  background: white;
+  margin: 10% auto;
+  position: relative;
+  width: $modal-md;
+}
+
+.overlay-header {
+  border-bottom: 1px solid $modal-footer-border-color;
+  padding: 10px $line-height-computed;
+}
+
+.overlay-footer {
+  border-top: 1px solid $modal-footer-border-color;
+  padding: 10px $line-height-computed;
+}
+
+.tick {
+  width: $line-height-computed;
+  height: $line-height-computed;
+  margin: 5px;
+  border: 1px solid $gray-light;
+  display: inline-block;
+
+  &.active {
+    background-color: $gray-lighter;
+  }
+}

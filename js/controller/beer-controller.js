@@ -12,6 +12,11 @@
 
     function AllBeersController($scope, $window, DataService, LSService, AuthService) {
 
+        // time to cancel an oder
+        var limit = 10000;
+        var timer = null;
+        var counter = null;
+
         $scope.popularLimit = 2;
 
         $scope.username = "";
@@ -158,10 +163,21 @@
 
         }
 
+        function clearTimer() {
+            $('.overlay-footer span').remove();
+            clearTimeout(timer);
+            timer = null;
+            clearInterval(counter);
+            counter = null;
+        }
+
         /**
          * Looks at the local storage variable 'cart' and send an purchase for each element to the DB.
          */
         $scope.placeOrder = function () {
+
+            clearTimer();
+
             $scope.cart = LSService.getObject("cart");
             $.each($scope.cart, function(index, value){
                 DataService.purchaseOneBeer(value.beer_id).then(function(response){
@@ -172,8 +188,28 @@
                 }, function(response){
                     $scope.content = "Something went wrong!";
                 })
-            });
+            });;
         }
+
+        $scope.cancelOrder = function () {
+            clearTimer();
+            $('.overlay').hide();
+        }
+
+        $scope.showModal = function(){
+            $('.overlay').show();
+            timer = setTimeout($scope.placeOrder, limit + 10);
+
+            var i;
+            for (i = 0; i < limit/1000; i++) { 
+                $('.overlay-footer').append("<span class='tick'></span>");
+            }
+
+            counter = setInterval(function(){
+                $('.overlay-footer').prepend("<span class='tick active'></span>");
+                $('.overlay-footer span:last-child').remove();
+            }, 1000);
+        };
 
         $scope.deleteBeer = function (index) {
             // update local storage

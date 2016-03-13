@@ -109,9 +109,29 @@
         <button class="btn btn-primary btn-lg pull-left" ng-click="undoAction()"><i class="fa fa-arrow-left"></i> Undo</button>
         <button class="btn btn-primary btn-lg pull-left" ng-click="redoAction()">Redo <i class="fa fa-arrow-right"></i></button>
 
-        <button class="btn btn-primary btn-lg btn-icon pull-right" ng-click="placeOrder()">Place Order<i class="fa fa-chevron-right"></i></button>
+        <!-- BUTTON PLACE ORDER -->
+        <button class="btn btn-primary btn-lg btn-icon pull-right" ng-click="showModal()">Place Order<i class="fa fa-chevron-right"></i></button>
 
       </div>
     </div>
   </div>
+
+  <div class="overlay">
+    <div class="overlay-dialog">
+      <div class="overlay-content">
+        <div class="overlay-header">
+          <button type="button" class="close" ng-click="cancelOrder()">&times;</button>
+          <h4 class="overlay-title">Cancel order</h4>
+        </div>
+        <div class="overlay-body">
+          <p>übersicht der bestellung hier anzeigen</p>
+        </div>
+        <div class="overlay-footer clearfix">
+          <button class="btn btn-primary pull-right" ng-click="placeOrder()">Send order</button>
+          <button class="btn btn-default pull-right" ng-click="cancelOrder()">Cancel order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
