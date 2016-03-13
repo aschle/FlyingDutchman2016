@@ -8,9 +8,9 @@
         .module('barApp')
         .controller('GlobalController', GlobalController);
 
-    GlobalController.$inject = ['$scope', '$location', '$window', '$http', 'AuthService', 'LocalStorageService', 'DataService'];
+    GlobalController.$inject = ['$scope', '$route', '$location', '$window', '$http', 'AuthService', 'LocalStorageService', 'DataService'];
 
-    function GlobalController($scope, $location, $window, $http, AuthService, LSService, DataService) {
+    function GlobalController($scope, $route, $location, $window, $http, AuthService, LSService, DataService) {
 
         // default language is english
         $scope.language = "en";
@@ -69,6 +69,13 @@
                 $scope.content = "Something went wrong!";
 
             });
+
+        }
+
+        $scope.passValue =  function(value){
+            LSService.setElement("Item",value.namn);
+
+            $route.reload();
 
         }
 

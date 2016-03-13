@@ -12,15 +12,16 @@
         .module('barApp')
         .controller('StockController', StockController);
 
-    StockController.$inject = ['$scope', '$window', 'DataService'];
+    StockController.$inject = ['$scope', '$window','LocalStorageService', 'DataService'];
 
-    function StockController($scope, $window, DataService) {
+    function StockController($scope, $window, LSService, DataService) {
 
         $scope.init = function () {
 
-
+            $scope.search = LSService.getElement("Item");
             var beers = [];
 
+            console.log($scope.search);
             DataService.getInventory().then(function(response){
 
 

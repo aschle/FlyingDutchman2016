@@ -130,12 +130,12 @@
             <div class="panel-body">
               <ul class="nav nav-pills nav-stacked">
                 <li>
-                  <a href="#stock" ng-repeat="(key, value) in content | orderBy:'count'">
+                  <a href="#stock" ng-click="passValue(value)" ng-repeat="(key, value) in content | orderBy:'count'">
                     {{ value.namn }}<span class="pull-right">{{ value.count }}</span>
                   </a>
                 </li>
                 <li>
-                <button class="list-group-item" type="button" ng-click="expandNotice()"><h4>{{activeNotices ? 'hide' : 'expand'}}</h4></button>
+                <button class="btn btn-danger btn-block" type="button" ng-click="expandNotice()"><h5>{{activeNotices ? 'hide' : 'expand'}}</h5></button>
                 </li>
               </ul>
             </div>
