@@ -149,7 +149,6 @@
 
             if(action == "add"){
                 reverseVal = $scope.handleDrop(value);
-                $scope.$apply();
             }else{
                 reverseVal = $scope.deleteBeer(value);
             }
@@ -159,8 +158,15 @@
                 $scope.cartHistory.splice($scope.cartCurrent, (actions.length - cursor), [action,reverseVal,value]);
 
             }
-            console.log($scope.cartHistory);
+            $scope.$apply();
+        }
 
+        $scope.canUndo = function () {
+            return !($scope.cartCurrent == -1);
+        }
+
+        $scope.canRedo = function () {
+            return !($scope.cartCurrent + 1 == $scope.cartHistory.length);
         }
 
         function clearTimer() {
