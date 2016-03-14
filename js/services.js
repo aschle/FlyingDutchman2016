@@ -128,6 +128,69 @@ angular.module('barApp')
         return authService;
     }]);
 
+/**
+* Service for translating a specific key to a specific language.
+*/
+angular.module('barApp')
+    .factory('I18nService', ['LocalStorageService', '$http', '$rootScope', function (lsService, $http, $rootScope) {
+
+        var i18nService = {};
+
+        // dictionary to look up translations
+        var dictionary = {
+            "en": {
+                "APP_TITLE": "FlyingDutchman VIP Customer* App",
+                "APP_SLOGAN": "Do you feel like having a beer now?",
+                "APP_HINT": "*Ask the bartender to become a VIP customer!",
+                "SIGN_IN" : "Sign In"
+            },
+            "sv": {
+                "APP_TITLE": "FlyingDutchman VIP Kund App",
+                "APP_SLOGAN": "Sugen på en öl?",
+                "APP_HINT":"Fråga bartendern om VIP-konto!",
+                "SIGN_IN" : "Logga in"
+            }
+        };
+        // current/default language
+        var language = "en";
+        // current/default inactive language
+        var inactiveLanguage = "sv";
+
+        // check for saved language setting in local strage, if none - save default
+        if(!lsService.getElement("language")) {
+            lsService.setElement("language", language);
+            lsService.setElement("inactiveLanguage", inactiveLanguage);
+        } else {
+            language = lsService.getElement("language");
+            inactiveLanguage = lsService.getElement("inactiveLanguage");
+        }
+
+        i18nService.translate = function (key) {
+            return dictionary[language][key];
+        }
+
+        i18nService.switchLanguage = function () {
+            var tmp = language;
+            language = inactiveLanguage;
+            inactiveLanguage = tmp;
+            lsService.setElement("language", language);
+            lsService.setElement("inactiveLanguage", inactiveLanguage);
+
+            // for notifying the directive
+            $rootScope.$broadcast('onLanguageChange');
+        }
+
+        i18nService.getLanguage = function () {
+            return language;
+        }
+
+        i18nService.getInactiveLanguage = function () {
+            return inactiveLanguage;
+        }
+
+        return i18nService;
+    }]);
+
 angular.module('barApp')
     .service('ContactService', function () {
         //to create unique contact id
