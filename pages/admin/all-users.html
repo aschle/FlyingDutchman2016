@@ -1,7 +1,7 @@
 
 <div class="row">
     <div class="col-md-7" id = "all-users">
-        <h2>VIP User Management<button type="button" class="btn btn-default" ng-click="add()" id = "add-user"><i class="fa fa-user-plus"></i> Add User</button></h2>
+        <h2><span i18n="VIPUSERMAN"></span><button type="button" class="btn btn-default" ng-click="add()" id = "add-user"><i class="fa fa-user-plus"></i> <span i18n="ADD_USER"></span></button></h2>
 
         <form role="search">
             <div class="form-group">
@@ -12,11 +12,11 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Username</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Phone</th>
+                <th><span i18n="USERNAME"></span></th>
+                <th><span i18n="FIRSTNAME"></span></th>
+                <th><span i18n="LASTNAME"></span></th>
+                <th><span i18n="EMAIL"></span></th>
+                <th><span i18n="PHONE"></span></th>
             </tr>
             </thead>
             <tbody>
@@ -43,15 +43,15 @@
         <section id = "user-details">
             <form class="well">
                 <fieldset class="form-group">
-                <label>First name</label>
+                <label><span i18n="FIRSTNAME"></span></label>
                 <input type="text" class="form-control"  name="name" ng-model="newcontact.first_name" placeholder="First name" required />
                 </fieldset>
                 <fieldset class="form-group">
-                <label>Last name</label>
+                <label><span i18n="LASTNAME"></span></label>
                 <input type="text" class="form-control" name="email" ng-model="newcontact.last_name" placeholder="Last name" />
                 </fieldset>
                 <fieldset class="form-group">
-                    <label>Username</label>
+                    <label><span i18n="USERNAME"></span></label>
                     <input type="text" class="form-control" ng-model="newcontact.username"  placeholder="Username"/>
                 </fieldset>
                 <fieldset class="form-group">
@@ -59,11 +59,11 @@
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </fieldset>
                 <fieldset class="form-group">
-                    <label>Email</label>
+                    <label><span i18n="EMAIL"></span></label>
                     <input type="text" class="form-control" ng-model="newcontact.email" placeholder="Email"/>
                 </fieldset>
                 <fieldset class="form-group">
-                    <label>Phone</label>
+                    <label><span i18n="PHONE"></span></label>
                     <input type="text" class="form-control" ng-model="newcontact.phone"  placeholder="Phone"/>
                 </fieldset>
 

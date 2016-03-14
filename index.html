@@ -89,44 +89,44 @@
       <div class="row">
         <div id="sidebar" class="col-md-2">
           <div class="panel panel-default" id="menu-vip">
-            <div class="panel-heading">VIP Menu</div>
+            <div class="panel-heading"><span i18n="VIP_MENU"></span></div>
             <div class="panel-body">
               <ul class="nav nav-pills nav-stacked">
                 <li role="presentation" ng-class="{ active: isActive('/user')}">
-                  <a href="#user">All Beers</a>
+                  <a href="#user"><span i18n="ALL_BEERS"></span></a>
                 </li>
                 <li role="presentation" ng-class="{ active: isActive('/last-orders')}">
-                  <a href="#last-orders">Last orders</a>
+                  <a href="#last-orders"><span i18n="LAST_ORDERS"></span></a>
                 </li>
               </ul>
             </div>
           </div>
 
           <div class="panel panel-default" id="menu-admin">
-            <div class="panel-heading">Admin Menu</div>
+            <div class="panel-heading"><span i18n="ADMIN_MENU"></span></div>
             <div class="panel-body">
               <ul class="nav nav-pills nav-stacked">
                 <li role="presentation" ng-class="{ active: isActive('/statistics')}">
-                  <a href="#statistics">Statistics</a>
+                  <a href="#statistics"><span i18n="STATISTICS"></span></a>
                 </li>
                 <li role="presentation" ng-class="{ active: isActive('/stock')}">
-                  <a href="#stock">Stock</a>
+                  <a href="#stock"><span i18n="STOCK"></span></a>
                 </li>
                 <li role="presentation" ng-class="{ active: isActive('/all-users')}">
-                  <a href="#all-users">VIP Users</a>
+                  <a href="#all-users"><span i18n="VIP_USERS"></span></a>
                 </li>
                 <li role="presentation" ng-class="{ active: isActive('/add-credit')}">
-                  <a href="#add-credit">Add credit</a>
+                  <a href="#add-credit"><span i18n="ADD_CREDIT"></span></a>
                 </li>
                 <li role="presentation" ng-class="{ active: isActive('/order-history')}">
-                  <a href="#order-history">Order history</a>
+                  <a href="#order-history"><span i18n="ORDER_HISTORY"></span></a>
                 </li>
               </ul>
             </div>
           </div>
 
           <div class="panel panel-default" id="warnings">
-            <div class="panel-heading">{{notices.length}} beers out of stock:</div>
+            <div class="panel-heading">{{notices.length}} <span i18n="OUT_STOCK"></span>:</div>
             <div class="panel-body">
               <ul class="nav nav-pills nav-stacked">
                 <li>

@@ -5,20 +5,20 @@
   <div class="col-md-4 box">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Log in with your VIP account</h3>
+        <h3 class="panel-title"><span i18n="LOGIN"></span></h3>
       </div>
       <div class="panel-body">
         <form name="form" role="form" ng-submit="login()" ng-controller="LoginController">
           <div class="form-group">
-            <label for="username">Username</label>
+            <label for="username"><span i18n="USERNAME"></span></label>
             <input type="text" class="form-control" id="username" placeholder="" required ng-model="username">
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password"><span i18n="PASSWORD"></span></label>
             <input type="password" class="form-control" id="password" placeholder="" required ng-model="password">
           </div>
-          <a href="/#/" class="link">Cancel</a> 
-          <button type="submit" class="btn btn-primary">Sign In</button>
+          <a href="/#/" class="link"><span i18n="CANCEL"></span></a>
+          <button type="submit" class="btn btn-primary"><span i18n="SIGN_IN"></span></button>
         </form>
       </div>
     </div>
