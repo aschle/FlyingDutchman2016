@@ -119,10 +119,12 @@
                 if(actions[cursor][0] == "add"){
                     $scope.deleteBeer(actions[cursor][1]);
                 }else{
-                    $scope.handleDrop(actions[cursor][1]);
+                    $scope.cartHistory[cursor][2] =  $scope.handleDrop(actions[cursor][1]);
                 }
                 $scope.cartCurrent--;
             }
+
+            console.log($scope.cartHistory);
         }
 
         $scope.redoAction = function() {
@@ -134,11 +136,13 @@
                 cursor = ++$scope.cartCurrent;
 
                 if(actions[cursor][0] == "add"){
-                    $scope.handleDrop(actions[cursor][2]);
+                    $scope.cartHistory[cursor][1] = $scope.handleDrop(actions[cursor][2]);
                 }else{
                     $scope.deleteBeer(actions[cursor][2]);
                 }
             }
+
+            console.log($scope.cartHistory);
         }
 
         $scope.addAction = function(action,value){
@@ -149,6 +153,7 @@
 
             if(action == "add"){
                 reverseVal = $scope.handleDrop(value);
+                $scope.$apply();
             }else{
                 reverseVal = $scope.deleteBeer(value);
             }
@@ -158,7 +163,8 @@
                 $scope.cartHistory.splice($scope.cartCurrent, (actions.length - cursor), [action,reverseVal,value]);
 
             }
-            $scope.$apply();
+            console.log($scope.cartHistory);
+
         }
 
         $scope.canUndo = function () {
