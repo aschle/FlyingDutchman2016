@@ -126,16 +126,13 @@
           </div>
 
           <div class="panel panel-default" id="warnings">
-            <div class="panel-heading">{{notices.length}} <span i18n="OUT_STOCK"></span>:</div>
+            <div class="panel-heading">{{notices.length}} <span i18n="OUT_STOCK"></span><i ng-click="expandNotice()" class="{{activeNotices ? 'fa fa-caret-down fa-2x pull-right' : 'fa fa-caret-right fa-2x pull-right'}}" ></i></div>
             <div class="panel-body">
               <ul class="nav nav-pills nav-stacked">
                 <li>
                   <a href="#stock" ng-click="passValue(value)" ng-repeat="(key, value) in content | orderBy:'count'">
                     {{ value.namn }}<span class="pull-right">{{ value.count }}</span>
                   </a>
-                </li>
-                <li>
-                <button class="btn btn-danger btn-block" type="button" ng-click="expandNotice()"><h5>{{activeNotices ? 'hide' : 'expand'}}</h5></button>
                 </li>
               </ul>
             </div>

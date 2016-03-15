@@ -1,5 +1,7 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6" id = "add-credit">
+
+            <h2><span i18n="ADD_CREDIT"></span></h2>
 
         <!-- SEARCH/FILTER THINGY -->
         <form role="search">
@@ -9,23 +11,28 @@
         </form>
         <div class="list-group">
             <!-- draggable Button -->
-            <button class="list-group-item" ng-repeat="(key, value) in content | filter:search">
-                <h4 class="list-group-item-heading">{{ value.username }}<span class="pull-right">Assets: {{ value.assets }}</span></h4>
+            <button class="list-group-item"  ng-click="$parent.currentUser = value.first_name + '&nbsp;' + value.last_name;$parent.currentCredit = value.currentBalance; $parent.currentID = value.id" ng-repeat="(key, value) in content | filter:search">
+                <h4 class="list-group-item-heading" id = "{{ value.id }}">{{ value.first_name }} {{ value.last_name }}<span class="pull-right"><span i18n="BALANCE"></span>: {{ value.currentBalance }}</span></h4>
             </button>
         </div>
 
     </div>
     <div class="col-md-1">
         <div class="panel panel-default cart">
-            <div class="panel-heading">{{currentbeer}}</div>
+
+            <div class="panel-heading">{{currentUser}}</div>
+
             <div class="panel-body">
-                <form>
-                    <input type="text" class="form-control" placeholder={{currentAmount}} ng-model="newAmount">
-                    <input type="text" class="form-control" placeholder={{currentPrice}} ng-model="newPrice">
+                <form >
+                    <label><span i18n="BALANCE"></span>: {{currentCredit}}</label>
+
+                    <input type="text" class="form-control" ng-model="newCredit" placeholder="Add credit">
+                    <input type="hidden" ng-model="user_id" value="{{currentID}}">
                 </form>
             </div>
             <div class="panel-footer clearfix">
-                <button class="btn btn-primary center" ng-click="updateInventory(currentID, newAmount, newPrice)">Apply Changes</button>
+                <button class="btn btn-primary center" ng-click="updateCredit(newCredit, currentID)"><span i18n="ADDCREDIT"></span></button>
+
             </div>
         </div>
     </div>

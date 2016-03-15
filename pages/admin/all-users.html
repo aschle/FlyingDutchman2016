@@ -1,7 +1,9 @@
 
 <div class="row">
     <div class="col-md-7" id = "all-users">
-        <h2><span i18n="VIPUSERMAN"></span><button type="button" class="btn btn-default" ng-click="add()" id = "add-user"><i class="fa fa-user-plus"></i> <span i18n="ADD_USER"></span></button></h2>
+
+        <h2><span i18n="VIPUSERMAN"></span></h2>
+
 
         <form role="search">
             <div class="form-group">
@@ -27,7 +29,7 @@
                 <td>{{ contact.last_name }}</td>
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.phone }}</td>
-                <td> <a href="javascript:void(0)" ng-click="edit(contact.id)">edit</a> | <a href="javascript:void(0)" ng-click="delete(contact.id)">delete</a>
+                <td> <a href="javascript:void(0)" ng-click="edit(contact.id)"><span i18n="EDIT"></span></a> | <a href="javascript:void(0)" ng-click="delete(contact.id)"><span i18n="DELETE"></span></a>
 
                 </td>
             </tr>
@@ -42,29 +44,33 @@
     <div class="col-md-4" >
         <section id = "user-details">
             <form class="well">
+                <h3><span i18n="ADD/EDIT"></span>&nbsp;<i class="fa fa-user-plus"></i></h3>
                 <fieldset class="form-group">
+
                 <label><span i18n="FIRSTNAME"></span></label>
-                <input type="text" class="form-control"  name="name" ng-model="newcontact.first_name" placeholder="First name" required />
+                <input type="text" class="form-control"  name="name" ng-model="newcontact.first_name"  required />
                 </fieldset>
                 <fieldset class="form-group">
                 <label><span i18n="LASTNAME"></span></label>
-                <input type="text" class="form-control" name="email" ng-model="newcontact.last_name" placeholder="Last name" />
+                <input type="text" class="form-control" name="email" ng-model="newcontact.last_name"  />
                 </fieldset>
                 <fieldset class="form-group">
                     <label><span i18n="USERNAME"></span></label>
-                    <input type="text" class="form-control" ng-model="newcontact.username"  placeholder="Username"/>
+                    <input type="text" class="form-control" ng-model="newcontact.username"  />
+
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input type="password" class="form-control" id="exampleInputPassword1" />
                 </fieldset>
                 <fieldset class="form-group">
                     <label><span i18n="EMAIL"></span></label>
-                    <input type="text" class="form-control" ng-model="newcontact.email" placeholder="Email"/>
+                    <input type="text" class="form-control" ng-model="newcontact.email" />
                 </fieldset>
                 <fieldset class="form-group">
                     <label><span i18n="PHONE"></span></label>
-                    <input type="text" class="form-control" ng-model="newcontact.phone"  placeholder="Phone"/>
+                    <input type="text" class="form-control" ng-model="newcontact.phone"/>
+
                 </fieldset>
 
                 <br/>

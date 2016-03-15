@@ -46,7 +46,10 @@
         dataService.getAllUsers = function(){
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=iou_get_all');
         }
-        
+
+        dataService.addCredit = function(amount, user_id){
+            return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=payments_append' + '&amount=' + amount + '&user_id=' + user_id);
+        }
 
 
         return dataService;
@@ -159,6 +162,7 @@ angular.module('barApp')
                 "PHONE" : "Phone",
                 "EDIT" : "Edit",
                 "DELETE" : "Delete",
+                "ADD/EDIT" : "Add/edit",
                 "DATE" : "Date",
                 "ORDER_DETAILS" : "Order details",
                 "NAME" : "Name",
@@ -170,6 +174,8 @@ angular.module('barApp')
                 "STOCK" : "Stock",
                 "VIP_USERS" : "VIP Users",
                 "ADD_CREDIT" : "Add credit",
+                "BALANCE" : "Balance",
+                "ADDCREDIT" : "Add credit",
                 "ORDER_HISTORY" : "Order history",
                 "VIP_MENU" : "VIP Menu",
                 "ALL_BEERS" : "All beers",
@@ -209,6 +215,7 @@ angular.module('barApp')
                 "PHONE" : "Telefon",
                 "EDIT" : "Redigera",
                 "DELETE" : "Ta bort",
+                "ADD/EDIT" : "Lägg till/redigera",
                 "DATE" : "Datum",
                 "ORDER_DETAILS" : "Order detaljer",
                 "NAME" : "Namn",
@@ -220,6 +227,8 @@ angular.module('barApp')
                 "STOCK" : "Lager",
                 "VIP_USERS" : "VIP Användare",
                 "ADD_CREDIT" : "Kredit",
+                "BALANCE" : "Aktuellt saldo",
+                "ADDCREDIT" : "Lägg till kredit",
                 "ORDER_HISTORY" : "Order historik",
                 "VIP_MENU" : "VIP Meny",
                 "ALL_BEERS" : "Sortiment",

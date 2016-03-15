@@ -110,9 +110,8 @@ button.list-group-item:hover {
   border: 2px dashed white;
 }
 
-#dest_copy {
-  background-image: url(../img/bg-drop.png);
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+#bg-drop {
+  color: lighten($gray-light, 20%);
+  pointer-events: none;
+  margin-top: -65px;
 }
