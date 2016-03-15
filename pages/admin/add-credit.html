@@ -1,13 +1,17 @@
 <div class="row">
     <div class="col-md-6" id = "add-credit">
 
-        <h2><span i18n="ADD_CREDIT"></span></h2>
+        <h2><span i18n="ADD_CREDIT"></span><small><i class="fa fa-fw fa-spinner fa-spin"></i></small></h2>
         <!-- SEARCH/FILTER THINGY -->
         <form role="search">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search" ng-model="search">
             </div>
         </form>
+        <div class="progress">
+          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ progress }}%;">
+          </div>
+        </div>
         <div class="list-group">
             <!-- draggable Button -->
             <button class="list-group-item"  ng-click="$parent.currentUser = value.first_name + '&nbsp;' + value.last_name;$parent.currentCredit = value.currentBalance; $parent.currentID = value.id" ng-repeat="(key, value) in content | filter:search">
