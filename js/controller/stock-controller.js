@@ -35,7 +35,7 @@
                 });
 
                 $scope.content = beers;
-                $scope.currentbeer = "Selected beer";
+                $scope.currentbeer = "";
                 $scope.currentID = ""
                 $scope.currentPrice = "Price"
                 $scope.currentAmount = "Amount"

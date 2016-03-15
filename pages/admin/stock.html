@@ -25,10 +25,14 @@
         <div class="panel panel-default cart">
             <div class="panel-heading">{{currentbeer}}</div>
             <div class="panel-body">
-                <form>
-                    <input type="text" class="form-control" placeholder={{currentAmount}} ng-model="newAmount">
-                    <input type="text" class="form-control" placeholder={{currentPrice}} ng-model="newPrice">
-                </form>
+                <fieldset class="form-group">
+                    <label><span i18n="AMOUNT"></span></label>
+                    <input type="text" class="form-control" ng-model="newAmount" />
+                </fieldset>
+                <fieldset class="form-group">
+                    <label><span i18n="PRICE"></span></label>
+                    <input type="text" class="form-control" ng-model="newPrice" />
+                </fieldset>
             </div>
             <div class="panel-footer clearfix">
                 <button class="btn btn-primary center" ng-click="updateInventory(currentID, newAmount, newPrice)"><span i18n="UPDATE_STOCK"></span></button>
