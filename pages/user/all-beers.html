@@ -83,6 +83,9 @@
 
 
       <div class="panel-body" id="dest_copy" droppable drop="addAction('add',beerID)">
+        <div id="bg-drop" class="text-center">
+          <i class="fa fa-fw fa-3x fa-beer"></i><p>Drag a' drop beer here to purchase.</p>
+        </div>
         <button class="list-group-item" ng-repeat="(key, value) in beersInCart track by $index">
           <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf"ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}&nbsp;SEK</span></h4>
           <p class="list-group-item-text">
