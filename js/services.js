@@ -308,7 +308,7 @@ angular.module('barApp')
 angular.module('barApp')
     .service('ContactService', function () {
         //to create unique contact id
-        var uid = 1;
+        var uid = 16;
 
         //contacts array to hold list of all contacts
         var contacts = [{

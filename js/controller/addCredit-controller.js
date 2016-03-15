@@ -50,7 +50,13 @@
         $scope.updateCredit = function (newCredit, CurrentID) {
 
            DataService.addCredit(newCredit, CurrentID);
-            location.reload()
+
+            
+
+            $("#credit-not-added").attr("id", "credit-success");
+
+            setTimeout(function(){location.reload();},3000);
+
 
         }
 
