@@ -36,6 +36,7 @@
     <script src="js/controller/stock-controller.js"></script>
     <script src="js/controller/TMPadmin-controller.js"></script>
     <script src="js/controller/users-controller.js"></script>
+    <script src="js/controller/order-history-controller.js"></script>
     <script src="js/controller/addCredit-controller.js"></script>
 
 
@@ -68,13 +69,13 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li>
-                  <button type="button" class="btn btn-default navbar-btn" ng-click="switchLanguage()">Switch to {{ inactiveLanguage }}</button>
+                  <button type="button" class="btn btn-default navbar-btn" ng-click="switchLanguage()">Switch to {{ I18nService.getInactiveLanguage() }}</button>
               </li>
               <li class="dropdown">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-user"></i><span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li class="dropdown-header">Signed in as username {{ AuthService.getLoggedInUser().username }}</li>
-                  <li><a href="#">Change themes</a></li>
+                  <li><a href="#" ng-click="changeTheme()">Change themes</a></li>
                   <li><a href="#">Other stuff</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="#" ng-click="logout()">Sign Out</a></li>
@@ -88,39 +89,57 @@
       <div class="row">
         <div id="sidebar" class="col-md-2">
           <div class="panel panel-default" id="menu-vip">
-            <div class="panel-heading">VIP Menu</div>
+            <div class="panel-heading"><span i18n="VIP_MENU"></span></div>
             <div class="panel-body">
               <ul class="nav nav-pills nav-stacked">
                 <li role="presentation" ng-class="{ active: isActive('/user')}">
-                  <a href="#user">All Beers</a>
+                  <a href="#user"><span i18n="ALL_BEERS"></span></a>
                 </li>
                 <li role="presentation" ng-class="{ active: isActive('/last-orders')}">
-                  <a href="#last-orders">Last orders</a>
+                  <a href="#last-orders"><span i18n="LAST_ORDERS"></span></a>
                 </li>
               </ul>
             </div>
           </div>
 
           <div class="panel panel-default" id="menu-admin">
-            <div class="panel-heading">Admin Menu</div>
+            <div class="panel-heading"><span i18n="ADMIN_MENU"></span></div>
             <div class="panel-body">
               <ul class="nav nav-pills nav-stacked">
                 <li role="presentation" ng-class="{ active: isActive('/statistics')}">
-                  <a href="#statistics">Statistics</a>
+                  <a href="#statistics"><span i18n="STATISTICS"></span></a>
                 </li>
                 <li role="presentation" ng-class="{ active: isActive('/stock')}">
-                  <a href="#stock">Stock</a>
+                  <a href="#stock"><span i18n="STOCK"></span></a>
                 </li>
                 <li role="presentation" ng-class="{ active: isActive('/all-users')}">
-                  <a href="#all-users">VIP Users</a>
+                  <a href="#all-users"><span i18n="VIP_USERS"></span></a>
                 </li>
                 <li role="presentation" ng-class="{ active: isActive('/add-credit')}">
-                  <a href="#add-credit">Add credit</a>
+                  <a href="#add-credit"><span i18n="ADD_CREDIT"></span></a>
+                </li>
+                <li role="presentation" ng-class="{ active: isActive('/order-history')}">
+                  <a href="#order-history"><span i18n="ORDER_HISTORY"></span></a>
                 </li>
               </ul>
             </div>
           </div>
 
+          <div class="panel panel-default" id="warnings">
+            <div class="panel-heading">{{notices.length}} <span i18n="OUT_STOCK"></span>:</div>
+            <div class="panel-body">
+              <ul class="nav nav-pills nav-stacked">
+                <li>
+                  <a href="#stock" ng-click="passValue(value)" ng-repeat="(key, value) in content | orderBy:'count'">
+                    {{ value.namn }}<span class="pull-right">{{ value.count }}</span>
+                  </a>
+                </li>
+                <li>
+                <button class="btn btn-danger btn-block" type="button" ng-click="expandNotice()"><h5>{{activeNotices ? 'hide' : 'expand'}}</h5></button>
+                </li>
+              </ul>
+            </div>
+          </div>
 
 
         </div>

@@ -16,8 +16,9 @@
         $scope.init = function () {
 
 
-            $('#menu-vip').show();
+            $('#menu-vip').hide();
             $('#menu-admin').show();
+            $('#warnings').show();
             $('.navbar .container-fluid').show();
 
 
@@ -118,6 +119,12 @@
 
         }
 
+        $scope.displayWarnings = function() {
+            var warningPanel = document.getElementById('curve_chart');
+            warningPanel.innerHTML = mu;
+        }
+
+
         $scope.addToGraph = function(values){
 
 
@@ -125,7 +132,7 @@
             var cleanDates = cleanData(values);
 
             var options = {
-                title: "Beverage Sales last 30 days",
+                title: "last 25 beverage sales",
                 width:500,
                 height:400,
                 legend: { position: 'none' },

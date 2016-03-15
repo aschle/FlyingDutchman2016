@@ -3,6 +3,11 @@ body {
   background-size: 100vw;
   background-attachment: fixed;
   padding-top: $navbar-height + $line-height-computed;
+
+  &.testclass {
+    background-image: none;
+    background-color: black;
+  }
 }
 
 #logo {
@@ -20,6 +25,10 @@ body {
     background-color: white;
     opacity: 0.95;
     padding: 2px;
+  }
+
+  a span {
+    background-color: transparent;
   }
 }
 
@@ -91,10 +100,17 @@ button.list-group-item:hover {
 
 
 .dnd-drag {
-  border: 1px dashed white;
+  border: 2px dashed white;
 }
 
 .dnd-over {
-  background: $gray-lighter;
-  border: 1px dashed white;
+  background: $gray;
+  border: 2px dashed white;
+}
+
+#dest_copy {
+  background-image: url(../img/bg-drop.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }

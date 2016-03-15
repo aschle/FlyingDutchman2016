@@ -131,6 +131,139 @@ angular.module('barApp')
         return authService;
     }]);
 
+/**
+* Service for translating a specific key to a specific language.
+*/
+angular.module('barApp')
+    .factory('I18nService', ['LocalStorageService', '$http', '$rootScope', function (lsService, $http, $rootScope) {
+
+        var i18nService = {};
+
+        // dictionary to look up translations
+        var dictionary = {
+            "en": {
+                "APP_TITLE": "FlyingDutchman VIP Customer* App",
+                "APP_SLOGAN": "Do you feel like having a beer now?",
+                "APP_HINT": "*Ask the bartender to become a VIP customer!",
+                "SIGN_IN" : "Sign In",
+                "LOGIN" : "Log in with your VIP Account",
+                "CANCEL" : "Cancel",
+                "SEARCH" : "Search",
+                "BEVERAGE" : "Beverage",
+                "AMOUNT" : "Amount",
+                "UPDATE_STOCK" : "Update Stock",
+                "SOLD" : "Sold",
+                "SAVE" : "Save",
+                "VIPUSERMAN" : "VIP User Management",
+                "ADD_USER" : "Add user",
+                "FIRSTNAME" : "First name",
+                "LASTNAME" : "Last name",
+                "EMAIL" : "Email",
+                "PHONE" : "Phone",
+                "EDIT" : "Edit",
+                "DELETE" : "Delete",
+                "DATE" : "Date",
+                "ORDER_DETAILS" : "Order details",
+                "NAME" : "Name",
+                "ITEMS" : "Items",
+                "TOTAL" : "Total",
+                "PRICE" : "Price",
+                "ADMIN_MENU" : "Admin Menu",
+                "STATISTICS" : "Statistics",
+                "STOCK" : "Stock",
+                "VIP_USERS" : "VIP Users",
+                "ADD_CREDIT" : "Add credit",
+                "ORDER_HISTORY" : "Order history",
+                "VIP_MENU" : "VIP Menu",
+                "ALL_BEERS" : "All beers",
+                "LAST_ORDERS" : "Last orders",
+                "OUT_STOCK" : "beers out of stock",
+                "EXPAND" : "Expand",
+                "USERNAME" : "Username",
+                "PASSWORD" : "Password"
+            },
+            "sv": {
+                "APP_TITLE": "FlyingDutchman VIP Kund App",
+                "APP_SLOGAN": "Sugen på en öl?",
+                "APP_HINT":"Fråga bartendern om VIP-konto!",
+                "SIGN_IN" : "Logga in",
+                "LOGIN" : "Logga in med ditt VIP-konto",
+                "CANCEL" : "Avbryt",
+                "SEARCH" : "Sök",
+                "BEVERAGE" : "Dryck",
+                "AMOUNT" : "Antal",
+                "UPDATE_STOCK" : "Uppdatera lager",
+                "SOLD" : "Antal sålda",
+                "SAVE" : "Spara",
+                "VIPUSERMAN" : "VIP Användare Hantering",
+                "ADD_USER" : "Lägg till användare",
+                "FIRSTNAME" : "Förnamn",
+                "LASTNAME" : "Efternamn",
+                "EMAIL" : "Email",
+                "PHONE" : "Telefon",
+                "EDIT" : "Redigera",
+                "DELETE" : "Ta bort",
+                "DATE" : "Datum",
+                "ORDER_DETAILS" : "Order detaljer",
+                "NAME" : "Namn",
+                "ITEMS" : "Produkter",
+                "TOTAL" : "Totalt",
+                "PRICE" : "Pris",
+                "ADMIN_MENU" : "Admin Meny",
+                "STATISTICS" : "Statistik",
+                "STOCK" : "Lager",
+                "VIP_USERS" : "VIP Användare",
+                "ADD_CREDIT" : "Kredit",
+                "ORDER_HISTORY" : "Order historik",
+                "VIP_MENU" : "VIP Meny",
+                "ALL_BEERS" : "Sortiment",
+                "LAST_ORDERS" : "Senaste ordrar",
+                "OUT_STOCK" : "drycker slut på lager",
+                "EXPAND" : "Expandera",
+                "USERNAME" : "Användarnamn",
+                "PASSWORD" : "Lösenord"
+            }
+        };
+        // current/default language
+        var language = "en";
+        // current/default inactive language
+        var inactiveLanguage = "sv";
+
+        // check for saved language setting in local strage, if none - save default
+        if(!lsService.getElement("language")) {
+            lsService.setElement("language", language);
+            lsService.setElement("inactiveLanguage", inactiveLanguage);
+        } else {
+            language = lsService.getElement("language");
+            inactiveLanguage = lsService.getElement("inactiveLanguage");
+        }
+
+        i18nService.translate = function (key) {
+            return dictionary[language][key];
+        }
+
+        i18nService.switchLanguage = function () {
+            var tmp = language;
+            language = inactiveLanguage;
+            inactiveLanguage = tmp;
+            lsService.setElement("language", language);
+            lsService.setElement("inactiveLanguage", inactiveLanguage);
+
+            // for notifying the directive
+            $rootScope.$broadcast('onLanguageChange');
+        }
+
+        i18nService.getLanguage = function () {
+            return language;
+        }
+
+        i18nService.getInactiveLanguage = function () {
+            return inactiveLanguage;
+        }
+
+        return i18nService;
+    }]);
+
 angular.module('barApp')
     .service('ContactService', function () {
         //to create unique contact id

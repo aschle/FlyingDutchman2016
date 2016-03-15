@@ -13,17 +13,27 @@
     /**
     * Directive for internationalisation.
     */
-    .directive('i18n', function() {
+    .directive('i18n', ['I18nService', function(i18nService) {
         return {
-            scope: {
-                i18ntranslate: '&',
-            },
             link: function(scope, element, attrs) {
-                var text = scope.i18ntranslate({message: attrs.i18n});
-                $(element[0]).prepend(text);
+
+                function changeString() {
+                    // get key from attribute
+                    var key = attrs.i18n;
+                    // use service for translation
+                    var translation = i18nService.translate(key);
+                    // put translation into html tag
+                    element.html(translation);
+                }
+
+                changeString();
+
+                scope.$on('onLanguageChange', function() {
+                    changeString();
+                });
             }
         }
-    })
+    }])
 
 
     .directive('draggable', function() {
@@ -77,7 +87,7 @@
                 el.addEventListener(
                     'dragover',
                     function(e) {
-                        console.log("drag over");
+
                         e.dataTransfer.dropEffect = 'move';
                         if (e.preventDefault) e.preventDefault();
                         this.classList.add('dnd-over');
@@ -90,7 +100,7 @@
                 el.addEventListener(
                     'dragenter',
                     function(e) {
-                        console.log("drag enter");
+
                         this.classList.add('dnd-over');
                         return false;
                     },
@@ -101,7 +111,7 @@
                 el.addEventListener(
                     'dragleave',
                     function(e) {
-                        console.log("drag leave");
+
                         this.classList.remove('dnd-over');
                         return false;
                     },

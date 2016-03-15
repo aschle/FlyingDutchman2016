@@ -38,8 +38,7 @@
 
             // admin start page
             .when('/admin', {
-                templateUrl : 'pages/admin/index.html',
-                controller  : 'TMPadminController'
+                redirectTo : '/statistics'
             })
 
             // statistics page
@@ -66,6 +65,11 @@
                 controller  : 'AddCreditController'
             })
 
+            // List of users
+            .when('/order-history', {
+                templateUrl : 'pages/admin/order-history.html',
+                controller  : 'OrderHistoryController'
+            })
 
             .otherwise({
                 redirectTo: '/'

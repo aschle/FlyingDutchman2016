@@ -55,7 +55,7 @@
         id="src_copy_{{ value.id }}"
         class="list-group-item"
         ng-class="(value.count < 1) ? 'disabled' : ''"
-        ng-repeat="(key, value) in (filteredContent = (content | filter:search | filter:{isFavorite:checkedFavorite} | filter:{isorganic:checkedOrganic}))"
+        ng-repeat="(key, value) in (filteredContent = (content | filter:search | filter:{isFavorite:checkedFavorite} | filter:{isorganic:checkedOrganic} | orderBy:'value.name'))"
         data-beerid="{{ value.id }}"
         ng-attr-draggable="{{ !value.outofstock }}">
         <h4 class="list-group-item-heading">
@@ -75,13 +75,18 @@
     </div>
   </div> 
   <div class="col-md-6">
+
     <div class="panel panel-default cart">
+
       <div class="panel-heading">Current balance: {{ balance }}&nbsp;SEK | Credit limit: {{ limit }}&nbsp;SEK</div>
-      <div class="panel-body" id="dest_copy" droppable drop="handleDrop(beerID)">
+
+
+
+      <div class="panel-body" id="dest_copy" droppable drop="addAction('add',beerID)">
         <button class="list-group-item" ng-repeat="(key, value) in beersInCart track by $index">
           <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf"ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}&nbsp;SEK</span></h4>
           <p class="list-group-item-text">
-            <a ng-click="deleteBeer(key)"><i class='fa fa-fw fa-trash pull-right'></i></a>
+            <a ng-click="addAction('remove',key)"><i class='fa fa-fw fa-trash pull-right'></i></a>
             <span class="label label-info" ng-show="value.iskoscher">koscher</span>
             <span class="label label-default">{{ value.alk }}</span>
             <span class="label label-default">{{ value.packaging }}</span>
@@ -101,8 +106,34 @@
             <li class="lead"><strong>TOTAL: {{ totalMoney() }}&nbsp;SEK</strong></li>
           </ul>
         </div>
-        <button class="btn btn-primary btn-lg btn-icon pull-right" ng-click="placeOrder()">Place Order<i class="fa fa-chevron-right"></i></button>
+        <div class="btn-toolbar">
+          <button class="btn btn-default btn-lg pull-left" ng-class="{'disabled' : canUndo() == false}" ng-click="undoAction()"><i class="fa fa-fw fa-undo"></i>Undo</button>
+          <button class="btn btn-default btn-lg pull-left" ng-class="{'disabled' : canRedo() == false}" ng-click="redoAction()">Redo<i class="fa fa-fw fa-repeat"></i></button>
+          <!-- BUTTON PLACE ORDER -->
+          <button class="btn btn-primary btn-lg btn-icon pull-right" ng-class="{'disabled' : totalItems() == 0}" ng-click="showModal()">Place Order<i class="fa fa-chevron-right"></i></button>
+        </div>
+
+
       </div>
     </div>
   </div>
+
+  <div class="overlay">
+    <div class="overlay-dialog">
+      <div class="overlay-content">
+        <div class="overlay-header">
+          <button type="button" class="close" ng-click="cancelOrder()">&times;</button>
+          <h4 class="overlay-title">Cancel order</h4>
+        </div>
+        <div class="overlay-body">
+          <p>übersicht der bestellung hier anzeigen</p>
+        </div>
+        <div class="overlay-footer clearfix">
+          <button class="btn btn-primary pull-right" ng-click="placeOrder()">Send order</button>
+          <button class="btn btn-default pull-right" ng-click="cancelOrder()">Cancel order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

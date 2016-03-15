@@ -25,6 +25,9 @@ on python3:
 * Admin: svetor|svetor
 * User: ankov|ankov
 
+### Undo Redo with angular example
+* http://jsfiddle.net/sYc4e/1/
+
 #### `purchases_get`
 * Role: `user`
 * Gives a list of all purchases made by the specified user.
