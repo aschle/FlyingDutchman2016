@@ -46,7 +46,10 @@
         dataService.getAllUsers = function(){
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=iou_get_all');
         }
-        
+
+        dataService.addCredit = function(amount, user_id){
+            return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=payments_append' + '&amount=' + amount + '&user_id=' + user_id);
+        }
 
 
         return dataService;
