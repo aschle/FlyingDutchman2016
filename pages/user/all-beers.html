@@ -89,15 +89,7 @@
           <i class="fa fa-fw fa-3x fa-beer"></i><p><span i18n="DRAGNDROP"></span></p>
         </div>
         <button class="list-group-item" ng-repeat="(key, value) in beersInCart track by $index">
-          <h4 class="list-group-item-heading">{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}&nbsp;SEK</span></h4>
-          <p class="list-group-item-text">
-            <a ng-click="addAction('remove',key)"><i class='fa fa-fw fa-trash pull-right'></i></a>
-            <span class="label label-info" ng-show="value.iskoscher">koscher</span>
-            <span class="label label-default">{{ value.alk }}</span>
-            <span class="label label-default">{{ value.packaging }}</span>
-            <span class="label label-default">{{ value.origin }}</span>
-            <i class="fa fa-fw fa-leaf" ng-show="value.isorganic"></i>
-          </p>
+          <h4 class="list-group-item-heading"><a ng-click="addAction('remove',key)"><i class='fa fa-fw fa-trash pull-right'></i></a>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}&nbsp;SEK</span></h4>
         </button>
       </div>
       <div class="alert alert-danger" role="alert" ng-hide="isCartActive">
