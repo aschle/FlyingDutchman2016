@@ -113,3 +113,8 @@ button.list-group-item:hover {
   pointer-events: none;
   margin-top: -65px;
 }
+
+.no-results {
+  padding: $line-height-computed;
+  background-color: $gray-lighter;
+}
