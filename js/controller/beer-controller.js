@@ -58,6 +58,7 @@
                 var count = 0;
 
                 $.each(response.data.payload, function(index, value){
+                    console.log(response.data.payload);
                     count += 1;
 
                     // check if it is a valid beer

@@ -49,13 +49,14 @@
       </form>
     </div>
 
+    <!-- LIST OF ALL BEERS -->
     <div class="list-group">
       <!-- draggable Button -->
       <button
         id="src_copy_{{ value.id }}"
         class="list-group-item"
         ng-class="(value.count < 1) ? 'disabled' : ''"
-        ng-repeat="(key, value) in (filteredContent = (content | filter:search | filter:{isFavorite:checkedFavorite} | filter:{isorganic:checkedOrganic} | orderBy:'value.name'))"
+        ng-repeat="(key, value) in (filteredContent = (content | filter:search | filter:{isFavorite:checkedFavorite} | filter:{isorganic:checkedOrganic}) | orderBy:'value.name')"
         data-beerid="{{ value.id }}"
         ng-attr-draggable="{{ !value.outofstock }}">
         <h4 class="list-group-item-heading">
@@ -75,26 +76,27 @@
       <div class="no-results" ng-hide="filteredContent.length">No results.</div>
     </div>
   </div> 
+
+  <!-- CART AREA -->
   <div class="col-md-6">
 
     <div class="panel panel-default cart">
 
       <div class="panel-heading"><span i18n="CURRENT_BALANCE"></span>: {{ balance }}&nbsp;SEK | <span i18n="CREDIT_LIMIT"></span>: {{ limit }}&nbsp;SEK</div>
 
-
-
       <div class="panel-body" id="dest_copy" droppable drop="addAction('add',beerID)">
         <div id="bg-drop" class="text-center">
           <i class="fa fa-fw fa-3x fa-beer"></i><p><span i18n="DRAGNDROP"></span></p>
         </div>
         <button class="list-group-item" ng-repeat="(key, value) in beersInCart track by $index">
-          <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf" ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}&nbsp;SEK</span></h4>
+          <h4 class="list-group-item-heading">{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}&nbsp;SEK</span></h4>
           <p class="list-group-item-text">
             <a ng-click="addAction('remove',key)"><i class='fa fa-fw fa-trash pull-right'></i></a>
             <span class="label label-info" ng-show="value.iskoscher">koscher</span>
             <span class="label label-default">{{ value.alk }}</span>
             <span class="label label-default">{{ value.packaging }}</span>
             <span class="label label-default">{{ value.origin }}</span>
+            <i class="fa fa-fw fa-leaf" ng-show="value.isorganic"></i>
           </p>
         </button>
       </div>
