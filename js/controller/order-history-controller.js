@@ -130,7 +130,7 @@
                 var product = $scope.currentBeers[i];
                 total += parseFloat(product.price);
             }
-            return total;
+            return total.toFixed(2);
         }
 
 
