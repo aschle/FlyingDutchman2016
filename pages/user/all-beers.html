@@ -55,7 +55,7 @@
         id="src_copy_{{ value.id }}"
         class="list-group-item"
         ng-class="(value.count < 1) ? 'disabled' : ''"
-        ng-repeat="(key, value) in (filteredContent = (content | filter:search | filter:{isFavorite:checkedFavorite} | filter:{isorganic:checkedOrganic}))"
+        ng-repeat="(key, value) in (filteredContent = (content | filter:search | filter:{isFavorite:checkedFavorite} | filter:{isorganic:checkedOrganic} | orderBy:'value.name'))"
         data-beerid="{{ value.id }}"
         ng-attr-draggable="{{ !value.outofstock }}">
         <h4 class="list-group-item-heading">
