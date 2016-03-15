@@ -176,8 +176,17 @@ angular.module('barApp')
                 "LAST_ORDERS" : "Last orders",
                 "OUT_STOCK" : "beers out of stock",
                 "EXPAND" : "Expand",
+                "CURRENT_BALANCE" : "Current balance",
+                "CREDIT_LIMIT" : "Credit limit",
+                "REMAINING_CREDITS" : "Remaining credits",
+                "PLACE_ORDER" : "Place order",
+                "FAVOURITE_BEERS" : "Favourite beers",
+                "ORGANIC_BEERS" : "Organic beers",
+                "OUT_OF_STOCK" : "Out of stock",
+                "NOT_ADDED" : "The beer was not added to the cart. You reached 5 beer already or you credit limit is reached.",
                 "USERNAME" : "Username",
                 "PASSWORD" : "Password"
+
             },
             "sv": {
                 "APP_TITLE": "FlyingDutchman VIP Kund App",
@@ -217,6 +226,14 @@ angular.module('barApp')
                 "LAST_ORDERS" : "Senaste ordrar",
                 "OUT_STOCK" : "drycker slut på lager",
                 "EXPAND" : "Expandera",
+                "CURRENT_BALANCE" : "Saldo",
+                "CREDIT_LIMIT" : "Kreditgräns",
+                "REMAINING_CREDITS" : "krediter kvar",
+                "PLACE_ORDER" : "Beställ",
+                "FAVOURITE_BEERS" : "Favoriter",
+                "ORGANIC_BEERS" : "Organiska öler",
+                "OUT_OF_STOCK" : "Slut på lager",
+                "NOT_ADDED" : "Din dryck lades inte till i varukorgen. Du har redan beställt 5 öl och har nått din köpgräns",
                 "USERNAME" : "Användarnamn",
                 "PASSWORD" : "Lösenord"
             }
