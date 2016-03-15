@@ -38,8 +38,7 @@
 
             // admin start page
             .when('/admin', {
-                templateUrl : 'pages/admin/statistics.html',
-                controller  : 'StatisticsController'
+                redirectTo : '/statistics'
             })
 
             // statistics page
