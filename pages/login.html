@@ -17,6 +17,8 @@
             <label for="password"><span i18n="PASSWORD"></span></label>
             <input type="password" class="form-control" id="password" placeholder="" required ng-model="password">
           </div>
+          <div class="alert alert-danger" role="alert" ng-show="isWrongUser" i18n="LOGIN_WRONG_PW_USER">
+          </div>
           <div class="btn-toolbar">
             <button type="submit" class="btn btn-primary pull-right"><span i18n="SIGN_IN"></span></button>
             <a href="/#/" class="btn btn-default pull-right"><span i18n="CANCEL"></span></a>

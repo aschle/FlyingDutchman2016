@@ -11,6 +11,9 @@
     LoginController.$inject = ['$scope', '$http', '$location', 'DataService', 'LocalStorageService', 'AuthService'];
 
     function LoginController($scope, $http, $location, DataService, LocalStorageService, AuthService) {
+
+        $scope.isWrongPwUser = false;
+        $scope.isWrongPwUser = false;
  
         $scope.login = function() {
             // add a spinnter to indicate it is doing something
@@ -40,13 +43,14 @@
                     //Redirect depending on role to admin/user home page 
                     $location.path('/' + role + '/');
                 } else {
-                    //password was incorrect
-                    //TODO: Error Message to user
+                    $scope.isWrongUser = true;
+                    $('.fa-spinner').hide();
                 }
 
             } else {
                 //user not in DB
-                //TODO: Error Message to user
+                $scope.isWrongUser = true;
+                $('.fa-spinner').hide();
             }
             }, function(response) {
             //Second function handles error

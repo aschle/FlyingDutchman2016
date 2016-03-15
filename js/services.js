@@ -191,7 +191,8 @@ angular.module('barApp')
                 "OUT_OF_STOCK" : "Out of stock",
                 "NOT_ADDED" : "The beer was not added to the cart. You reached 5 beer already or you credit limit is reached.",
                 "USERNAME" : "Username",
-                "PASSWORD" : "Password"
+                "PASSWORD" : "Password",
+                "LOGIN_WRONG_PW_USER" : "Wrong username or password."
 
             },
             "sv": {
@@ -244,7 +245,8 @@ angular.module('barApp')
                 "OUT_OF_STOCK" : "Slut på lager",
                 "NOT_ADDED" : "Din dryck lades inte till i varukorgen. Du har redan beställt 5 öl och har nått din köpgräns",
                 "USERNAME" : "Användarnamn",
-                "PASSWORD" : "Lösenord"
+                "PASSWORD" : "Lösenord",
+                "LOGIN_WRONG_PW_USER" : "TODO"
             }
         };
         // current/default language
