@@ -17,6 +17,11 @@
 
         $scope.init = function() {
 
+            $('#menu-vip').show();
+            $('#menu-admin').hide();
+            $('#warnings').hide();
+            $('.navbar .dropdown').show();
+
             DataService.getPurchaseByUser().then(function(response){
                 var sum = 0;
                 var count = 0;
