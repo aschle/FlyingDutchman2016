@@ -108,63 +108,68 @@
             });
         };
 
+
+        /*
+         undo an actions that has previously been executed
+         */
         $scope.undoAction = function() {
 
             var actions = $scope.cartHistory;
             var cursor = $scope.cartCurrent;
 
-
             if(cursor != -1){
 
                 if(actions[cursor][0] == "add"){
-                    $scope.deleteBeer(actions[cursor][1]);
+                    $scope.deleteBeerById(actions[cursor][1]);
                 }else{
-                    $scope.cartHistory[cursor][2] =  $scope.handleDrop(actions[cursor][1]);
+                    $scope.handleDrop(actions[cursor][1]);
                 }
-                $scope.cartCurrent--;
+                --$scope.cartCurrent;
             }
-
-            console.log($scope.cartHistory);
         }
 
+        /*
+         redo an action if there are any actions that have been undone
+         */
         $scope.redoAction = function() {
 
             var actions = $scope.cartHistory;
             var cursor = $scope.cartCurrent;
 
             if(actions.length - 1 > (cursor) && actions.length != 0){
-                cursor = ++$scope.cartCurrent;
+                $scope.cartCurrent++;
+                cursor = $scope.cartCurrent;
 
                 if(actions[cursor][0] == "add"){
-                    $scope.cartHistory[cursor][1] = $scope.handleDrop(actions[cursor][2]);
+                    $scope.handleDrop(actions[cursor][1]);
                 }else{
-                    $scope.deleteBeer(actions[cursor][2]);
+                    $scope.deleteBeerById(actions[cursor][1]);
                 }
             }
-
-            console.log($scope.cartHistory);
         }
 
+        /*
+        add a new action to the action Queue with data needed to undo and redo the action
+        this function will remove all previous redo-able actions
+         */
         $scope.addAction = function(action,value){
 
             var cursor = $scope.cartCurrent;
             var actions =  $scope.cartHistory;
-            var reverseVal;
+            var target = value;
 
             if(action == "add"){
-                reverseVal = $scope.handleDrop(value);
+                $scope.handleDrop(value);
                 $scope.$apply();
             }else{
-                reverseVal = $scope.deleteBeer(value);
+                target = $scope.deleteBeer(value);
             }
 
-            if(reverseVal != null){
+            if(target != null){
                 $scope.cartCurrent++;
-                $scope.cartHistory.splice($scope.cartCurrent, (actions.length - cursor), [action,reverseVal,value]);
+                $scope.cartHistory.splice($scope.cartCurrent, (actions.length - cursor),[action, target]);
 
             }
-            console.log($scope.cartHistory);
-
         }
 
         $scope.canUndo = function () {
@@ -231,6 +236,21 @@
             $scope.isCartActive = true;
             // having duplacate things is stupid
             return beer[0].id;
+        }
+
+        /*
+        delete beer from cart using ID as key
+         */
+        $scope.deleteBeerById = function (beerid) {
+
+            var index = null;
+            $.each($scope.cart, function (key, value) {
+                if (value.beer_id == beerid) {
+                    index = key;
+                }
+            });
+
+            $scope.deleteBeer(index);
         }
 
         // This is somehow stupid, actually it should just work straight away:
