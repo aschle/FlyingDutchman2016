@@ -29,7 +29,7 @@
                 <td>{{ contact.last_name }}</td>
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.phone }}</td>
-                <td> <a href="javascript:void(0)" ng-click="edit(contact.id)">edit</a> | <a href="javascript:void(0)" ng-click="delete(contact.id)">delete</a>
+                <td> <a href="javascript:void(0)" ng-click="edit(contact.id)"><span i18n="EDIT"></span></a> | <a href="javascript:void(0)" ng-click="delete(contact.id)"><span i18n="DELETE"></span></a>
 
                 </td>
             </tr>
@@ -44,7 +44,7 @@
     <div class="col-md-4" >
         <section id = "user-details">
             <form class="well">
-                <h3><i class="icon-user"></i>Add/edit users <i class="fa fa-user-plus"></i></h3>
+                <h3><span i18n="ADD/EDIT"></span>&nbsp;<i class="fa fa-user-plus"></i></h3>
                 <fieldset class="form-group">
 
                 <label><span i18n="FIRSTNAME"></span></label>
