@@ -21,7 +21,7 @@
           <span class="label label-default">{{ value.alk }}</span>
           <span class="label label-default">{{ value.packaging }}</span>
           <span class="label label-default">{{ value.origin }}</span>
-          <span class="label label-danger">special offer</span>
+          <span class="label label-danger"><span i18n="SPECIAL_OFFERS"></span></span>
           <i class="fa fa-fw fa-leaf" ng-show="value.isorganic"></i>
         </p>
       </button>
@@ -85,7 +85,7 @@
 
       <div class="panel-body" id="dest_copy" droppable drop="addAction('add',beerID)">
         <div id="bg-drop" class="text-center">
-          <i class="fa fa-fw fa-3x fa-beer"></i><p>Drag a' drop beer here to purchase.</p>
+          <i class="fa fa-fw fa-3x fa-beer"></i><p><span i18n="DRAGNDROP"></span></p>
         </div>
         <button class="list-group-item" ng-repeat="(key, value) in beersInCart track by $index">
           <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf" ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}&nbsp;SEK</span></h4>

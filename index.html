@@ -69,16 +69,16 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li>
-                  <button type="button" class="btn btn-default navbar-btn" ng-click="switchLanguage()">Switch to {{ I18nService.getInactiveLanguage() }}</button>
+                  <button type="button" class="btn btn-default navbar-btn" ng-click="switchLanguage()"><span i18n="CHANGE_LANGUAGE"></span> {{ I18nService.getInactiveLanguage() }}</button>
               </li>
               <li class="dropdown">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-user"></i><span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li class="dropdown-header">Signed in as username {{ AuthService.getLoggedInUser().username }}</li>
-                  <li><a href="/#/" ng-click="changeTheme()">Change themes</a></li>
-                  <li><a href="#">Other stuff</a></li>
+                  <li class="dropdown-header"><span i18n="CURRENT_USER"></span>{{ AuthService.getLoggedInUser().username }}</li>
+                  <li><a href="/#/" ng-click="changeTheme()"><span i18n="CHANGE_THEME"></span></a></li>
+                  <li><a href="#"><span i18n="OTHER"></span></a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="#" ng-click="logout()">Sign Out</a></li>
+                  <li><a href="#" ng-click="logout()"><span i18n="SIGN_OUT"></span></a></li>
                 </ul>
               </li>
             </ul>

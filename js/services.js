@@ -146,6 +146,8 @@ angular.module('barApp')
                 "APP_SLOGAN": "Do you feel like having a beer now?",
                 "APP_HINT": "*Ask the bartender to become a VIP customer!",
                 "SIGN_IN" : "Sign In",
+                "SIGN_OUT" : "Sign out",
+                "OTHER" : "Other stuff",
                 "LOGIN" : "Log in with your VIP Account",
                 "CANCEL" : "Cancel",
                 "SEARCH" : "Search",
@@ -192,6 +194,11 @@ angular.module('barApp')
                 "NOT_ADDED" : "The beer was not added to the cart. You reached 5 beer already or you credit limit is reached.",
                 "USERNAME" : "Username",
                 "PASSWORD" : "Password",
+                "SPECIAL_OFFERS" : "Special offers",
+                "DRAGNDROP" : "Drag 'n drop a beer here to add it to the cart",
+                "CHANGE_LANGUAGE" : "Byt språk till ",
+                "CHANGE_THEME" : "Switch theme",
+                "CURRENT_USER" : "Logged in as ",
                 "LOGIN_WRONG_PW_USER" : "Wrong username or password."
 
             },
@@ -200,6 +207,8 @@ angular.module('barApp')
                 "APP_SLOGAN": "Sugen på en öl?",
                 "APP_HINT":"Fråga bartendern om VIP-konto!",
                 "SIGN_IN" : "Logga in",
+                "SIGN_OUT" : "Logga ut",
+                "OTHER" : "Annat",
                 "LOGIN" : "Logga in med ditt VIP-konto",
                 "CANCEL" : "Avbryt",
                 "SEARCH" : "Sök",
@@ -246,7 +255,12 @@ angular.module('barApp')
                 "NOT_ADDED" : "Din dryck lades inte till i varukorgen. Du har redan beställt 5 öl och har nått din köpgräns",
                 "USERNAME" : "Användarnamn",
                 "PASSWORD" : "Lösenord",
-                "LOGIN_WRONG_PW_USER" : "TODO"
+                "SPECIAL_OFFERS" : "Specialerbjudanden",
+                "DRAGNDROP" : "Dra en öl hit för att lägga till den i korgen",
+                "CHANGE_LANGUAGE" : "Switch language to ",
+                "CHANGE_THEME" : "Byt tema",
+                "CURRENT_USER" : "Inloggad som ",
+                "LOGIN_WRONG_PW_USER" : "Fel användarnamn eller lösenord"
             }
         };
         // current/default language
