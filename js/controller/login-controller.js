@@ -13,6 +13,9 @@
     function LoginController($scope, $http, $location, DataService, LocalStorageService, AuthService) {
  
         $scope.login = function() {
+            // add a spinnter to indicate it is doing something
+            $('.btn-toolbar').append('<i class="fa fa-fw fa-2x fa-spinner fa-spin pull-right"></i>');
+
             //Miss-using getBalanceByUser to check if that person exists in DB
             DataService.getBalanceByUser($scope.username, $scope.password)
             .then(function(response) {

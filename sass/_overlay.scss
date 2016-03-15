@@ -21,6 +21,10 @@
   padding: 10px $line-height-computed;
 }
 
+.overlay-body {
+  padding: $line-height-computed;
+}
+
 .overlay-footer {
   border-top: 1px solid $modal-footer-border-color;
   padding: 10px $line-height-computed;
@@ -34,6 +38,6 @@
   display: inline-block;
 
   &.active {
-    background-color: $gray-lighter;
+    background-color: $gray-light;
   }
 }

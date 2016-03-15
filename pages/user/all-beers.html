@@ -72,6 +72,7 @@
           <i class="fa fa-fw fa-leaf" ng-show="value.isorganic"></i>
         </p>
       </button>
+      <div class="no-results" ng-hide="filteredContent.length">No results.</div>
     </div>
   </div> 
   <div class="col-md-6">
@@ -87,7 +88,7 @@
           <i class="fa fa-fw fa-3x fa-beer"></i><p>Drag a' drop beer here to purchase.</p>
         </div>
         <button class="list-group-item" ng-repeat="(key, value) in beersInCart track by $index">
-          <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf"ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}&nbsp;SEK</span></h4>
+          <h4 class="list-group-item-heading"><i class="fa fa-fw fa-leaf" ng-show="value.isorganic"></i>{{ value.name }}<small>&nbsp;{{ value.name2 }}</small><span class="pull-right">{{ value.price }}&nbsp;SEK</span></h4>
           <p class="list-group-item-text">
             <a ng-click="addAction('remove',key)"><i class='fa fa-fw fa-trash pull-right'></i></a>
             <span class="label label-info" ng-show="value.iskoscher">koscher</span>
@@ -128,12 +129,34 @@
           <button type="button" class="close" ng-click="cancelOrder()">&times;</button>
           <h4 class="overlay-title">Cancel order</h4>
         </div>
+        <!-- OVERVIEW ORDERS -->
         <div class="overlay-body">
-          <p>übersicht der bestellung hier anzeigen</p>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Beer</th>
+              <th class="text-right">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="(key, value) in beersInCart track by $index">
+              <td>{{ value.name }}<small>&nbsp;{{ value.namn2 }}</small></td>
+              <td class="text-right">{{ value.price }}&nbsp;SEK</td> 
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td class="text-right lead">TOTAL: {{ totalMoney() }}&nbsp;SEK</td>
+            </tr>
+          </tfoot>
+        </table>
+
         </div>
-        <div class="overlay-footer clearfix">
-          <button class="btn btn-primary pull-right" ng-click="placeOrder()">Send order</button>
-          <button class="btn btn-default pull-right" ng-click="cancelOrder()">Cancel order</button>
+        <div class="overlay-footer clearfix btn-toolbar">
+            <button class="btn btn-primary pull-right" ng-click="placeOrder()">Send order</button>
+            <button class="btn btn-default pull-right" ng-click="cancelOrder()">Cancel order</button>
         </div>
       </div>
     </div>
