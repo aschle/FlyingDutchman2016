@@ -19,7 +19,7 @@
             $('#menu-vip').hide();
             $('#menu-admin').show();
             $('#warnings').show();
-            $('.navbar .container-fluid').show();
+            $('.navbar .dropdown').show();
 
 
             var beers = [];
