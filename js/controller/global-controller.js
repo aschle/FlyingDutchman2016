@@ -67,7 +67,7 @@
 
         $scope.changeTheme = function () {
             console.log("change");
-            $('body').addClass("testclass");
+            $('body').addClass("alt_theme");
         }
 
         $scope.switchLanguage = function () {

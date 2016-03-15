@@ -37,13 +37,13 @@
           <label class="checkbox-inline">
             <input type="checkbox" ng-model="checkedFavorite" ng-click="checkboxClickFav(checkedFavorite)">
               <i class="fa fa-fw fa-heart"></i>
-              favorite beers ({{ (content | filter:search | filter:{isFavorite:true}).length }})
+            <span i18n="FAVOURITE_BEERS"></span> ({{ (content | filter:search | filter:{isFavorite:true}).length }})
           </label>
 
           <label class="checkbox-inline">
             <input type="checkbox" ng-model="checkedOrganic" ng-click="checkboxClickOrganic(checkedOrganic)">
             <i class="fa fa-fw fa-leaf"></i>
-            organic beers ({{ (content | filter:search | filter:{isorganic:true}).length }})
+            <span i18n="ORGANIC_BEERS"></span> ({{ (content | filter:search | filter:{isorganic:true}).length }})
           </label>
 
       </form>
@@ -68,7 +68,7 @@
           <span class="label label-default">{{ value.alk }}</span>
           <span class="label label-default">{{ value.packaging }}</span>
           <span class="label label-default">{{ value.origin }}</span>
-          <span class="label label-warning" ng-show="value.outofstock">Out of stock</span>
+          <span class="label label-warning" ng-show="value.outofstock"><span i18n="OUT_OF_STOCK"></span></span>
           <i class="fa fa-fw fa-leaf" ng-show="value.isorganic"></i>
         </p>
       </button>
@@ -79,7 +79,7 @@
 
     <div class="panel panel-default cart">
 
-      <div class="panel-heading">Current balance: {{ balance }}&nbsp;SEK | Credit limit: {{ limit }}&nbsp;SEK</div>
+      <div class="panel-heading"><span i18n="CURRENT_BALANCE"></span>: {{ balance }}&nbsp;SEK | <span i18n="CREDIT_LIMIT"></span>: {{ limit }}&nbsp;SEK</div>
 
 
 
@@ -99,22 +99,22 @@
         </button>
       </div>
       <div class="alert alert-danger" role="alert" ng-hide="isCartActive">
-        The beer was not added to the cart. You reached 5 beer already or you credit limit is reached.
+        <span i18n="NOT_ADDED"></span>
       </div>
 
       <div class="panel-footer clearfix">
         <div>
           <ul class="list-unstyled text-right">
-            <li>ITEMS: {{ totalItems() }} of {{ cartMax }}</li>
-            <li class="text-muted">LEFT MONEY TO SPEND: {{ limit + balance - totalMoney() }}&nbsp;SEK</li>
-            <li class="lead"><strong>TOTAL: {{ totalMoney() }}&nbsp;SEK</strong></li>
+            <li><span i18n="ITEMS"></span>: {{ totalItems() }} of {{ cartMax }}</li>
+            <li class="text-muted"><span i18n="REMAINING_BALANCE"></span>: {{ limit + balance - totalMoney() }}&nbsp;SEK</li>
+            <li class="lead"><strong><span i18n="TOTAL"></span>: {{ totalMoney() }}&nbsp;SEK</strong></li>
           </ul>
         </div>
         <div class="btn-toolbar">
           <button class="btn btn-default btn-lg pull-left" ng-class="{'disabled' : canUndo() == false}" ng-click="undoAction()"><i class="fa fa-fw fa-undo"></i>Undo</button>
           <button class="btn btn-default btn-lg pull-left" ng-class="{'disabled' : canRedo() == false}" ng-click="redoAction()">Redo<i class="fa fa-fw fa-repeat"></i></button>
           <!-- BUTTON PLACE ORDER -->
-          <button class="btn btn-primary btn-lg btn-icon pull-right" ng-class="{'disabled' : totalItems() == 0}" ng-click="showModal()">Place Order<i class="fa fa-chevron-right"></i></button>
+          <button class="btn btn-primary btn-lg btn-icon pull-right" ng-class="{'disabled' : totalItems() == 0}" ng-click="showModal()"><span i18n="PLACE_ORDER"></span><i class="fa fa-chevron-right"></i></button>
         </div>
 
 
