@@ -49,12 +49,14 @@
 
         }
 
+        /* TODO */
         $scope.passValue =  function(value){
             LSService.setElement("Item",value.namn);    
             $route.reload();
 
         }
 
+        /* TODO */
         $scope.expandNotice = function () {
             if($scope.activeNotices){
                 $scope.content = [];
@@ -65,20 +67,24 @@
             }
         }
 
+        /* TODO */
         $scope.changeTheme = function () {
             console.log("change");
             $('body').addClass("alt_theme");
         }
 
+        /* Is called when clicking on change language button, delegates it to the service. */
         $scope.switchLanguage = function () {
             I18nService.switchLanguage();
         }
  
+        /* Performes logout, removes relvant data from local storage. */
         $scope.logout = function() {
             AuthService.killLoggedInUser();
             $window.location.reload();
         };
 
+        /* Handles highligting of navigation elements. */
         $scope.isActive = function (viewLocation) { 
             return viewLocation === $location.path();
         };

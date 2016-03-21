@@ -12,11 +12,12 @@
 
     function AllBeersController($scope, $window, DataService, LSService, AuthService) {
 
-        // time to cancel an oder
-        var limit = 10000;
+        // Variables for canceling an order after certain amount of time
+        var limit = 10000; // time to cancel an oder
         var timer = null;
         var counter = null;
 
+        // Advertised beers
         $scope.popularLimit = 2;
 
         $scope.username = "";
@@ -25,14 +26,17 @@
         $scope.allBeers = [];
         $scope.balance = 0;
 
-        $scope.cart = [];       // should be in local storage
-        $scope.limit = 0;       // should be also in local storage
-        $scope.likes = [];      // should be in local storage
+        $scope.cart = [];
+        $scope.limit = 0;
+        $scope.likes = [];
 
         $scope.beersInCart = [];
         $scope.allBeers = [];
         $scope.isCartActive = true;
 
+        /**
+        * Function which is called, when the vip customer page is loaded.
+        */
         $scope.init = function () {
 
             $scope.cartHistory = [];
@@ -40,6 +44,7 @@
 
             $scope.username = AuthService.getLoggedInUser().username;
 
+            // Show and hide relevant menus
             $('#menu-vip').show();
             $('#menu-admin').hide();
             $('#warnings').hide();
@@ -47,13 +52,14 @@
 
             var beers = [];
 
-            // check for the likes
+            // check for the liked beers
             if(LSService.getObject($scope.username + "_likes") === null) {
                 LSService.setObject($scope.username + "_likes", []);
             } else {
                 $scope.likes = LSService.getObject($scope.username + "_likes");
             }
 
+            // load the inventory and display nicely
             DataService.getInventory().then(function(response){
                 var count = 0;
 
@@ -83,16 +89,12 @@
                 });
 
                 $scope.content = beers;
-                $scope.allBeers = beers;
-
-                // extract popular beers from allBeers list
-
 
             }, function(response){
                 $scope.content = "Something went wrong!";
             });
 
-            // check for the cart
+            // check for the cart in local storage
             if(LSService.getObject("cart") === null) {
                 LSService.setObject("cart", []);
             } else {
@@ -111,7 +113,7 @@
 
 
         /*
-         undo an actions that has previously been executed
+         * Undo an actions that has previously been executed.
          */
         $scope.undoAction = function() {
 
@@ -130,7 +132,7 @@
         }
 
         /*
-         redo an action if there are any actions that have been undone
+         * Redo an action if there are any actions that have been undone.
          */
         $scope.redoAction = function() {
 
@@ -173,14 +175,17 @@
             }
         }
 
+        /* Returns true if it is possoble to undo an action. */
         $scope.canUndo = function () {
             return !($scope.cartCurrent == -1);
         }
 
+        /* Returns true if it is possoble to redo an action. */
         $scope.canRedo = function () {
             return !($scope.cartCurrent + 1 == $scope.cartHistory.length);
         }
 
+        /* When closing the overlay (cancel buttons) the timer has to be reset. */
         function clearTimer() {
             $('.overlay-footer span').remove();
             clearTimeout(timer);
@@ -209,11 +214,13 @@
             });;
         }
 
+        /* Is called if the cancel button or X is clicked on the overlay. */
         $scope.cancelOrder = function () {
             clearTimer();
             $('.overlay').hide();
         }
 
+        /* Shows an overlay, when clicking the purchase button, starts animation. */
         $scope.showModal = function(){
             $('.overlay').show();
             timer = setTimeout($scope.placeOrder, limit + 10);
@@ -229,18 +236,18 @@
             }, 1000);
         };
 
+        /* Deletes a beer from cart, in local storage and in model. */
         $scope.deleteBeer = function (index) {
             // update local storage
             $scope.cart.splice(index,1);
             LSService.setObject("cart", $scope.cart);
             var beer = $scope.beersInCart.splice(index,1);
             $scope.isCartActive = true;
-            // having duplacate things is stupid
             return beer[0].id;
         }
 
         /*
-        delete beer from cart using ID as key
+        Delete a beer from the cart using ID as a key.
          */
         $scope.deleteBeerById = function (beerid) {
 
@@ -263,12 +270,16 @@
             }
         }
 
+        // This is somehow stupid, actually it should just work straight away:
+        // See here: http://jsfiddle.net/buehler/HCjrQ/
+        // But it is not: http://stackoverflow.com/questions/28541803/angularjs-checkbox-filter-true-and-false
         $scope.checkboxClickOrganic = function (event) {
             if(event === false) {
                 $scope.checkedOrganic = "";
             }
         }
 
+        /* Handles marking beers as favorite and saving so local storang. */
         $scope.markAs = function (index, value, id) {
 
             // setting the like value
@@ -314,15 +325,15 @@
                 $scope.isCartActive = false;
             }
 
-            // to update the scope so the total number in cart changes
-
             return returnVal;
         }
 
+        /* Returns the number of items in the cart. */
         $scope.totalItems = function() {
             return $scope.cart.length;
         }
 
+        /* Returns total money of stuff in cart. */
         $scope.totalMoney = function() {
             var sum = 0;
             $.each($scope.beersInCart, function(key, value){
@@ -331,12 +342,16 @@
             return sum;
         }
 
+        /* Returns true if it is possible to add a beer to the cart.
+        * eighter 5 bottle limit is reaches or credit limit is reached
+        */
         function isSave(beer){
             var futureMoney = $scope.totalMoney() + Number(beer.price);
             var current = $scope.limit + $scope.balance;
             return futureMoney <= current;
         }
 
+        /* Reformats the beer data to use in the view. */
         function getCleanBeerData(beer){
             var cleanBeer = {};
             cleanBeer.name          = beer.namn;
