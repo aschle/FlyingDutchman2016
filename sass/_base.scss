@@ -120,3 +120,27 @@ button.list-group-item:hover {
   padding: $line-height-computed;
   background-color: $gray-lighter;
 }
+
+
+// Users page
+
+#all-users {
+  background-color:white;
+
+}
+
+// Add credit page
+#add-credit {
+  background-color:white;
+
+}
+
+#credit-not-added {
+  display:none;
+
+}
+
+.credit-success {
+  display:inline;
+
+}
