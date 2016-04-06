@@ -305,6 +305,10 @@ angular.module('barApp')
         return i18nService;
     }]);
 
+// Service: Contact Service
+// Author: Erik Naess
+// Version: 1.0
+
 angular.module('barApp')
     .service('ContactService', function () {
         //to create unique contact id

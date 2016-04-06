@@ -1,3 +1,12 @@
+<!---
+File: add-credit.html
+
+This HTML file contains the required elements for adding credit to users at The Flying Dutchman
+Version: 1.0
+Author: Erik Naess
+
+-->
+
 <div class="row">
     <div class="col-md-6" id = "add-credit">
 
@@ -13,7 +22,8 @@
           </div>
         </div>
         <div class="list-group">
-            <!-- draggable Button -->
+
+            <!---Clickable button that copies information to right section to update credit-->
             <button class="list-group-item"  ng-click="$parent.currentUser = value.first_name + '&nbsp;' + value.last_name;$parent.currentCredit = value.currentBalance; $parent.currentID = value.id" ng-repeat="(key, value) in content | filter:search">
                 <h4 class="list-group-item-heading" id = "{{ value.id }}">{{ value.first_name }} {{ value.last_name }}<span class="pull-right"><span i18n="BALANCE"></span>: {{ value.currentBalance }}</span></h4>
             </button>
@@ -22,21 +32,25 @@
     </div>
     <div class="col-md-1">
         <div class="panel panel-default cart">
-
+            <!---Selected user will be presented in currentUser with First_name and Last_name-->
             <div class="panel-heading">{{currentUser}}</div>
 
             <div class="panel-body">
                 <form >
+                    <!---Selected users credit will be presented in currentCredit-->
                     <label><span i18n="BALANCE"></span>: {{currentCredit}}</label>
 
                     <input type="text" class="form-control" ng-model="newCredit" placeholder="Add credit">
+                    <!---The selected users id will be hidden in order to update credit-->
                     <input type="hidden" ng-model="user_id" value="{{currentID}}">
                 </form>
             </div>
             <div class="panel-footer clearfix">
+                <!---Button that activates the function updateCredit defined in add-Credit-Controller-->
                 <button class="btn btn-primary center" id = "credit-add" ng-click="updateCredit(newCredit, currentID)"><span i18n="ADDCREDIT"></span></button>
 
             </div>
+            <!---Success message shown when adding credit-->
             <div id = "credit-not-added" class="alert alert-success">
                 <strong>Success!</strong> {{newCredit}} kr has been added to {{currentUser}}
             </div>

@@ -1,4 +1,12 @@
+<!---
+File: all-users.html
 
+This HTML file contains the required elements for adding/editing/deleting users at The Flying Dutchman
+Version: 1.0
+Author: Erik Naess
+
+<span i18n=""></span> is used for language translation
+-->
 <div class="row">
     <div class="col-md-7" id = "all-users">
 
@@ -22,13 +30,14 @@
             </tr>
             </thead>
             <tbody>
-
+            <!-- For each loop to get all users -->
             <tr ng-repeat="contact in contacts | filter:search">
                 <td>{{ contact.username }}</td>
                 <td>{{ contact.first_name }}</td>
                 <td>{{ contact.last_name }}</td>
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.phone }}</td>
+                <!-- Button for editing and deleting users by using functions edit and delete -->
                 <td> <a href="javascript:void(0)" ng-click="edit(contact.id)"><span i18n="EDIT"></span></a> | <a href="javascript:void(0)" ng-click="delete(contact.id)"><span i18n="DELETE"></span></a>
 
                 </td>
@@ -37,16 +46,13 @@
             </tbody>
         </table>
 
-
-
-
     </div>
     <div class="col-md-4" >
         <section id = "user-details">
             <form class="well">
                 <h3><span i18n="ADD/EDIT"></span>&nbsp;<i class="fa fa-user-plus"></i></h3>
                 <fieldset class="form-group">
-
+                    <!-- Field area for adding/editing users -->
                 <label><span i18n="FIRSTNAME"></span></label>
                 <input type="text" class="form-control"  name="name" ng-model="newcontact.first_name"  required />
                 </fieldset>
@@ -75,6 +81,7 @@
 
                 <br/>
                 <input type="hidden" ng-model="newcontact.id" />
+                <!-- Saves contact with function saveContact -->
                 <input type="button" value="Save" ng-click="saveContact()" class="btn btn-primary" />
             </form>
         </section>
