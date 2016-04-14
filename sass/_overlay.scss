@@ -1,3 +1,31 @@
+/* _overlay.scss
+
+Styling for an modal overlay.
+
+HTML-markup example:
+
+  <div class="overlay">
+    <div class="overlay-dialog">
+      <div class="overlay-content">
+        <div class="overlay-header">
+          <button class="close">&times;</button>
+          <h4 class="overlay-title">Title</h4>
+        </div>
+        <div class="overlay-body">
+          ... some content here ...
+        </div>
+        <div class="overlay-footer>
+          ... some footer content ...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  The visibility of the modal overlay is triggered with JS setting the display attribute.
+
+*/
+
+// Respponsible for the darkended background.
 .overlay {
   display: none;
   background: rgba(0, 0, 0, 0.5);
@@ -30,6 +58,7 @@
   padding: 10px $line-height-computed;
 }
 
+// Using JS little squares are added to the overlay-footer element.
 .tick {
   width: $line-height-computed;
   height: $line-height-computed;

@@ -1,3 +1,23 @@
+/* _base.scss
+
+Our general styling includes:
+
+- Fixed background image
+- Start page styling (logo and text)
+- Search bar and filter
+- Sidebar
+- Button with icon on right side
+- Last-orders page
+- Statistics page
+- DragNDrop Styling
+- Users page
+- Add credit page
+
+*/
+
+
+// Fixed background image and themes (alt_theme)
+// ******
 body {
   background-image: url(../img/beer1.jpg);
   background-size: 100vw;
@@ -12,6 +32,10 @@ body {
   }
 }
 
+
+// Start page styling
+// ******
+// logo as a background image, catchy text on white background
 #logo {
   background-image: url(../img/logo_circ.png);
   background-repeat: no-repeat;
@@ -34,6 +58,9 @@ body {
   }
 }
 
+
+// Search bar and filter
+// ******
 .filter {
   padding: $line-height-computed;
   margin-bottom: $line-height-computed/2;
@@ -46,6 +73,11 @@ body {
   padding: $line-height-computed 0px;
 }
 
+
+// Sidebar (left) for navigation elements
+// ******
+/* uses the bootstrap panel styling and markup (http://getbootstrap.com/components/#panels) and nav-pilles for navigation (http://getbootstrap.com/components/#nav-pills)
+*/
 #sidebar {
   .panel {
     border: 0px;
@@ -56,8 +88,17 @@ body {
   }
 }
 
-.btn-icon {
 
+// Button with icon on right side
+// ******
+/* HTML-markup example:
+
+  <button class="btn btn-primary btn-icon">
+    ... some text here ...
+    <i class="fa fa-chevron-right"></i>
+  </button>
+*/
+.btn-icon {
   i {
     border-left: 2px dotted;
     margin-left: $line-height-computed/2;
@@ -65,7 +106,11 @@ body {
   }
 }
 
-// Beer List
+
+// List of beers and no results
+// ******
+/* uses a bootstrap list-group (http://getbootstrap.com/components/#list-group-buttons) with button elements inside
+*/
 .list-group {
   margin-bottom: $line-height-computed/2;
 }
@@ -74,22 +119,32 @@ button.list-group-item:focus {
   background-color: white;
 }
 
-
 button.list-group-item:hover {
-  background-color: #ce9b7d; // TODO: put in variable
+  background-color: #ce9b7d;
 }
 
-// Last-orders
+// Styling for message "no results found"
+.no-results {
+  padding: $line-height-computed;
+  background-color: $gray-lighter;
+}
+
+
+// Last-orders page
+// ******
 #last-orders {
-  background-color:#f5f5f5;
+  background-color: #f5f5f5;
 }
 
+// Statistics page
+// ******
 #statistics {
-  background-color:#f5f5f5;
+  background-color: #f5f5f5;
 }
 
 
-// DragNDrop-Beer List
+// DragNDrop Styling
+// ******
 .cart {
   position: fixed;
   width: 39%;
@@ -100,47 +155,41 @@ button.list-group-item:hover {
   }
 }
 
-
+// Dashed outline for dragging an element
 .dnd-drag {
   border: 2px dashed white;
 }
 
+// Dark grey background indicates that it is possible to drop an element here
 .dnd-over {
   background: $gray;
   border: 2px dashed white;
 }
 
+// Hint text for the user to dragNdrop stuff here in light grey
 #bg-drop {
   color: lighten($gray-light, 20%);
-  pointer-events: none;
+  pointer-events: none; // very important to let dragNdrop actually happen
   margin-top: -65px;
-}
-
-.no-results {
-  padding: $line-height-computed;
-  background-color: $gray-lighter;
 }
 
 
 // Users page
-
+// ******
 #all-users {
-  background-color:white;
-
+  background-color: white;
 }
 
 // Add credit page
+// ******
 #add-credit {
-  background-color:white;
-
+  background-color: white;
 }
 
 #credit-not-added {
-  display:none;
-
+  display: none;
 }
 
 .credit-success {
-  display:inline;
-
+  display: inline;
 }

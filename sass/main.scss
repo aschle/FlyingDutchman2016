@@ -1,3 +1,17 @@
+/* main.scss
+
+This file combines all SASS files needed for the whole project. We are using the SASS port of bootstrap v3.3.6 (http://getbootstrap.com) together with font-awesome as an icon font.
+
+_bootstrap.scss - main file for bootstrap (vendor file), it includes our own variables file (_variables.scss), for overriding default bootstrap design
+
+_font-awesome.scss - main file for including font-awesome (vendor file)
+
+_base.scss - includes our own styles (logo, searchbar, lists, filter, dragNdrop styling and so on) and overrides also bootstrap designs
+
+_overlay.scss - styling for the overlay, which is shown when placing an order
+
+*/
+
 @charset "utf-8";
 
 @import
