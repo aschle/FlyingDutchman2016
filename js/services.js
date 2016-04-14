@@ -25,7 +25,8 @@
  *   strings, also its looking after the language change procedure.
  * 
  * - ContactService
- *   @erik: TODO
+ *   This service contains an array of all users and handles the adding/editing/removing
+ *   of VIP users. This service is later being called in the users-contoller.
  */
 
  angular.module('barApp')
@@ -355,13 +356,10 @@ angular.module('barApp')
         return i18nService;
     }]);
 
-// Service: Contact Service
-// Author: Erik Naess
-// Version: 1.0
 
 angular.module('barApp')
     .service('ContactService', function () {
-        //to create unique contact id
+        //to create unique contact id for new users
         var uid = 16;
 
         //contacts array to hold list of all contacts
