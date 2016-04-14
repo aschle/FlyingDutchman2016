@@ -7,7 +7,8 @@
  * This file includes:
  *
  * - DataService
- *   Responsible for talking to the provided API (get requests)
+ *   Responsible for talking to the provided API (get requests). Each call
+ *   returns and JSON object.
  *
  * - LocalStorageService
  *   Abstracting the local storage and providing functions for setting,
@@ -37,41 +38,54 @@
         var username = user.username;
         var password = user.password;
 
+        // User: Get the balance of a specific user
+        // This is the only functions, which needs to recive a username and
+        // password, to check if logging in is possible, after that username
+        // and password is saved in local storage.
         dataService.getBalanceByUser = function (username, password) {
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=iou_get');
         };
 
-         dataService.getAllPurchases = function () {
-             return $http.get(urlBase + '?username=svetor' + '&password=svetor' + '&action=purchases_get_all');
-         };
+        // Admin: Get all purchases
+        dataService.getAllPurchases = function () {
+            return $http.get(urlBase + '?username=svetor' + '&password=svetor' + '&action=purchases_get_all');
+        };
 
-         dataService.getPurchaseByUser = function () {
+        // User: Gets all purchases of the logged in user
+        dataService.getPurchaseByUser = function () {
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=purchases_get');
-         }
+        }
 
+        // Admin: Gets all inverntory items
         dataService.getInventory = function () {
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=inventory_get');
         }
 
+        // User: Get additional info for a specified beer
         dataService.getBeerById = function (id) {
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=beer_data_get' + '&beer_id=' + id);
         }
 
+        // User: Purchases a specified beer
         dataService.purchaseOneBeer =function (id) {
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=purchases_append' + '&beer_id=' + id);
         }
+
+        // Admin: Changes the information (amount and price) for a
+        // specified beer
         dataService.updateInventory = function(id, amount, price){
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=inventory_append' + '&beer_id=' + id + '&amount=' + amount + '&price=' + price);
         }
 
+        // Admin: Get a list of all users
         dataService.getAllUsers = function(){
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=iou_get_all');
         }
 
+        // Admin: Add a payment, with a ceratin amount for a specified user
         dataService.addCredit = function(amount, user_id){
             return $http.get(urlBase + '?username=' + username + '&password=' + password + '&action=payments_append' + '&amount=' + amount + '&user_id=' + user_id);
         }
-
 
         return dataService;
     }]);
@@ -114,6 +128,12 @@ angular.module('barApp')
 
         var authService = {};
 
+        // Saves the logged in user in local storage
+        // Parameters:
+        // username and password
+        // role - refers to admin or user (this is needed for knowing what
+        //        for page to show after login)
+        // limit - credit limit
         authService.setLoggedInUser = function(username, password, role, limit){
             LSService.setElement("username", username);
             LSService.setElement("password", password);
@@ -121,6 +141,7 @@ angular.module('barApp')
             LSService.setElement("limit", limit);
         };
 
+        // Returns the the logged in user, password and role.
         authService.getLoggedInUser = function(){
             var username = LSService.getElement('username');
             var password = LSService.getElement('password');
@@ -128,16 +149,21 @@ angular.module('barApp')
             return {'username': username, 'password': password, 'role': role};
         };
 
+        // Returns true if someone is logged in already.
+        // This is needed for redirecting to avoid douple login.
         authService.isLoggedIn = function() {
             if (LSService.getElement('username') != null) {
                 return true;
             } else { return false; }
         }
 
+        // Returns the role of a logged in user
         authService.getLoggedInUserRole = function(){
             return LSService.getElement('role');
         };
 
+        // Function which is performed on logging out.
+        // Cleanes the local storage.
         authService.killLoggedInUser = function(){
             LSService.remove('username');
             LSService.remove('password');
@@ -149,15 +175,12 @@ angular.module('barApp')
         return authService;
     }]);
 
-/**
-* Service for translating a specific key to a specific language.
-*/
 angular.module('barApp')
     .factory('I18nService', ['LocalStorageService', '$http', '$rootScope', function (lsService, $http, $rootScope) {
 
         var i18nService = {};
 
-        // dictionary to look up translations
+        // dictionary to looking up translations
         var dictionary = {
             "en": {
                 "APP_TITLE": "FlyingDutchman VIP Customer* App",
@@ -283,12 +306,15 @@ angular.module('barApp')
                 "LOGIN_WRONG_PW_USER" : "Fel användarnamn eller lösenord"
             }
         };
+
         // current/default language
         var language = "en";
+
         // current/default inactive language
         var inactiveLanguage = "sv";
 
-        // check for saved language setting in local strage, if none - save default
+        // check for saved language setting in local strage
+        // if none - save default
         if(!lsService.getElement("language")) {
             lsService.setElement("language", language);
             lsService.setElement("inactiveLanguage", inactiveLanguage);
@@ -297,10 +323,13 @@ angular.module('barApp')
             inactiveLanguage = lsService.getElement("inactiveLanguage");
         }
 
+        // Looks up a key in the dictionary for the current language and
+        // returns it.
         i18nService.translate = function (key) {
             return dictionary[language][key];
         }
 
+        // This function is performed when the user changes the language.
         i18nService.switchLanguage = function () {
             var tmp = language;
             language = inactiveLanguage;
@@ -308,14 +337,17 @@ angular.module('barApp')
             lsService.setElement("language", language);
             lsService.setElement("inactiveLanguage", inactiveLanguage);
 
-            // for notifying the directive
+            // for notifying the directiveto translate again
+            // so no page reload is needed here
             $rootScope.$broadcast('onLanguageChange');
         }
 
+        // Returns the currently set language
         i18nService.getLanguage = function () {
             return language;
         }
 
+        // Returns the currently inactive language
         i18nService.getInactiveLanguage = function () {
             return inactiveLanguage;
         }
