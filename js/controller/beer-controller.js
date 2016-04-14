@@ -151,11 +151,12 @@
          */
         $scope.undoAction = function() {
 
+            //get the current state of the cart action queue
             var actions = $scope.cartHistory;
             var cursor = $scope.cartCurrent;
 
+            //only undo if there is and action to undo at the current state of the queue
             if(cursor != -1){
-
                 if(actions[cursor][0] == "add"){
                     $scope.deleteBeerById(actions[cursor][1]);
                 }else{
@@ -170,13 +171,17 @@
          */
         $scope.redoAction = function() {
 
+            //get the current state of the cart action queue
             var actions = $scope.cartHistory;
             var cursor = $scope.cartCurrent;
 
+            //check if there is currently any actions that have been undone
+            //and that the action queue length is greater than 0
             if(actions.length - 1 > (cursor) && actions.length != 0){
                 $scope.cartCurrent++;
                 cursor = $scope.cartCurrent;
 
+                //determine if the undone action was an add or a remove
                 if(actions[cursor][0] == "add"){
                     $scope.handleDrop(actions[cursor][1]);
                 }else{
@@ -192,10 +197,12 @@
          */
         $scope.addAction = function(action,value){
 
+            //get the current state of the cart action queue
             var cursor = $scope.cartCurrent;
             var actions =  $scope.cartHistory;
             var target = value;
 
+            //perform the action
             if(action == "add"){
                 $scope.handleDrop(value);
                 $scope.$apply();
@@ -203,6 +210,8 @@
                 target = $scope.deleteBeer(value);
             }
 
+            //update the cart action queue with the new action and the value used to perform it
+            //the action is inserted at the current queue position indicated by "cartCurrent"
             if(target != null){
                 $scope.cartCurrent++;
                 $scope.cartHistory.splice($scope.cartCurrent, (actions.length - cursor),[action, target]);

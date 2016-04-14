@@ -3,9 +3,8 @@ File: statistics.html
 
 This HTML file contains the required elements for showing a purchases list and a graph containing
 statistics of the active choice.
-Version: 1.0
-Author: Johan Herelius
 
+Author: Johan Herelius
 -->
 <div class="row">
   <div class="col-md-6">
@@ -17,7 +16,7 @@ Author: Johan Herelius
       </div>
     </form>
 
-
+    //the elements used to display and sort the main item list
     <div class="list-group">
       <div class="list-group-item">
         <h4 class="list-group-item-heading">
@@ -26,6 +25,8 @@ Author: Johan Herelius
         </h4>
       </div>
 
+      //button element will change the graph to reflect the content
+      //of the current chosen item
       <button ng-click="addToGraph(value)" id="{{value[0].id}}" class="list-group-item" ng-repeat="(key, value) in content | filter:search | orderBy:value.length:true" data-beerid="{{ value[0].id }}">
         <h4 class="list-group-item-heading">
           {{ value[0].name }}
@@ -35,12 +36,13 @@ Author: Johan Herelius
         <p class="list-group-item-text">
         </p>
       </button>
-
     </div>
+
   </div>
+
+  //container for the graph element that is inserted by the statistics-controller
   <div class="col-md-6">
     <div >
-
       <div id="curve_chart" ></div>
     </div>
   </div>

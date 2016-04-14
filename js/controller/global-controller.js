@@ -53,14 +53,17 @@
 
         }
 
-        /* TODO */
+        /* Passes a value to be used globally, index as "Item" through the LSS service module
+         */
         $scope.passValue =  function(value){
             LSService.setElement("Item",value.namn);    
             $route.reload();
 
         }
 
-        /* TODO */
+        /* Determines if notices should be displayed
+         * The scope variable "activeNotices" will reflect the resulted state
+         */
         $scope.expandNotice = function () {
             if($scope.activeNotices){
                 $scope.content = [];
@@ -71,7 +74,8 @@
             }
         }
 
-        /* TODO */
+        /* changes the current theme by adding the class "alt-theme" to the html body
+         */
         $scope.changeTheme = function () {
             console.log("change");
             $('body').addClass("alt_theme");

@@ -1,8 +1,9 @@
 <!---
 File: order-history.html
 
-This HTML file contains elements to display the order history of recent purchases for the application
-Version: 1.0
+This HTML file contains elements to display
+the order history of recent purchases for the application.
+
 Author: Johan Herelius
 
 -->
@@ -25,6 +26,7 @@ Author: Johan Herelius
                 </h4>
             </div>
 
+            //the button element that changes the active order to the content of selected item
             <button ng-click="checkOrder(value)" id="{{value[0].id}}" class="list-group-item" ng-repeat="(key, value) in content | filter:search | orderBy:value.length:true" data-beerid="{{ value[0].id }}">
                 <h4 class="list-group-item-heading">
                     {{ value[0].first_name }} {{ value[0].last_name }}
@@ -34,6 +36,8 @@ Author: Johan Herelius
 
         </div>
     </div>
+
+    //column containing information of the current order
     <div class="col-md-1">
         <div class="panel panel-default cart">
             <div class="panel-heading"><span i18n="ORDER_DETAILS"></span></div>
