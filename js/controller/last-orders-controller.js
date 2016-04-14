@@ -1,7 +1,8 @@
-
 /**
- * getPurchaseByUser
- * last-orders-controller.js
+ * File: last-orders-controller.js
+ * Author: Alexa Schlegel
+ *
+ * This controller only displayes the last orders of a user in a list.
  */
 
 (function () {
@@ -44,7 +45,4 @@
 
     };
 
-})();
-
-
-            
+})();            

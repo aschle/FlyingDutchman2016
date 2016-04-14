@@ -1,5 +1,9 @@
 /**
- * global-controller.js
+ * File: global-controller.js
+ * Author: Alexa Schlegel
+ *
+ * This controller looks after global stuff, like highlighting the current
+ * navigation element, performing logging out, and switching the language.
  */
 (function () {
     'use strict';
@@ -73,7 +77,9 @@
             $('body').addClass("alt_theme");
         }
 
-        /* Is called when clicking on change language button, delegates it to the service. */
+        /* Is called when clicking on change language button, delegates it to
+         * the service.
+         */
         $scope.switchLanguage = function () {
             I18nService.switchLanguage();
         }

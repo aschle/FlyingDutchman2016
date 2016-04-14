@@ -1,5 +1,12 @@
 /**
- * login-controller.js
+ * File: login-controller.js
+ * Author: Alexa Schlegel
+ *
+ * This controller performs the login of a user or admin. It first checks by
+ * missusing the "getBalanceByUser" method if a username is in the database,
+ * if yes it checks the passwords and looks up the role in a local JSON file.
+ * If everything went fine, it saves the logged-in user in local storage.
+ * Depending on the role of the user the appropriate start page is loaded.
  */
 (function () {
     'use strict';
@@ -19,27 +26,35 @@
             // add a spinnter to indicate it is doing something
             $('.btn-toolbar').append('<i class="fa fa-fw fa-2x fa-spinner fa-spin pull-right"></i>');
 
-            //Miss-using getBalanceByUser to check if that person exists in DB
+            // miss-using getBalanceByUser to check if that person exists in DB
             DataService.getBalanceByUser($scope.username, $scope.password)
             .then(function(response) {
-            //First function handles success
+
+            // first function handles success
             if(response.data.payload[0].hasOwnProperty('assets')) {
-                //this user seems to exist
-                //check password equals username
+
+                // this user seems to exist
+                // check password equals username
                 if($scope.username === $scope.password) {
-                    // find out user role: could not find it in API so I created a new local JSON file
+
+                    // find out user role: could not find it in API so
+                    //I created a new local JSON file
                     var users = LocalStorageService.getObject('users');
                     var role, limit, likes;
+
                     $.each(users, function(key, value) {
+
                         if (value.name === $scope.username) {
                             role = value.role;
                             limit = value.limit;
-                            //store stuff in local storage to use later for API and whatever else is needed
+                            //store stuff in local storage to use later for
+                            // API and whatever else is needed
                             AuthService.setLoggedInUser($scope.username, $scope.password, role, limit);
                         } else {
-                            //TODO: do something if something went wrong
+                            //Error
                         }
                     });
+
                     //Redirect depending on role to admin/user home page 
                     $location.path('/' + role + '/');
                 } else {
@@ -58,7 +73,8 @@
             });
         };
 
-        $scope.init = function () {            
+        $scope.init = function () {   
+         
             // write JSON file to local storage
             $http.get('users.JSON')
             .then(function(response) {

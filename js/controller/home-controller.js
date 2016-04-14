@@ -1,5 +1,9 @@
 /**
- * global-controller.js
+ * File: home-controller.js
+ * Author: Alexa Schlegel
+ *
+ * This controller only redicets to the correct start page depending on the
+ * role of the user.
  */
 (function () {
     'use strict';

@@ -1,5 +1,11 @@
 /**
- * beer-controller.js
+ * File: beer-controller.js
+ * Author: Alexa Schlegel
+ *
+ * This controller is responsible for the complete process of
+ * "placing an order". It displays a list of all beers, which can be added to
+ * the cart, it also provided the functionality for undo/redo.
+ * 
  */
 (function () {
     'use strict';
@@ -12,30 +18,56 @@
 
     function AllBeersController($scope, $window, DataService, LSService, AuthService) {
 
+        // ******
+        // VARIABLES START
+        // ******
+
         // Variables for canceling an order after certain amount of time
         var limit = 10000; // time to cancel an oder
         var timer = null;
         var counter = null;
 
-        // Advertised beers
+        // Number of advertised beers
         $scope.popularLimit = 2;
 
+        // Name of logged in user
         $scope.username = "";
+
+        // Number of maximal items in cart
         $scope.cartMax = 5;
+
+        // Number of current elements in cart
         $scope.currentCartCount = 0;
+
+        // List of all beers
         $scope.allBeers = [];
+
+        // Current balance of user
         $scope.balance = 0;
 
+        // List of beers in cart
         $scope.cart = [];
+
+        // Credit limit of the user
         $scope.limit = 0;
+
+        // List of beers the user saved as favorites
         $scope.likes = [];
 
+        // List of beers in cart
         $scope.beersInCart = [];
-        $scope.allBeers = [];
+        
+        // Boolean for indicating if it is still possible to put beer in
         $scope.isCartActive = true;
+
+        // ******
+        // VARIABLES END
+        // ******
 
         /**
         * Function which is called, when the vip customer page is loaded.
+        * It shows a list of all beers and initializes everything needed, it
+        * sets global variables, needed within this controller.
         */
         $scope.init = function () {
 
@@ -52,7 +84,8 @@
 
             var beers = [];
 
-            // check for the liked beers
+            // check for the liked beers in local storage
+            // retrieve if this user already had saved something
             if(LSService.getObject($scope.username + "_likes") === null) {
                 LSService.setObject($scope.username + "_likes", []);
             } else {
@@ -101,13 +134,14 @@
                 $scope.cart = LSService.getObject("cart");
             }
 
+            // set the credit limit of the user
             $scope.limit = Number(LSService.getObject("limit"));
 
             // set the current balance a user has
             DataService.getBalanceByUser(LSService.getElement("username"), LSService.getElement("password")).then(function(response){
                 $scope.balance = Number(response.data.payload[0].assets);
             }, function(response){
-                // error: TODO
+                // Error
             });
         };
 
@@ -152,8 +186,9 @@
         }
 
         /*
-        add a new action to the action Queue with data needed to undo and redo the action
-        this function will remove all previous redo-able actions
+         * Add a new action to the action Queue with data needed to undo and
+         * redo the action. This function will remove all previous redo-able
+         * actions
          */
         $scope.addAction = function(action,value){
 
@@ -185,7 +220,9 @@
             return !($scope.cartCurrent + 1 == $scope.cartHistory.length);
         }
 
-        /* When closing the overlay (cancel buttons) the timer has to be reset. */
+        /* When closing the overlay (showing the items in the cart) the timer
+         * has to be reset, when canceling the action.
+         */
         function clearTimer() {
             $('.overlay-footer span').remove();
             clearTimeout(timer);
@@ -195,7 +232,8 @@
         }
 
         /**
-         * Looks at the local storage variable 'cart' and send an purchase for each element to the DB.
+         * Looks at the local storage variable 'cart' and send an purchase for
+         * each element to the DB.
          */
         $scope.placeOrder = function () {
 
@@ -220,7 +258,9 @@
             $('.overlay').hide();
         }
 
-        /* Shows an overlay, when clicking the purchase button, starts animation. */
+        /* Shows an overlay, when clicking the purchase button, starts
+         * animation/countdown.
+         */
         $scope.showModal = function(){
             $('.overlay').show();
             timer = setTimeout($scope.placeOrder, limit + 10);
@@ -246,9 +286,7 @@
             return beer[0].id;
         }
 
-        /*
-        Delete a beer from the cart using ID as a key.
-         */
+        /* Delete a beer from the cart using ID as a key. */
         $scope.deleteBeerById = function (beerid) {
 
             var index = null;
@@ -343,8 +381,8 @@
         }
 
         /* Returns true if it is possible to add a beer to the cart.
-        * eighter 5 bottle limit is reaches or credit limit is reached
-        */
+         * eighter 5 bottle limit is reaches or credit limit is reached
+         */
         function isSave(beer){
             var futureMoney = $scope.totalMoney() + Number(beer.price);
             var current = $scope.limit + $scope.balance;
