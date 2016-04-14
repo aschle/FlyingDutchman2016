@@ -1,9 +1,30 @@
 /**
  * service.js
  * 
- * shared code goes here
- * also API stuff should go here
+ * Services provide functionality across the whole application. Controllers can
+ * use different services. So this is kind of code sharing.
+ *
+ * This file includes:
+ *
+ * - DataService
+ *   Responsible for talking to the provided API (get requests)
+ *
+ * - LocalStorageService
+ *   Abstracting the local storage and providing functions for setting,
+ *   getting and removing elements and objects.
+ *   Reference: http://learn.ionicframework.com/formulas/localstorage/
  * 
+ * - AuthService
+ *   Responsible for handeling the logging in of a user and the logging out.
+ *   Providing information about who is currently logged in.
+ *   
+ * - I18nService
+ *   This service is used by the directives. It provides a dictionary with
+ *   Swedish and English word/sentences. It has a function for translating
+ *   strings, also its looking after the language change procedure.
+ * 
+ * - ContactService
+ *   @erik: TODO
  */
 
  angular.module('barApp')
@@ -55,8 +76,6 @@
         return dataService;
     }]);
 
-
-// Reference: http://learn.ionicframework.com/formulas/localstorage/
 angular.module('barApp')
     .factory('LocalStorageService', ['$window', function ($window) {
 
@@ -90,7 +109,6 @@ angular.module('barApp')
         return lsService;
     }]);
 
-// Reference: http://learn.ionicframework.com/formulas/localstorage/
 angular.module('barApp')
     .factory('AuthService', ['LocalStorageService', function (LSService) {
 

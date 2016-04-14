@@ -1,9 +1,16 @@
 /**
  * directives.js
  * 
- * Drag and Drop is in here.
+ * This is the place for our own angular directive. Directives are makers on a * DOM element. The angular compiler attaches specific behavior to those DOM
+ * elements. Those elements and its children can be manipulated or event
+ * listener attached.
+ *
+ * This file includes:
+ * - Internationalisation
+ * - DragNDrop 
  * 
- * Reference:
+ * 
+ * References:
  * https://blog.parkji.co.uk/2013/08/11/native-drag-and-drop-in-angularjs.html
  * 
  */
@@ -11,7 +18,17 @@
  angular.module('barApp')
 
     /**
-    * Directive for internationalisation.
+    * Internationalisation
+    *
+    * This directive is responsible for replacing the language key with the
+    * corresponding language string. The attribute 'i18n' (key) is handed over
+    * to the internationalisation service (i18nService), which returns the
+    * translated string. The i18nService knows about the current language
+    * setting.
+    *
+    * The function changeString() only manipulates the DOM element. This
+    * function is also triggered when the user changes the language
+    * ('onLanguageChange')
     */
     .directive('i18n', ['I18nService', function(i18nService) {
         return {
@@ -28,6 +45,7 @@
 
                 changeString();
 
+                // event listener - change language when user selects another
                 scope.$on('onLanguageChange', function() {
                     changeString();
                 });
@@ -36,19 +54,28 @@
     }])
 
 
+    /**
+    * Drag and Drop - Draggable element
+    *
+    * This directive is implementing the eventlistener which are nessesary for
+    * dragging, this inludes 'dragstart' and 'dragend'.
+    */
     .directive('draggable', function() {
         return function(scope, element) {
 
             // native JS object
             var el = element[0];
 
-            // TODO: only be draggable if still in stock
-            // TODO: only be draggable if 5 is not reached
-            // TODO: only be draggable if credit limit will not be exceeded
-            // TODO: also tmp-stock should be kept in mind
+            // set the attribute draggable to true
             el.draggable = true; 
 
-            // Dragstart-Handler
+            // ******
+            // Dragstart handler
+            // ******
+            /*
+            * Set the ID of the dragged element and attaches a css class for
+            * styling the dragged element.
+            */
             el.addEventListener(
                 'dragstart',
                 function(e) {
@@ -60,7 +87,12 @@
                 false
             );
 
-            //Dragend-Listener
+            // ******
+            // Dragend-Listener
+            // ******
+            /*
+            * Removes the css class again, when dragging is finished.
+            */
             el.addEventListener(
                 'dragend',
                 function(e) {
@@ -72,18 +104,32 @@
         }   
     })
 
+    /**
+    * Drag and Drop - Droppable element
+    *
+    * This directive is implementing the eventlistener which are nessesary for
+    * the dropping area, this inludes 'dragover', 'dragenter', 'dragleave' and
+    * most important 'drop'.
+    */
     .directive('droppable', function() {
         return {
             scope: {
                 // parent
                 drop: '&'
             },
+
             link: function(scope, element, attrs) {
 
                 // native JS object
                 var el = element[0];
 
+                // ******
                 // Dragover-Listener
+                // ******
+                /*
+                * Changes the styling of the droppable area, if a draggable
+                * element is over it.
+                */
                 el.addEventListener(
                     'dragover',
                     function(e) {
@@ -96,7 +142,13 @@
                     false
                 );
 
+                // ******
                 // Dragenter-Listener
+                // ******
+                /*
+                * Changes the styling of the droppable area, if a draggable
+                * element is entering the area.
+                */
                 el.addEventListener(
                     'dragenter',
                     function(e) {
@@ -107,7 +159,13 @@
                     false
                 );
 
+                // ******
                 // Dragleave-Listener
+                // ******
+                /*
+                * Changes the styling of the droppable area, if a draggable
+                * element is leaves the area.
+                */
                 el.addEventListener(
                     'dragleave',
                     function(e) {
@@ -118,46 +176,41 @@
                     false
                 );
 
+                // ******
                 // Drop-Listener
+                // ******
+                /*
+                * The drop listener calls the drop function, which is specified
+                * as an attribute called drop="addAction('add',beerID)". This
+                * calles the function 'addAction' of the AllBeersController.
+                * So this event listener is not manipulating the DOM, it
+                * delegates the work to the controller. 
+                */
                 el.addEventListener(
                     'drop',
                     function(e) {
 
-                        // Stops some browsers from redirecting.
+                        // stops some browsers from redirecting
                         if (e.stopPropagation) e.stopPropagation();
 
+                        // remember the source and destination
                         var data = e.dataTransfer.getData("text");
 
-                        // prevent from dragging into an dragged beer
+                        // prevent from dragging into a already dragged beer
                         if (data.startsWith("src_copy") == true &&
                             e.target.id == "dest_copy") {
-                            
-                            // make a copy of the dragged element
-                            //var node = $('#' + data).clone()
 
                             // remove css classes
                             this.classList.remove('dnd-over');
-                            //node.removeClass("dnd-drag");
 
-                            // prevent from making things draggable again
-                            //node.attr("draggable", "false");
-
-                            // add trash icon
-                            //node.find("p").append("<i class='fa fa-fw fa-trash pull-right'></i>")
-
-                            // nur wenn man es nicht darf nix mehr reindraggen
-                            // attrs.$set('draggable', "false");
-                            
-                            // add element to cart
-                            //$(e.target).append(node);
-
-                            // find out beerID
+                            // find out the beer id
                             var id = $('#' + data).data("beerid");
 
                             // call the drop passed function in the controller
-                            scope.drop({beerID: id});
+                            scope.drop( { beerID: id } );
 
                         } else {
+                            // abort dropping
                             this.classList.remove('dnd-over');
                         }
 
