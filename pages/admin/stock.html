@@ -1,8 +1,17 @@
-<!-- all-beers.html -->
+<!---
+File: stock.html
+This HTML file contains elements to display
+the inventory of the bar, as well as forms for updating the inventory
+Author: Max Wijnbladh
+Requires the following files:
+
+stock-controller.js
+-->
+
 <div class="row">
     <div class="col-md-6">
 
-        <!-- SEARCH/FILTER THINGY -->
+        <!-- Search function -->
         <form role="search">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search" ng-model="search">
@@ -15,12 +24,13 @@
                     <span class="pull-right"><span i18n="AMOUNT"></span></span>
                 </h4>
             </div>
-            <!-- draggable Button -->
+            <!-- Create a list as an draggable button, with one entry for each beverage type. For each beverage, display the number of bottles in stock -->
             <button class="list-group-item" ng-click="$parent.currentbeer = value.namn;$parent.currentAmount = value.count; $parent.currentPrice = value.price; $parent.currentID = value.beer_id" ng-repeat="(key, value) in content | filter:search ">
                 <h4 class="list-group-item-heading">{{ value.namn }}<small>&nbsp;{{ value.namn2 }}</small><span class="pull-right">{{ value.count }}</span></h4>
             </button>
         </div>
     </div>
+     <!-- Display a panel with two form fields, one for the number of bottles in stock and one for the new price. Use current inventory as placeholders-->
     <div class="col-md-1">
         <div class="panel panel-default cart">
             <div class="panel-heading">{{currentbeer}}</div>
@@ -34,6 +44,7 @@
                     <input type="text" class="form-control" ng-model="newPrice" />
                 </fieldset>
             </div>
+            <!-- Show a button at the bottom of the panel. Clicking the button runs the update function with the parameters set in the form fields. -->
             <div class="panel-footer clearfix">
                 <button class="btn btn-primary center" ng-click="updateInventory(currentID, newAmount, newPrice)"><span i18n="UPDATE_STOCK"></span></button>
             </div>
