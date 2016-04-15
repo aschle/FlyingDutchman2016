@@ -1,4 +1,10 @@
-<!-- last-orders.html -->
+<!---
+File: last-orders.html
+This HTML file contains the required elements for displaying the list of previous purchases made in the app
+Author: Johan Herelius
+-->
+
+<!--- Create a table, and set headlines indiciating what is being displayed. -->
 <div class="row">
   <div class="col-md-6" id = "last-orders">
     <h3>Last Orders</h3>
@@ -9,6 +15,7 @@
         <th>Beer</th>
         <th class="text-right">Price</th>
       </thead>
+      <!--- List the beverages from content, and display the timestamp and beverage name for each purchase -->
       <tbody>
         <tr ng-repeat="(key, value) in content">
           <td>{{ value.timestamp }}</td>
