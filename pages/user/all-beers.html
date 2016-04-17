@@ -39,13 +39,13 @@ Author: Alexa Schegel
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" ng-model="search">
         </div>
-
+          <!-- Display graphic elements and checkboxes, indicating if the beer has been marked as a favourite -->
           <label class="checkbox-inline">
             <input type="checkbox" ng-model="checkedFavorite" ng-click="checkboxClickFav(checkedFavorite)">
               <i class="fa fa-fw fa-heart"></i>
             <span i18n="FAVOURITE_BEERS"></span> ({{ (content | filter:search | filter:{isFavorite:true}).length }})
           </label>
-
+           <!-- Display graphic elements and checkboxes, indicating if the beer is organic -->
           <label class="checkbox-inline">
             <input type="checkbox" ng-model="checkedOrganic" ng-click="checkboxClickOrganic(checkedOrganic)">
             <i class="fa fa-fw fa-leaf"></i>
@@ -87,9 +87,9 @@ Author: Alexa Schegel
   <div class="col-md-6">
 
     <div class="panel panel-default cart">
-
+      <!-- As the heading for the cart area, display the users current balance -->
       <div class="panel-heading"><span i18n="CURRENT_BALANCE"></span>: {{ balance }}&nbsp;SEK | <span i18n="CREDIT_LIMIT"></span>: {{ limit }}&nbsp;SEK</div>
-
+      <!-- Set the cart area as a target for drag n drop action, and display text in the area indicating for the user that said functionality exists -->
       <div class="panel-body" id="dest_copy" droppable drop="addAction('add',beerID)">
         <div id="bg-drop" class="text-center">
           <i class="fa fa-fw fa-3x fa-beer"></i><p><span i18n="DRAGNDROP"></span></p>
@@ -101,7 +101,8 @@ Author: Alexa Schegel
       <div class="alert alert-danger" role="alert" ng-hide="isCartActive">
         <span i18n="NOT_ADDED"></span>
       </div>
-
+      <!-- Displays the footer of the cart, where a users remaining balance and total cost of the purchase is displayed.
+      Also display the undo redo buttons, and the PLACE ORDER button which is used to finialize a purchase-->
       <div class="panel-footer clearfix">
         <div>
           <ul class="list-unstyled text-right">
