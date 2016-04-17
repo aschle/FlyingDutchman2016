@@ -1,6 +1,7 @@
 <!---
 File: index.html
-xxx
+This HTML files contains all the necessary elements to display the static elements on the VIP user and admin parts
+of the website, such as the navigation bars and additional toggles
 Author: Alexa Schegel
 -->
 
@@ -32,7 +33,7 @@ Author: Alexa Schegel
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 
-    <!-- all controllers and services for now -->
+    <!-- all controllers and services-->
     <script src="js/services.js"></script>
     <script src="js/directives.js"></script>
     <script src="js/controller/global-controller.js"></script>
@@ -59,7 +60,7 @@ Author: Alexa Schegel
 
     <div class="container-fluid">
 
-      <!-- Maybe but in some other file/place, so file does not get that long -->
+      <!--Show a navbar where we can place the website logo, as well as options for language selections and themes -->
       <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -73,7 +74,7 @@ Author: Alexa Schegel
             <a class="navbar-brand" href="/#/">FlyingDutchman BeerApp</a>
           </div>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
+          <!-- Collect the nav links, forms, and other content for toggling in the navbar-->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li>
@@ -93,7 +94,8 @@ Author: Alexa Schegel
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
-
+      
+      <!-- FOR VIP USERS: Displays the left navigation bar where a user can select which page of the site to display -->
       <div class="row">
         <div id="sidebar" class="col-md-2">
           <div class="panel panel-default" id="menu-vip">
@@ -109,7 +111,8 @@ Author: Alexa Schegel
               </ul>
             </div>
           </div>
-
+          
+          <!-- FOR ADMIN USERS: Displays the left navigation bar where an admin can select which page of the site to display -->
           <div class="panel panel-default" id="menu-admin">
             <div class="panel-heading"><span i18n="ADMIN_MENU"></span></div>
             <div class="panel-body">
@@ -132,7 +135,8 @@ Author: Alexa Schegel
               </ul>
             </div>
           </div>
-
+          
+          <!-- FOR ADMIN USERS, Display the warnings which indicate which beverages are running out of stock-->
           <div class="panel panel-default" id="warnings">
             <div class="panel-heading">{{notices.length}} <span i18n="OUT_STOCK"></span><i ng-click="expandNotice()" class="{{activeNotices ? 'fa fa-caret-down fa-2x pull-right' : 'fa fa-caret-right fa-2x pull-right'}}" ></i></div>
             <div class="panel-body">
